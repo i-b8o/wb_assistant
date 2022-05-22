@@ -10,8 +10,8 @@ import '../components/welcome_header.dart';
 import '../components/welcome_text_fields.dart';
 
 // TODO Make Large view for registration
-class LoginLandscape extends StatelessWidget {
-  const LoginLandscape({
+class SignInLandscape extends StatelessWidget {
+  const SignInLandscape({
     Key? key,
   }) : super(key: key);
 
@@ -32,8 +32,8 @@ class LoginLandscape extends StatelessWidget {
             ),
             const WelcomeHeader(
               mobile: false,
-              greetingText: Constants.loginGreetingText,
-              headerText: Constants.loginHeaderText,
+              greetingText: Constants.signInGreetingText,
+              headerText: Constants.signInHeaderText,
             ),
             TextFieldsWidget(
               fields: [

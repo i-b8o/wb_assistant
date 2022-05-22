@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import '../../constants.dart';
-import 'registration_large.dart';
-import 'registration_portrait.dart';
-import 'registration_thick_portrait.dart';
+import 'sign_up_large.dart';
+import 'sign_up_portrait.dart';
+import 'sign_up_thick_portrait.dart';
 
-class RegistrationPage extends StatelessWidget {
-  const RegistrationPage({
+class SignUpPage extends StatelessWidget {
+  const SignUpPage({
     Key? key,
   }) : super(key: key);
 
@@ -25,10 +25,10 @@ class RegistrationPage extends StatelessWidget {
             double aspectRatio = constraints.maxWidth / constraints.maxHeight;
             if (isPortrait) {
               return aspectRatio > 0.55
-                  ? const RegistrationThickPortrait()
-                  : const RegistrationPortrait();
+                  ? const SignUpThickPortrait()
+                  : const SignUpPortrait();
             } else {
-              return const RegistrationLarge();
+              return const SignUpLarge();
             }
           },
         ),

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class AlreadyHaveAnAccountCheck extends StatelessWidget {
-  final bool login, mobile;
+  final bool signIn, mobile;
 
   const AlreadyHaveAnAccountCheck({
     Key? key,
-    this.login = true,
+    this.signIn = true,
     required this.fontSize,
     this.mobile = true,
     this.onPressed = _defaultFunction,
@@ -27,7 +27,7 @@ class AlreadyHaveAnAccountCheck extends StatelessWidget {
               mobile ? MainAxisAlignment.center : MainAxisAlignment.end,
           children: [
             Text(
-              login ? "Ещё нет аккаунта?" : "Уже есть аккаунт?",
+              signIn ? "Ещё нет аккаунта?" : "Уже есть аккаунт?",
               style: TextStyle(
                   color: const Color.fromRGBO(61, 57, 74, 1),
                   fontWeight: FontWeight.bold,
@@ -35,7 +35,7 @@ class AlreadyHaveAnAccountCheck extends StatelessWidget {
             ),
             TextButton(
               onPressed: onPressed,
-              child: Text(login ? "Зарегистрироваться" : "Войти",
+              child: Text(signIn ? "Зарегистрироваться" : "Войти",
                   style: TextStyle(
                       color: const Color.fromRGBO(54, 133, 240, 1),
                       fontWeight: FontWeight.bold,

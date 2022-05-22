@@ -8,8 +8,8 @@ import '../../components/rounded_input_field.dart';
 import '../../components/rounded_password_field.dart';
 import '../../components/welcome_text_fields.dart';
 
-class RegistrationThickPortraitFieldsAndBtn extends StatelessWidget {
-  const RegistrationThickPortraitFieldsAndBtn({
+class SignUpThickPortraitFieldsAndBtn extends StatelessWidget {
+  const SignUpThickPortraitFieldsAndBtn({
     Key? key,
   }) : super(key: key);
 
@@ -42,7 +42,7 @@ class RegistrationThickPortraitFieldsAndBtn extends StatelessWidget {
                 )
               ],
             ),
-            // TODO Create the ConfirmMail Page and perform transition to the confirm mail page with autmatic transition to Login
+            // TODO Create the ConfirmMail Page and perform transition to the confirm mail page with autmatic transition to SignIn
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [

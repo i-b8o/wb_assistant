@@ -5,11 +5,11 @@ import '../../constants.dart';
 
 import '../components/already_have_an_account_check.dart';
 
-import '../login/login.dart';
-import 'registration_components/registration_components.dart';
+import '../sign_in/sign_in.dart';
+import 'sign_up_components/sign_up_components.dart';
 
-class RegistrationThickPortrait extends StatelessWidget {
-  const RegistrationThickPortrait({Key? key}) : super(key: key);
+class SignUpThickPortrait extends StatelessWidget {
+  const SignUpThickPortrait({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,15 +21,15 @@ class RegistrationThickPortrait extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const RegistrationThickPortraitHeader(),
-          const RegistrationThickPortraitFieldsAndBtn(),
+          const SignUpThickPortraitHeader(),
+          const SignUpThickPortraitFieldsAndBtn(),
           SizedBox(
             height: _size.width * 0.1,
           ),
           AlreadyHaveAnAccountCheck(
             onPressed: () =>
-                Get.to(() => const LoginPage(), transition: Transition.fadeIn),
-            login: false,
+                Get.to(() => const SignInPage(), transition: Transition.fadeIn),
+            signIn: false,
             fontSize: _size.width * 0.03,
           ),
         ],

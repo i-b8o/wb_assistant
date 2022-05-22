@@ -7,14 +7,14 @@ class WelcomeBtns extends StatelessWidget {
   const WelcomeBtns({
     Key? key,
     required this.btnText,
-    this.login = true,
+    this.signIn = true,
     this.mobile = true,
     this.onPressed = _defaultFunction,
   }) : super(key: key);
   final VoidCallback onPressed;
   static _defaultFunction() {}
 
-  final bool login, mobile;
+  final bool signIn, mobile;
   final String btnText;
 
   @override
@@ -23,7 +23,7 @@ class WelcomeBtns extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        login
+        signIn
             ? SizedBox(
                 width: mobile ? _width * 0.92 : _width * 0.5,
                 child: Row(

@@ -3,8 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../constants.dart';
 
-class RegistrationThickPortraitHeader extends StatelessWidget {
-  const RegistrationThickPortraitHeader({
+class SignUpThickPortraitHeader extends StatelessWidget {
+  const SignUpThickPortraitHeader({
     Key? key,
   }) : super(key: key);
 
@@ -18,7 +18,7 @@ class RegistrationThickPortraitHeader extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(Constants.registrationHeaderText,
+            Text(Constants.signUpHeaderText,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.robotoMono(
                   color: const Color.fromRGBO(55, 48, 74, 1),
@@ -28,7 +28,7 @@ class RegistrationThickPortraitHeader extends StatelessWidget {
             SizedBox(
               height: _size.width * 0.01,
             ),
-            Text(Constants.registrationGreetingText,
+            Text(Constants.signUpGreetingText,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.robotoMono(
                   color: const Color.fromRGBO(128, 124, 142, 1),

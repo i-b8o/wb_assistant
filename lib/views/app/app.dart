@@ -4,7 +4,10 @@ import 'package:wb_assistant/controllers/authentication_controller.dart';
 
 import '../../controllers/local_storage_controller.dart';
 
-import '../home/home.dart';
+import '../wait_loading_details_page/wait_loading_details_page.dart';
+
+import '../wait_loading_sign_in_page/wait_loading_sign_in_page.dart';
+
 import '../welcome/welcome.dart';
 
 class App extends StatelessWidget {
@@ -20,10 +23,11 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: localStorageController.userDataStored.isTrue
-          ? const Home()
-          // : const ConfirmEmailPage()
-          : const WelcomePage(),
+      home: localStorageController.jwtInStorage.isTrue
+          ? const WaitLoadingDetailsPage()
+          : localStorageController.credentialsInStorage.isTrue
+              ? const WaitLoadingSignInPage()
+              : const WelcomePage(),
     );
   }
 }

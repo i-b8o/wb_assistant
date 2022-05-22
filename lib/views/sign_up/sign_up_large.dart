@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../constants.dart';
 import '../components/components.dart';
 
-class RegistrationLarge extends StatelessWidget {
-  const RegistrationLarge({Key? key}) : super(key: key);
+class SignUpLarge extends StatelessWidget {
+  const SignUpLarge({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,14 +17,14 @@ class RegistrationLarge extends StatelessWidget {
             height: _width * 0.03,
           ),
           AlreadyHaveAnAccountCheck(
-            login: false,
+            signIn: false,
             mobile: false,
             fontSize: _width * 0.01,
           ),
           const WelcomeHeader(
             mobile: false,
-            headerText: Constants.registrationHeaderText,
-            greetingText: Constants.registrationGreetingText,
+            headerText: Constants.signUpHeaderText,
+            greetingText: Constants.signUpGreetingText,
           ),
           TextFieldsWidget(
             fields: [
@@ -51,7 +51,7 @@ class RegistrationLarge extends StatelessWidget {
           ),
           const WelcomeBtns(
             mobile: false,
-            login: false,
+            signIn: false,
             btnText: Constants.regBtnText,
           ),
         ],

@@ -4,12 +4,11 @@ import 'package:get/get.dart';
 import '../../constants.dart';
 import '../../controllers/authentication_controller.dart';
 import '../components/components.dart';
-import '../confirm/confirm_email.dart';
-import '../login/login.dart';
+import '../sign_in/sign_in.dart';
 
 // TODO use MediaQueryData widget
-class RegistrationPortrait extends StatelessWidget {
-  const RegistrationPortrait({Key? key}) : super(key: key);
+class SignUpPortrait extends StatelessWidget {
+  const SignUpPortrait({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +21,8 @@ class RegistrationPortrait extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const WelcomeHeader(
-            headerText: Constants.registrationHeaderText,
-            greetingText: Constants.registrationGreetingText,
+            headerText: Constants.signUpHeaderText,
+            greetingText: Constants.signUpGreetingText,
           ),
           GetBuilder<AuthenticationController>(
             init: AuthenticationController(),
@@ -51,10 +50,10 @@ class RegistrationPortrait extends StatelessWidget {
                       )
                     ],
                   ),
-                  // TODO Create the ConfirmMail Page and perform transition to the confirm mail page with autmatic transition to Login
+                  // TODO Create the ConfirmMail Page and perform transition to the confirm mail page with autmatic transition to SignIn
                   WelcomeBtns(
-                    onPressed: () => controller.regOnPressed(),
-                    login: false,
+                    onPressed: () => controller.signUpOnPressed(),
+                    signIn: false,
                     btnText: Constants.regBtnText,
                   ),
                 ],
@@ -66,8 +65,8 @@ class RegistrationPortrait extends StatelessWidget {
           ),
           AlreadyHaveAnAccountCheck(
             onPressed: () =>
-                Get.to(() => const LoginPage(), transition: Transition.fadeIn),
-            login: false,
+                Get.to(() => const SignInPage(), transition: Transition.fadeIn),
+            signIn: false,
             fontSize: width * 0.03,
           ),
         ],

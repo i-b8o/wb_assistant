@@ -1,47 +1,49 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-
-import '../models/account.dart';
-import '../models/user.dart';
+import 'package:wb_assistant/models/credentials.dart';
 
 class LocalStorageController extends GetxController {
-  var userDataStored = false.obs;
-  late List<Account> _accounts;
-  late User user;
+  var jwtInStorage = false.obs;
+  var credentialsInStorage = false.obs;
+  static Future<String> getJWT() async {
+    return await GetStorage().read('jwt');
+  }
+
+  void setJWT(String jwt) async {
+    GetStorage().write('jwt', jwt);
+  }
+
   LocalStorageController() {
-    _accounts = <Account>[];
-    user = User(email: "", username: '', accounts: _accounts, id: '');
-    getUserData();
+    getJWT().then((value) {
+      if (value.isNotEmpty) {
+        if (jwtInStorage.isFalse) jwtInStorage.toggle();
+        return;
+      } else {
+        if (jwtInStorage.isTrue) jwtInStorage.toggle();
+      }
+    });
+    getCredentials().then((credentials) {
+      if (credentials.username.isNotEmpty && credentials.password.isNotEmpty) {
+        if (credentialsInStorage.isFalse) {
+          credentialsInStorage.toggle();
+        }
+        return;
+      } else {
+        if (credentialsInStorage.isTrue) {
+          credentialsInStorage.toggle();
+        }
+      }
+    });
   }
 
-  void getUserData() {
-    var name = GetStorage().read('name');
-    var email = GetStorage().read('email');
-    var password = GetStorage().read('password');
-    var accountType = GetStorage().read('type');
-    var accountExpires = GetStorage().read('expires');
-    if (email == null ||
-        password == null ||
-        accountType == null ||
-        accountExpires == null) {
-      if (userDataStored.isTrue) userDataStored.toggle();
-      return;
-    }
-
-    if (userDataStored.isFalse) userDataStored.toggle();
-    var _accounts = [
-      Account(id: "", type: accountType, expires: accountExpires)
-    ];
-    user = User(username: name, email: email, accounts: _accounts, id: '');
+  Future<Credentials> getCredentials() async {
+    String username = await GetStorage().read('username');
+    String password = await GetStorage().read('password');
+    return Credentials(username: username, password: password);
   }
 
-  void setUserData(String name, email, password, type, expires) {
-    GetStorage().write('name', name);
-    GetStorage().write('email', email);
-    GetStorage().write('password', password);
-    GetStorage().write('type', type);
-    GetStorage().write('expires', expires);
-    user = User(username: name, email: email, accounts: _accounts, id: '');
-    if (userDataStored.isFalse) userDataStored.toggle();
+  void setCredentials(Credentials credentials) async {
+    GetStorage().write('username', credentials.username);
+    GetStorage().write('password', credentials.password);
   }
 }
