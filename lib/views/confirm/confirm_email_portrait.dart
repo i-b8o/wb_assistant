@@ -40,7 +40,7 @@ class ConfirmEmailPortrait extends StatelessWidget {
             height: size.height * 0.12,
           ),
           Text(
-            Constants.ConfirmHeaderText,
+            Constants.confirmHeaderText,
             style: TextStyle(
                 color: Constants.azureColor,
                 fontWeight: FontWeight.bold,
@@ -52,7 +52,7 @@ class ConfirmEmailPortrait extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.07),
             child: Text(
-              Constants.ConfirmGreetingText,
+              Constants.confirmGreetingText,
               textAlign: TextAlign.center,
               style: TextStyle(
                   color: Constants.azureColor,
