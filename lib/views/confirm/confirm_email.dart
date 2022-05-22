@@ -10,13 +10,13 @@ class ConfirmEmailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size _size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Constants.bgColor,
       body: SizedBox(
         width: double.infinity,
-        height: _size.height,
+        height: size.height,
         child: LayoutBuilder(
           builder: (context, constraints) {
             bool isPortrait =

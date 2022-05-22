@@ -1,9 +1,21 @@
+import 'dart:convert';
+
+import 'package:be_repo/be_repo.dart';
 import 'package:get/get.dart';
+import 'package:wb_assistant/controllers/local_storage_controller.dart';
+import 'package:wb_assistant/models/credentials.dart';
+import 'package:wb_assistant/models/details.dart';
+import 'package:wb_assistant/models/serverError.dart';
+import 'package:wb_assistant/models/token.dart';
 
 class AuthenticationController extends GetxController {
-  String name = "";
+  String username = "";
   String email = "";
   String password = "";
+  var gotDetails = false.obs;
+  var serverError = "".obs;
+  Details details =
+      Details(email: "", expires: "", type: "", username: "", id: '');
 
   String validateEmail() {
     if (!GetUtils.isEmail(email)) {
@@ -11,7 +23,6 @@ class AuthenticationController extends GetxController {
     } else if (email.contains(" ")) {
       return "Email не может содержать пробел.\n";
     }
-
     return "";
   }
 
@@ -26,22 +37,61 @@ class AuthenticationController extends GetxController {
   }
 
   String validateName() {
-    if (name.length < 4) {
+    if (username.length < 4) {
       return "Имя должно быть не менее 4 символов\n";
-    } else if (name.contains(" ")) {
+    } else if (username.contains(" ")) {
       return "Имя не может содержать пробел.\n";
     }
 
     return "";
   }
 
-  void signUpOnPressed() async {
-    // String mes = await reg();
-    // if (mes == "0" || mes == "2") {
-    //   Get.to(() => const ConfirmEmailPage());
-    //   return;
-    // }
-    // Get.snackbar("Ошибка", mes);
+  Future<String> signUpOnPressed() async {
+    var s = validateEmail();
+    s = s + validateName();
+    s = s + validatePassword();
+    if (s.isNotEmpty) return s;
+
+    BeRepository.signUpUser(email, password, username).then((response) {
+      if (response.statusCode == 200) {
+        LocalStorageController.setCredentials(
+            Credentials(email: username, password: password));
+      }
+    });
+    return "";
+  }
+
+  Future<String> signInOnPressed() async {
+    var s = validateEmail();
+    s = s + validatePassword();
+    if (s.isNotEmpty) return s;
+
+    await BeRepository.signInUser(email, password).then((response) async {
+      if (response.statusCode == 200) {
+        TokenMessage tokenMes =
+            TokenMessage.fromJson(jsonDecode(response.body));
+
+        await LocalStorageController.setJWT(tokenMes.token);
+        print("DONE!@");
+      } else {
+        return ServerErr.fromJson(jsonDecode(response.body)).message;
+      }
+    });
+    return "";
+  }
+
+  Future<String> getDetails(String token) async {
+    print(":AUTH:${token}|");
+    BeRepository.details(token).then((response) {
+      if (response.statusCode == 200) {
+        print(response.body);
+        details = Details.fromJson(jsonDecode(response.body));
+      } else {
+        serverError.value =
+            ServerErr.fromJson(jsonDecode(response.body)).message;
+      }
+    });
+    return "";
   }
 
   // Future<String> resend() async {

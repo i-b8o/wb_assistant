@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wb_assistant/views/home/home.dart';
 
 import '../../constants.dart';
 import '../../controllers/authentication_controller.dart';
-import '../app/app.dart';
+
 import '../components/already_have_an_account_check.dart';
 import '../components/rounded_input_field.dart';
 import '../components/rounded_password_field.dart';
@@ -44,9 +45,9 @@ class SignInPortrait extends StatelessWidget {
                   ),
                   WelcomeBtns(
                     onPressed: () async {
-                      String mes = await controller.log();
+                      String mes = await controller.signInOnPressed();
                       if (mes == "") {
-                        Get.to(() => App());
+                        Get.offAll(const Home());
                       }
                       Get.snackbar("Ошибка", mes);
                     },

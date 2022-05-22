@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../constants.dart';
+import '../sign_in/sign_in.dart';
 import '../sign_up/sign_up_page.dart';
 
 class WelcomePortrait extends StatelessWidget {
@@ -73,7 +74,7 @@ class WelcomePortrait extends StatelessWidget {
                         style: TextButton.styleFrom(
                           fixedSize: Size.fromRadius(size.width * 0.4),
                         ),
-                        onPressed: () => Get.to(() => const SignUpPage()),
+                        onPressed: () => Get.to(() => const SignInPage()),
                         child: Text(Constants.logBtnText,
                             style: GoogleFonts.robotoMono(
                               fontWeight: FontWeight.bold,

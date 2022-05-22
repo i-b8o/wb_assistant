@@ -1,5 +1,5 @@
 class Credentials {
-  final String username, password;
+  final String email, password;
 
-  Credentials({required this.username, required this.password});
+  Credentials({required this.email, required this.password});
 }

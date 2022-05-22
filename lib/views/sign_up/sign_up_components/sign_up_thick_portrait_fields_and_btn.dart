@@ -27,7 +27,7 @@ class SignUpThickPortraitFieldsAndBtn extends StatelessWidget {
                 RoundedInputField(
                     email: false,
                     hintText: Constants.nameInputText,
-                    onChanged: (username) => controller.name = username,
+                    onChanged: (username) => controller.username = username,
                     height: _size.height * 0.1,
                     width: _size.width * 0.6),
                 RoundedInputField(
@@ -50,12 +50,12 @@ class SignUpThickPortraitFieldsAndBtn extends StatelessWidget {
                   height: _size.height * 0.1,
                   width: _size.width * 0.6,
                   text: Constants.regBtnText,
-                  press: () async {
-                    String mes = "";
-
-                    mes = await controller.reg();
-                    // TODO style snackbar and perform different snakcbars for error and success
-                    if (mes != "") Get.snackbar("BBBBBB", mes);
+                  press: () {
+                    controller.signUpOnPressed().then((message) {
+                      if (message.isNotEmpty) {
+                        Get.snackbar("title", message);
+                      }
+                    });
                   },
                 ),
               ],

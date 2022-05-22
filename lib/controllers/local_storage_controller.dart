@@ -3,47 +3,98 @@ import 'package:get_storage/get_storage.dart';
 import 'package:wb_assistant/models/credentials.dart';
 
 class LocalStorageController extends GetxController {
-  var jwtInStorage = false.obs;
+  static var jwtInStorage = false.obs;
   var credentialsInStorage = false.obs;
-  static Future<String> getJWT() async {
-    return await GetStorage().read('jwt');
-  }
-
-  void setJWT(String jwt) async {
-    GetStorage().write('jwt', jwt);
-  }
+  static String jwtToken = "";
+  var serverError = "".obs;
 
   LocalStorageController() {
-    getJWT().then((value) {
-      if (value.isNotEmpty) {
-        if (jwtInStorage.isFalse) jwtInStorage.toggle();
-        return;
+    getJWT().then((token) {
+      if (token.isNotEmpty) {
+        // JWT exists in local storage
+        jwtInStorage.value = true;
+        jwtToken = token;
+        // Get details from server
+        // BeRepository.details(token).then((response) {
+        //   if (response.statusCode == 200) {
+        //     details = Details.fromJson(jsonDecode(response.body));
+        //     gotDetails.value = true;
+        //   } else {
+        //     // if error
+        //     serverError.value =
+        //         ServerErr.fromJson(jsonDecode(response.body)).message;
+        //   }
+        // });
       } else {
-        if (jwtInStorage.isTrue) jwtInStorage.toggle();
-      }
-    });
-    getCredentials().then((credentials) {
-      if (credentials.username.isNotEmpty && credentials.password.isNotEmpty) {
-        if (credentialsInStorage.isFalse) {
-          credentialsInStorage.toggle();
-        }
-        return;
-      } else {
-        if (credentialsInStorage.isTrue) {
-          credentialsInStorage.toggle();
-        }
+        // JWT not exists in local storage
+        jwtInStorage.value = false;
+        // getCredentials().then((credentials) {
+        //   // Try to get credentials from local storage to SignIn
+        //   if (credentials.email.isNotEmpty && credentials.password.isNotEmpty) {
+        //     // If credentials exist in local storage
+        //     if (credentialsInStorage.isFalse) {
+        //       credentialsInStorage.toggle();
+        //     }
+        //     // Try to Sign In
+        //     BeRepository.signInUser(credentials.email, credentials.password)
+        //         .then((response) {
+        //       if (response.statusCode == 200) {}
+        //     });
+        //     return;
+        //   } else {
+        //     if (credentialsInStorage.isTrue) {
+        //       credentialsInStorage.toggle();
+        //     }
+        //   }
+        // });
       }
     });
   }
 
-  Future<Credentials> getCredentials() async {
-    String username = await GetStorage().read('username');
+  Future<String> getUsername() async {
+    return await GetStorage().read('username');
+  }
+
+  Future<String> getPassword() async {
+    return await GetStorage().read('password');
+  }
+
+  static Future<String> getJWT() async {
+    return await GetStorage().read('jwt') ?? "";
+  }
+
+  static Future<void> setJWT(String jwt) async {
+    print(":LOCAL:${jwt}|");
+    jwtToken = jwt;
+    if (jwt.isEmpty) {
+      return;
+    }
+    GetStorage().write('jwt', jwt);
+    jwtInStorage.value = true;
+  }
+
+  static void setUsername(String username) async {
+    if (username.isEmpty) {
+      return;
+    }
+    GetStorage().write('username', username);
+  }
+
+  void setPassword(String password) async {
+    if (password.isEmpty) {
+      return;
+    }
+    GetStorage().write('password', password);
+  }
+
+  static Future<Credentials> getCredentials() async {
+    String email = await GetStorage().read('email');
     String password = await GetStorage().read('password');
-    return Credentials(username: username, password: password);
+    return Credentials(email: email, password: password);
   }
 
-  void setCredentials(Credentials credentials) async {
-    GetStorage().write('username', credentials.username);
+  static void setCredentials(Credentials credentials) async {
+    GetStorage().write('email', credentials.email);
     GetStorage().write('password', credentials.password);
   }
 }

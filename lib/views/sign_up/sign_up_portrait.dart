@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wb_assistant/views/confirm/confirm_email.dart';
 
 import '../../constants.dart';
 import '../../controllers/authentication_controller.dart';
@@ -35,7 +36,8 @@ class SignUpPortrait extends StatelessWidget {
                       RoundedInputField(
                           email: false,
                           hintText: Constants.nameInputText,
-                          onChanged: (username) => controller.name = username,
+                          onChanged: (username) =>
+                              controller.username = username,
                           height: width * 0.15,
                           width: width * 0.85),
                       RoundedInputField(
@@ -52,7 +54,15 @@ class SignUpPortrait extends StatelessWidget {
                   ),
                   // TODO Create the ConfirmMail Page and perform transition to the confirm mail page with autmatic transition to SignIn
                   WelcomeBtns(
-                    onPressed: () => controller.signUpOnPressed(),
+                    onPressed: () {
+                      controller.signUpOnPressed().then((message) {
+                        if (message.isEmpty) {
+                          Get.to(() => const ConfirmEmailPage());
+                        } else {
+                          Get.snackbar("title", message);
+                        }
+                      });
+                    },
                     signIn: false,
                     btnText: Constants.regBtnText,
                   ),

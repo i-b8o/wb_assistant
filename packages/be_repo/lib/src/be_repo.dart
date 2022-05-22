@@ -5,12 +5,9 @@ import 'package:http/http.dart' as http;
 class BeRepository {
   static var client = http.Client();
   static const domen = "http://192.168.31.203:8080";
-  static const signUpEndPoint = "/sign-up";
-  static const signInEndPoint = "/sign-in";
-  static const confirmationEndPoint = "/confirmation/:token";
-  static const resendEndPoint = "/resend";
-  static const setEndPoint = "/set";
-  static const passwordResetEndPoint = "/password-reset";
+  static const signUpEndPoint = "/auth/sign-up";
+  static const signInEndPoint = "/auth/sign-in";
+  static const detailsInEndPoint = "/account/details";
   static const contentType = 'application/json; charset=UTF-8';
   static const contentKey = 'Content-Type';
 
@@ -45,17 +42,28 @@ class BeRepository {
     return response;
   }
 
-  static Future<http.Response> resend(String email, password) async {
-    final response = await client.post(
-      Uri.parse('$domen$resendEndPoint'),
+  static Future<http.Response> details(String token) async {
+    print(":REPO:${token}|");
+    final response = await client.get(
+      Uri.parse('$domen$detailsInEndPoint'),
       headers: <String, String>{
-        contentKey: contentType,
+        'Authorization': 'Bearer $token',
       },
-      body: jsonEncode(<String, String>{
-        'Email': email,
-        'Password': password,
-      }),
     );
     return response;
   }
+
+  // static Future<http.Response> resend(String email, password) async {
+  //   final response = await client.post(
+  //     Uri.parse('$domen$resendEndPoint'),
+  //     headers: <String, String>{
+  //       contentKey: contentType,
+  //     },
+  //     body: jsonEncode(<String, String>{
+  //       'Email': email,
+  //       'Password': password,
+  //     }),
+  //   );
+  //   return response;
+  // }
 }
