@@ -72,7 +72,6 @@ class AuthenticationController extends GetxController {
             TokenMessage.fromJson(jsonDecode(response.body));
 
         await LocalStorageController.setJWT(tokenMes.token);
-        print("DONE!@");
       } else {
         return ServerErr.fromJson(jsonDecode(response.body)).message;
       }
@@ -81,10 +80,8 @@ class AuthenticationController extends GetxController {
   }
 
   Future<String> getDetails(String token) async {
-    print(":AUTH:${token}|");
     BeRepository.details(token).then((response) {
       if (response.statusCode == 200) {
-        print(response.body);
         details = Details.fromJson(jsonDecode(response.body));
       } else {
         serverError.value =

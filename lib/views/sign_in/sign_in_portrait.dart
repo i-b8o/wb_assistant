@@ -18,7 +18,7 @@ class SignInPortrait extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size _size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
     return Column(
       children: [
         const WelcomeHeader(
@@ -34,32 +34,32 @@ class SignInPortrait extends StatelessWidget {
                       onChanged: (value) {
                         controller.email = value;
                       },
-                      height: _size.width * 0.15,
-                      width: _size.width * 0.85),
+                      height: size.width * 0.15,
+                      width: size.width * 0.85),
                   RoundedPasswordField(
                     onChanged: (value) {
                       controller.password = value;
                     },
-                    height: _size.width * 0.15,
-                    width: _size.width * 0.85,
+                    height: size.width * 0.15,
+                    width: size.width * 0.85,
                   ),
                   WelcomeBtns(
                     onPressed: () async {
                       String mes = await controller.signInOnPressed();
                       if (mes == "") {
-                        Get.offAll(const Home());
+                        Get.offAll(() => Home());
                       }
                       Get.snackbar("Ошибка", mes);
                     },
                     btnText: Constants.logBtnText,
                   ),
                   SizedBox(
-                    height: _size.height * 0.04,
+                    height: size.height * 0.04,
                   ),
                   AlreadyHaveAnAccountCheck(
                     onPressed: () => Get.to(() => const SignUpPage(),
                         transition: Transition.fadeIn),
-                    fontSize: _size.width * 0.03,
+                    fontSize: size.width * 0.03,
                   ),
                 ],
               ),
@@ -67,12 +67,12 @@ class SignInPortrait extends StatelessWidget {
           );
         }),
         SizedBox(
-          height: _size.width * 0.4,
+          height: size.width * 0.4,
         ),
         AlreadyHaveAnAccountCheck(
           onPressed: () =>
               Get.to(() => const SignUpPage(), transition: Transition.fadeIn),
-          fontSize: _size.width * 0.03,
+          fontSize: size.width * 0.03,
         ),
       ],
     );

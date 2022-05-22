@@ -15,8 +15,8 @@ class Constants {
   static const String nameInputText = "Введите имя";
   static const String regBtnText = "Зарегистрировать";
   static const String logBtnText = "Войти";
-  static const String ConfirmHeaderText = "Проверьте свой email!";
-  static const String ConfirmGreetingText =
+  static const String confirmHeaderText = "Проверьте свой email!";
+  static const String confirmGreetingText =
       "На ваш адрес отправлено письмо подтверждения регистрации, удостоверьтесь не попало ли оно в папку «Спам»";
   static const String confirmBtnText = "Отправить повторно!";
 }

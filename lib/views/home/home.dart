@@ -37,15 +37,20 @@ class Home extends StatelessWidget {
                 if (snapshot.hasError) {
                   return errorView(snapshot);
                 } else {
-                  return Container(
-                    color: Colors.amber,
-                    child: Column(children: [
-                      Text("Email: ${authController.details.email}|"),
-                      Text("expires:${authController.details.expires}|"),
-                      Text("type:${authController.details.type}|"),
-                      Text("username:${authController.details.username}|"),
-                    ]),
-                  );
+                  if (authController.details.type == "none") {
+                    return Center(
+                        child: Text("Подтвердите адрес электронной почты"));
+                  } else {
+                    return Container(
+                      color: Colors.amber,
+                      child: Column(children: [
+                        Text("Email: ${authController.details.email}|"),
+                        Text("expires:${authController.details.expires}|"),
+                        Text("type:${authController.details.type}|"),
+                        Text("username:${authController.details.username}|"),
+                      ]),
+                    );
+                  }
                 }
               }
             },
