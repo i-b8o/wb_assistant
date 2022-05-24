@@ -19,26 +19,26 @@ class WelcomeBtns extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double _width = MediaQuery.of(context).size.width;
+    double width = MediaQuery.of(context).size.width;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         signIn
             ? SizedBox(
-                width: mobile ? _width * 0.92 : _width * 0.5,
+                width: mobile ? width * 0.92 : width * 0.5,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Padding(
                       padding: EdgeInsets.only(
-                          right: mobile ? _width * 0.07 : _width * 0.11),
+                          right: mobile ? width * 0.07 : width * 0.11),
                       child: TextButton(
                         onPressed: onPressed,
                         child: Text(
                           "Восстановление пароля",
                           style: GoogleFonts.robotoMono(
                             fontWeight: FontWeight.bold,
-                            fontSize: mobile ? _width * 0.03 : _width * 0.01,
+                            fontSize: mobile ? width * 0.03 : width * 0.01,
                             color: const Color.fromRGBO(128, 124, 142, 1),
                           ),
                         ),
@@ -49,11 +49,11 @@ class WelcomeBtns extends StatelessWidget {
               )
             : Container(),
         SizedBox(
-          height: _width * 0.03,
+          height: width * 0.03,
         ),
         RoundedButton(
-          height: mobile ? _width * 0.15 : _width * 0.05,
-          width: mobile ? _width * 0.85 : _width * 0.3,
+          height: mobile ? width * 0.15 : width * 0.05,
+          width: mobile ? width * 0.85 : width * 0.3,
           text: btnText,
           press: onPressed,
         ),

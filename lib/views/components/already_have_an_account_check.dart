@@ -17,11 +17,11 @@ class AlreadyHaveAnAccountCheck extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double _width = MediaQuery.of(context).size.width;
+    double width = MediaQuery.of(context).size.width;
     return SizedBox(
-      width: mobile ? _width : _width * 0.5,
+      width: mobile ? width : width * 0.5,
       child: Padding(
-        padding: EdgeInsets.only(right: mobile ? 0 : _width * 0.05),
+        padding: EdgeInsets.only(right: mobile ? 0 : width * 0.05),
         child: Row(
           mainAxisAlignment:
               mobile ? MainAxisAlignment.center : MainAxisAlignment.end,

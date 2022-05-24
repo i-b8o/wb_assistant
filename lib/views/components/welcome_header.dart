@@ -14,10 +14,10 @@ class WelcomeHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double _width = MediaQuery.of(context).size.width;
+    double width = MediaQuery.of(context).size.width;
     return SizedBox(
-      width: mobile ? _width : _width * 0.5,
-      height: mobile ? _width * 0.6 : _width * 0.14,
+      width: mobile ? width : width * 0.5,
+      height: mobile ? width * 0.6 : width * 0.14,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -26,20 +26,20 @@ class WelcomeHeader extends StatelessWidget {
               textAlign: TextAlign.center,
               style: GoogleFonts.robotoMono(
                 color: const Color.fromRGBO(55, 48, 74, 1),
-                fontSize: mobile ? _width * 0.06 : _width * 0.02,
+                fontSize: mobile ? width * 0.06 : width * 0.02,
                 fontWeight: FontWeight.bold,
               )),
           SizedBox(
-            height: _width * 0.01,
+            height: width * 0.01,
           ),
           Text(greetingText,
               textAlign: TextAlign.center,
               style: GoogleFonts.robotoMono(
                 color: const Color.fromRGBO(128, 124, 142, 1),
-                fontSize: mobile ? _width * 0.05 : _width * 0.01,
+                fontSize: mobile ? width * 0.05 : width * 0.01,
               )),
           SizedBox(
-            height: mobile ? _width * 0.12 : _width * 0.03,
+            height: mobile ? width * 0.12 : width * 0.03,
           )
         ],
       ),

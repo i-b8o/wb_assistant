@@ -15,7 +15,7 @@ class SignUpThickPortraitFieldsAndBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size _size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
     return GetBuilder<AuthenticationController>(
       init: AuthenticationController(),
       initState: (_) {},
@@ -28,17 +28,17 @@ class SignUpThickPortraitFieldsAndBtn extends StatelessWidget {
                     email: false,
                     hintText: Constants.nameInputText,
                     onChanged: (username) => controller.username = username,
-                    height: _size.height * 0.1,
-                    width: _size.width * 0.6),
+                    height: size.height * 0.1,
+                    width: size.width * 0.6),
                 RoundedInputField(
                     hintText: Constants.emailInputText,
                     onChanged: (email) => controller.email = email,
-                    height: _size.height * 0.1,
-                    width: _size.width * 0.6),
+                    height: size.height * 0.1,
+                    width: size.width * 0.6),
                 RoundedPasswordField(
                   onChanged: (password) => controller.password = password,
-                  height: _size.height * 0.1,
-                  width: _size.width * 0.6,
+                  height: size.height * 0.1,
+                  width: size.width * 0.6,
                 )
               ],
             ),
@@ -47,8 +47,8 @@ class SignUpThickPortraitFieldsAndBtn extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 RoundedButton(
-                  height: _size.height * 0.1,
-                  width: _size.width * 0.6,
+                  height: size.height * 0.1,
+                  width: size.width * 0.6,
                   text: Constants.regBtnText,
                   press: () {
                     controller.signUpOnPressed().then((message) {

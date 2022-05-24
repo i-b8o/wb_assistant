@@ -64,7 +64,6 @@ class LocalStorageController extends GetxController {
   }
 
   static Future<void> setJWT(String jwt) async {
-    print(":LOCAL:${jwt}|");
     jwtToken = jwt;
     if (jwt.isEmpty) {
       return;

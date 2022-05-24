@@ -34,7 +34,7 @@ class ConfirmEmailPortrait extends StatelessWidget {
         children: [
           Image.asset(
             "assets/images/clouds.png",
-            // height: _size.height * 0.5,
+            // height: size.height * 0.5,
           ),
           SizedBox(
             height: size.height * 0.12,

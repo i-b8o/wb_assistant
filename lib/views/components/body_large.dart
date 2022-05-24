@@ -12,13 +12,13 @@ class BodyLarge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size _size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
     return Row(
       children: [
         Container(
           color: Constants.pinkColor,
-          width: _size.width * 0.5,
-          height: _size.height,
+          width: size.width * 0.5,
+          height: size.height,
           child: AspectRatio(
               aspectRatio: 1 / 1,
               child: Image.asset(

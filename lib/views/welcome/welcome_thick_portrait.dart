@@ -12,56 +12,56 @@ class WelcomeThickPortrait extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size _size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
 
     return SizedBox(
-      width: _size.width,
-      height: _size.height,
+      width: size.width,
+      height: size.height,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Image.asset(
             "assets/images/girl.png",
-            height: _size.height * 0.5,
+            height: size.height * 0.5,
           ),
           SizedBox(
-            height: _size.height * 0.1,
+            height: size.height * 0.1,
           ),
           SizedBox(
-            width: _size.width * 0.55,
+            width: size.width * 0.55,
             child: Text("Какой-то очень умный заголовок",
                 textAlign: TextAlign.center,
                 style: GoogleFonts.robotoMono(
                   color: const Color.fromRGBO(55, 48, 74, 1),
-                  fontSize: _size.height * 0.04,
+                  fontSize: size.height * 0.04,
                   fontWeight: FontWeight.bold,
                 )),
           ),
           SizedBox(
-            height: _size.width * 0.03,
+            height: size.width * 0.03,
           ),
           SizedBox(
-            width: _size.width * 0.55,
+            width: size.width * 0.55,
             child: Text("Много какого-то текста про что-то и про то и про это",
                 textAlign: TextAlign.center,
                 style: GoogleFonts.robotoMono(
                   color: const Color.fromRGBO(128, 124, 142, 1),
-                  fontSize: _size.width * 0.02,
+                  fontSize: size.width * 0.02,
                   fontWeight: FontWeight.bold,
                 )),
           ),
           SizedBox(
-            height: _size.width * 0.09,
+            height: size.width * 0.09,
           ),
           SizedBox(
-            width: _size.width * 0.8,
+            width: size.width * 0.8,
             child: Stack(
               children: [
                 Container(
-                    width: _size.width * 0.46,
-                    height: _size.height * 0.08,
+                    width: size.width * 0.46,
+                    height: size.height * 0.08,
                     margin: EdgeInsets.only(
-                      left: _size.width * 0.36,
+                      left: size.width * 0.36,
                     ),
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
@@ -71,18 +71,18 @@ class WelcomeThickPortrait extends StatelessWidget {
                     ),
                     child: TextButton(
                         style: TextButton.styleFrom(
-                          fixedSize: Size.fromRadius(_size.width * 0.4),
+                          fixedSize: Size.fromRadius(size.width * 0.4),
                         ),
                         onPressed: () => Get.to(() => const SignInPage()),
                         child: Text(Constants.logBtnText,
                             style: GoogleFonts.robotoMono(
                               fontWeight: FontWeight.bold,
-                              fontSize: _size.width * 0.03,
+                              fontSize: size.width * 0.03,
                               color: const Color.fromRGBO(55, 48, 74, 1),
                             )))),
                 Container(
-                    width: _size.width * 0.4,
-                    height: _size.height * 0.08,
+                    width: size.width * 0.4,
+                    height: size.height * 0.08,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
@@ -90,13 +90,13 @@ class WelcomeThickPortrait extends StatelessWidget {
                     ),
                     child: TextButton(
                         style: TextButton.styleFrom(
-                          fixedSize: Size.fromRadius(_size.width * 0.4),
+                          fixedSize: Size.fromRadius(size.width * 0.4),
                         ),
                         onPressed: () => Get.to(() => const SignUpPage()),
                         child: Text("Регистрация",
                             style: GoogleFonts.robotoMono(
                               fontWeight: FontWeight.bold,
-                              fontSize: _size.width * 0.03,
+                              fontSize: size.width * 0.03,
                               color: const Color.fromRGBO(55, 48, 74, 1),
                             )))),
               ],

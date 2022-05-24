@@ -10,9 +10,7 @@ class WaitLoadingSignInPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text(''),
       ),
-      body: Container(
-        child: Text("Wait Sign IN"),
-      ),
+      body: const Text("Wait Sign IN"),
     );
   }
 }

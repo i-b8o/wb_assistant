@@ -8,18 +8,18 @@ class SignUpLarge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double _width = MediaQuery.of(context).size.width;
+    double width = MediaQuery.of(context).size.width;
     return BodyLarge(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(
-            height: _width * 0.03,
+            height: width * 0.03,
           ),
           AlreadyHaveAnAccountCheck(
             signIn: false,
             mobile: false,
-            fontSize: _width * 0.01,
+            fontSize: width * 0.01,
           ),
           const WelcomeHeader(
             mobile: false,
@@ -33,19 +33,19 @@ class SignUpLarge extends StatelessWidget {
                   email: false,
                   hintText: Constants.nameInputText,
                   onChanged: (s) {},
-                  height: _width * 0.05,
-                  width: _width * 0.3),
+                  height: width * 0.05,
+                  width: width * 0.3),
               RoundedInputField(
                   mobile: false,
                   hintText: Constants.emailInputText,
                   onChanged: (s) {},
-                  height: _width * 0.05,
-                  width: _width * 0.3),
+                  height: width * 0.05,
+                  width: width * 0.3),
               RoundedPasswordField(
                 mobile: false,
                 onChanged: (s) {},
-                height: _width * 0.05,
-                width: _width * 0.3,
+                height: width * 0.05,
+                width: width * 0.3,
               )
             ],
           ),

@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 
 class BeRepository {
   static var client = http.Client();
-  static const domen = "http://192.168.31.203:8080";
+  static const domen = "http://188.93.210.165:8080";
   static const signUpEndPoint = "/auth/sign-up";
   static const signInEndPoint = "/auth/sign-in";
   static const detailsInEndPoint = "/account/details";
@@ -43,7 +43,6 @@ class BeRepository {
   }
 
   static Future<http.Response> details(String token) async {
-    print(":REPO:${token}|");
     final response = await client.get(
       Uri.parse('$domen$detailsInEndPoint'),
       headers: <String, String>{

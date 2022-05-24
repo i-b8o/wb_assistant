@@ -10,6 +10,7 @@ import '../components/rounded_password_field.dart';
 import '../components/welcome_btns.dart';
 
 import '../components/welcome_text_fields.dart';
+import '../home/home.dart';
 import '../sign_up/sign_up_page.dart';
 
 class SignInThickPortrait extends StatelessWidget {
@@ -17,37 +18,37 @@ class SignInThickPortrait extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size _size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
     return Column(
       children: [
         SizedBox(
-          height: _size.height * 0.1,
+          height: size.height * 0.1,
         ),
         SizedBox(
-          width: _size.width * 0.55,
+          width: size.width * 0.55,
           child: Text("Привет!",
               textAlign: TextAlign.center,
               style: GoogleFonts.robotoMono(
                 color: const Color.fromRGBO(55, 48, 74, 1),
-                fontSize: _size.height * 0.04,
+                fontSize: size.height * 0.04,
                 fontWeight: FontWeight.bold,
               )),
         ),
         SizedBox(
-          height: _size.width * 0.03,
+          height: size.width * 0.03,
         ),
         SizedBox(
-          width: _size.width * 0.55,
+          width: size.width * 0.55,
           child: Text("Пожалуйста, войдите в свой аккаунт.",
               textAlign: TextAlign.center,
               style: GoogleFonts.robotoMono(
                 color: const Color.fromRGBO(128, 124, 142, 1),
-                fontSize: _size.height * 0.03,
+                fontSize: size.height * 0.03,
                 // fontWeight: FontWeight.bold,
               )),
         ),
         SizedBox(
-          height: _size.height * 0.05,
+          height: size.height * 0.05,
         ),
         GetBuilder<AuthenticationController>(builder: (controller) {
           return Column(
@@ -59,26 +60,32 @@ class SignInThickPortrait extends StatelessWidget {
                       onChanged: (value) {
                         controller.email = value;
                       },
-                      height: _size.width * 0.15,
-                      width: _size.width * 0.85),
+                      height: size.width * 0.15,
+                      width: size.width * 0.85),
                   RoundedPasswordField(
                     onChanged: (value) {
                       controller.password = value;
                     },
-                    height: _size.width * 0.15,
-                    width: _size.width * 0.85,
+                    height: size.width * 0.15,
+                    width: size.width * 0.85,
                   ),
                   WelcomeBtns(
-                    onPressed: () {},
+                    onPressed: () async {
+                      String mes = await controller.signInOnPressed();
+                      if (mes == "") {
+                        Get.offAll(() => const Home());
+                      }
+                      Get.snackbar("Ошибка", mes);
+                    },
                     btnText: Constants.logBtnText,
                   ),
                   SizedBox(
-                    height: _size.height * 0.04,
+                    height: size.height * 0.04,
                   ),
                   AlreadyHaveAnAccountCheck(
                     onPressed: () => Get.to(() => const SignUpPage(),
                         transition: Transition.fadeIn),
-                    fontSize: _size.width * 0.03,
+                    fontSize: size.width * 0.03,
                   ),
                 ],
               ),

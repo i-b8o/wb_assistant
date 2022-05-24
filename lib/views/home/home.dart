@@ -38,7 +38,7 @@ class Home extends StatelessWidget {
                   return errorView(snapshot);
                 } else {
                   if (authController.details.type == "none") {
-                    return Center(
+                    return const Center(
                         child: Text("Подтвердите адрес электронной почты"));
                   } else {
                     return Container(

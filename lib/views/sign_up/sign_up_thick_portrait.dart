@@ -13,7 +13,7 @@ class SignUpThickPortrait extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size _size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -24,13 +24,13 @@ class SignUpThickPortrait extends StatelessWidget {
           const SignUpThickPortraitHeader(),
           const SignUpThickPortraitFieldsAndBtn(),
           SizedBox(
-            height: _size.width * 0.1,
+            height: size.width * 0.1,
           ),
           AlreadyHaveAnAccountCheck(
             onPressed: () =>
                 Get.to(() => const SignInPage(), transition: Transition.fadeIn),
             signIn: false,
-            fontSize: _size.width * 0.03,
+            fontSize: size.width * 0.03,
           ),
         ],
       ),

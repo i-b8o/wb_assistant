@@ -47,7 +47,7 @@ class SignInPortrait extends StatelessWidget {
                     onPressed: () async {
                       String mes = await controller.signInOnPressed();
                       if (mes == "") {
-                        Get.offAll(() => Home());
+                        Get.offAll(() => const Home());
                       }
                       Get.snackbar("Ошибка", mes);
                     },

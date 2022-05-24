@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:wb_assistant/controllers/local_storage_controller.dart';
 import 'package:wb_assistant/models/credentials.dart';
 import 'package:wb_assistant/models/details.dart';
-import 'package:wb_assistant/models/serverError.dart';
+import 'package:wb_assistant/models/server_error.dart';
 import 'package:wb_assistant/models/token.dart';
 
 class AuthenticationController extends GetxController {
