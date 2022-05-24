@@ -58,39 +58,49 @@ class AuthenticationController extends GetxController {
             Credentials(email: username, password: password));
       }
     });
+    print("SignUp SC: empty");
     return "";
   }
 
   Future<String> signInOnPressed() async {
+    print("SignUp");
     var s = validateEmail();
     s = s + validatePassword();
     if (s.isNotEmpty) return s;
 
     await BeRepository.signInUser(email, password).then((response) async {
+      print("email: $email, password: $password");
       if (response.statusCode == 200) {
         TokenMessage tokenMes =
             TokenMessage.fromJson(jsonDecode(response.body));
-
         await LocalStorageController.setJWT(tokenMes.token);
+        print(tokenMes.token);
       } else {
+        print("SignUp SC: ${response.statusCode}");
         return ServerErr.fromJson(jsonDecode(response.body)).message;
       }
     });
+    print("SignUp SC: empty");
     return "";
   }
 
   Future<String> getDetails(String token) async {
+    print("Get Details");
     BeRepository.details(token).then((response) {
       if (response.statusCode == 200) {
-        details = Details.fromJson(jsonDecode(response.body));
+        Details details = Details.fromJson(jsonDecode(response.body));
+        gotDetails.value = true;
+        print(
+            "Details:  ${details.id} ${details.email} ${details.expires} ${details.type} ${details.username}");
       } else {
+        print("Status code:  ${response.statusCode}");
         serverError.value =
             ServerErr.fromJson(jsonDecode(response.body)).message;
       }
     });
+
     return "";
   }
-
   // Future<String> resend() async {
   //   var response = await _beRepository.resend(email, password);
   //   String message =

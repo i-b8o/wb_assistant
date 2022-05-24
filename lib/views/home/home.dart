@@ -9,6 +9,7 @@ class Home extends StatelessWidget {
   Future<void> initializeSettings(
       AuthenticationController aController, String jwt) async {
     String message = await aController.getDetails(jwt);
+    print("HOME: $jwt");
     if (message.isNotEmpty) {
       Get.snackbar(
         "Снак",
@@ -43,12 +44,16 @@ class Home extends StatelessWidget {
                   } else {
                     return Container(
                       color: Colors.amber,
-                      child: Column(children: [
-                        Text("Email: ${authController.details.email}|"),
-                        Text("expires:${authController.details.expires}|"),
-                        Text("type:${authController.details.type}|"),
-                        Text("username:${authController.details.username}|"),
-                      ]),
+                      child: authController.gotDetails.isTrue
+                          ? Column(children: [
+                              Text("Email: ${authController.details.email}|"),
+                              Text(
+                                  "expires:${authController.details.expires}|"),
+                              Text("type:${authController.details.type}|"),
+                              Text(
+                                  "username:${authController.details.username}|"),
+                            ])
+                          : CircularProgressIndicator(),
                     );
                   }
                 }
