@@ -2,10 +2,10 @@ import 'dart:convert';
 
 import 'package:be_repo/be_repo.dart';
 import 'package:get/get.dart';
+import 'package:wb_assistant/constants.dart';
 import 'package:wb_assistant/controllers/local_storage_controller.dart';
-import 'package:wb_assistant/models/credentials.dart';
+
 import 'package:wb_assistant/models/details.dart';
-import 'package:wb_assistant/models/server_error.dart';
 import 'package:wb_assistant/models/token.dart';
 
 import '../views/confirm/confirm_email.dart';
@@ -21,19 +21,19 @@ class AuthenticationController extends GetxController {
       Details(email: "", expires: "", type: "", username: "", id: '');
 
   String validateEmail() {
-    if (!GetUtils.isEmail(email)) {
-      return "Email не валид\n";
-    } else if (email.contains(" ")) {
-      return "Email не может содержать пробел.\n";
+    if (email.contains(" ")) {
+      return Constants.spaceInEmailValidationErr;
+    } else if (!GetUtils.isEmail(email)) {
+      return Constants.emailValidationErr;
     }
     return "";
   }
 
   String validatePassword() {
     if (password.length <= 4) {
-      return "Пароль должен быть не менее 4 символов\n";
+      return Constants.lessThanInPasswordValidationErr;
     } else if (password.contains(" ")) {
-      return "Пароль не может содержать пробел.\n";
+      return Constants.spaceInPasswordValidationErr;
     }
 
     return "";
@@ -41,9 +41,9 @@ class AuthenticationController extends GetxController {
 
   String validateName() {
     if (username.length < 4) {
-      return "Имя должно быть не менее 4 символов\n";
+      return Constants.lessThanInNameValidationErr;
     } else if (username.contains(" ")) {
-      return "Имя не может содержать пробел.\n";
+      return Constants.spaceInNameValidationErr;
     }
 
     return "";
@@ -53,9 +53,10 @@ class AuthenticationController extends GetxController {
     signUp().then((message) {
       if (message.isEmpty) {
         Get.to(() => const ConfirmEmailPage());
-      } else {
-        Get.snackbar("Ошибка", message);
+        return;
       }
+      Get.snackbar("Ошибка", message);
+      return;
     });
   }
 
@@ -66,11 +67,11 @@ class AuthenticationController extends GetxController {
     if (s.isNotEmpty) return s;
 
     var response = await BeRepository.signUpUser(email, password, username);
-    print("AAAAAAAAAAAAAAAAA:${response.body} --- ${response.statusCode}");
+
     if (response.statusCode == 200) {
       return "";
     } else if (response.statusCode == 500) {
-      return "Пользователь с такими данными уже зарегистрирован!";
+      return Constants.signUpInternalServerError;
     } else if (response.statusCode == 400) {
       return "Введены некорректные данные!";
     }
@@ -81,117 +82,43 @@ class AuthenticationController extends GetxController {
     String mes = await signIn();
     if (mes == "") {
       Get.offAll(() => const Home());
+      return;
     }
     Get.snackbar("Ошибка", mes);
+    return;
   }
 
   Future<String> signIn() async {
-    print("SignUp");
     var s = validateEmail();
     s = s + validatePassword();
     if (s.isNotEmpty) return s;
     var response = await BeRepository.signInUser(email, password);
+
     if (response.statusCode == 200) {
+      // OK
       TokenMessage tokenMessage =
           TokenMessage.fromJson(jsonDecode(response.body));
       await LocalStorageController.setJWT(tokenMessage.token);
-    } else if (response.statusCode == 500) {
+      return "";
+    } else if (response.statusCode == 404) {
+      // Not Found
       return "Пользователя с такими данными не существует!";
     } else if (response.statusCode == 400) {
+      // Bad request
       return "Введены некорректные данные!";
     }
-    return "";
+    return "Ошибка на сервере!";
   }
 
   Future<String> getDetails(String token) async {
-    print("Get Details");
-    await BeRepository.details(token).then((response) {
-      if (response.statusCode == 200) {
-        Details details = Details.fromJson(jsonDecode(response.body));
-        gotDetails.value = true;
-        print(
-            "Details:  ${details.id} ${details.email} ${details.expires} ${details.type} ${details.username}");
-      } else {
-        print("Status code:  ${response.statusCode}");
-        serverError.value =
-            ServerErr.fromJson(jsonDecode(response.body)).message;
-      }
-    });
-
-    return "";
+    var response = await BeRepository.details(token);
+    if (response.statusCode == 200) {
+      // OK
+      details = Details.fromJson(jsonDecode(response.body));
+      gotDetails.value = true;
+      return "";
+    }
+    // Bad request
+    return jsonDecode(response.body).message;
   }
-  // Future<String> resend() async {
-  //   var response = await _beRepository.resend(email, password);
-  //   String message =
-  //       RegistrationResponseData.fromJson(jsonDecode(response.body)).message;
-  //   if (message == "4") {
-  //     return "Пользователь с адресом почты $email уже существует";
-  //   } else if (message == "2") {
-  //     return "2";
-  //   } else if (message == "5") {
-  //     return "Некорректные данные.";
-  //   } else if (message == "6") {
-  //     return "Извините, не удалось отправить письмо на адрес $email. Попробуйте позже.";
-  //   }
-  //   return message;
-  // }
-
-  // Future<String> reg() async {
-  //   var s = validateEmail();
-  //   s = s + validateName();
-  //   s = s + validatePassword();
-  //   if (s.isNotEmpty) return s;
-  //   var response = await _beRepository.signUpUser(name, email, password);
-  //   RegistrationResponseData respBody =
-  //       RegistrationResponseData.fromJson(jsonDecode(response.body));
-  //   String message = respBody.message;
-  //   User user = respBody.user;
-  //   if (message == "0") {
-  //     print(
-  //         "Save to local: ${user.username}, ${user.email}, $password, ${user.accounts.first.type}, ${user.accounts.first.expires}");
-  //     _localStorageController.setUserData(user.username, user.email, password,
-  //         user.accounts.first.type, user.accounts.first.expires);
-  //     return message;
-  //   }
-  //   if (message == "4") {
-  //     return "Пользователь с адресом почты $email уже существует";
-  //   } else if (message == "2") {
-  //     return "2";
-  //   } else if (message == "5") {
-  //     return "Некорректные данные.";
-  //   } else if (message == "6") {
-  //     return "Извините, не удалось отправить письмо на адрес $email. Попробуйте позже.";
-  //   }
-  //   return message;
-  // }
-
-  // Future<String> log() async {
-  //   // User inputs validation
-  //   var s = validateEmail();
-  //   s = s + validatePassword();
-  //   if (s.isNotEmpty) return s;
-
-  //   // Request
-  //   var response = await BeRepository.signInUser(email, password);
-  //   if (response.statusCode == 200) {
-  //     return "USER";
-  //   }
-  //   return "depends of the status code";
-  //   // SignInResponseData respBody =
-  //   //     SignInResponseData.fromJson(jsonDecode(response.body));
-  //   // String? message = respBody.message;
-  //   // User? user = respBody.user;
-  //   // if (message == "1" || message == "3") {
-  //   //   return "Неверное имя пользователя или пароль";
-  //   // } else if (message == "2") {
-  //   //   return "2";
-  //   // } else if (message == "3") {
-  //   //   return "Адрес электронной почты не подтвержден";
-  //   // }
-  //   // if (message == null && user != null) {
-  //   //   _localStorageController.setUserData(user.username, user.email, password,
-  //   //       user.accounts[0].type, user.accounts[0].expires);
-  //   // }
-  //   // return "";
-  // }
 }

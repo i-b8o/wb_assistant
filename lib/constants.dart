@@ -19,4 +19,19 @@ class Constants {
   static const String confirmGreetingText =
       "На ваш адрес отправлено письмо подтверждения регистрации, удостоверьтесь не попало ли оно в папку «Спам»";
   static const String confirmBtnText = "Отправить повторно!";
+
+  static const String emailValidationErr = "Неверный адрес электронной почты\n";
+  static const String spaceInEmailValidationErr =
+      "Адрес электронной почты не может содержать пробел.\n";
+  static const String lessThanInPasswordValidationErr =
+      "Пароль должен быть не менее 4 символов\n";
+  static const String spaceInPasswordValidationErr =
+      "Пароль не может содержать пробел.\n";
+  static const String lessThanInNameValidationErr =
+      "Имя должно быть не менее 4 символов\n";
+  static const String spaceInNameValidationErr =
+      "Имя не может содержать пробел.\n";
+
+  static const String signUpInternalServerError =
+      "Пользователь с такими адресом электронной почты уже зарегистрирован!";
 }

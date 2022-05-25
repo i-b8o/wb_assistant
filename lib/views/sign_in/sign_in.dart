@@ -4,12 +4,11 @@ import 'package:get/get.dart';
 import '../../constants.dart';
 import '../../controllers/authentication_controller.dart';
 import '../components/responsive_widget.dart';
-import '../home/home.dart';
 import 'sign_in_landscape.dart';
 import 'sign_in_portrait.dart';
 import 'sign_in_thick_portrait.dart';
 
-// TODO creaye forgot password page
+// TODO create forgot password page
 class SignInPage extends StatelessWidget {
   const SignInPage({Key? key}) : super(key: key);
 

@@ -12,6 +12,7 @@ import '../components/welcome_header.dart';
 import '../components/welcome_text_fields.dart';
 import '../sign_up/sign_up_page.dart';
 
+// TODO too small letters in link
 class SignInPortrait extends StatelessWidget {
   const SignInPortrait({Key? key, required this.controller}) : super(key: key);
 
