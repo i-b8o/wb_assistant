@@ -51,7 +51,7 @@ class SignUpThickPortraitFieldsAndBtn extends StatelessWidget {
                   width: size.width * 0.6,
                   text: Constants.regBtnText,
                   press: () {
-                    controller.signUpOnPressed().then((message) {
+                    controller.signUp().then((message) {
                       if (message.isNotEmpty) {
                         Get.snackbar("title", message);
                       }

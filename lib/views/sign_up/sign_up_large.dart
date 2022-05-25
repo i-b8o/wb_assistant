@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:wb_assistant/controllers/authentication_controller.dart';
 
 import '../../constants.dart';
 import '../components/components.dart';
 
 class SignUpLarge extends StatelessWidget {
-  const SignUpLarge({Key? key}) : super(key: key);
-
+  const SignUpLarge({Key? key, required this.controller}) : super(key: key);
+  final AuthenticationController controller;
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -49,10 +50,11 @@ class SignUpLarge extends StatelessWidget {
               )
             ],
           ),
-          const WelcomeBtns(
+          WelcomeBtns(
             mobile: false,
             signIn: false,
             btnText: Constants.regBtnText,
+            onPressed: controller.onSignUpBtnPressed,
           ),
         ],
       ),

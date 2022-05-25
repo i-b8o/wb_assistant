@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:wb_assistant/controllers/authentication_controller.dart';
 import '../../constants.dart';
 import 'sign_up_large.dart';
 import 'sign_up_portrait.dart';
@@ -18,18 +20,31 @@ class SignUpPage extends StatelessWidget {
       body: SizedBox(
         width: double.infinity,
         height: size.height,
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            bool isPortrait =
-                MediaQuery.of(context).orientation == Orientation.portrait;
-            double aspectRatio = constraints.maxWidth / constraints.maxHeight;
-            if (isPortrait) {
-              return aspectRatio > 0.55
-                  ? const SignUpThickPortrait()
-                  : const SignUpPortrait();
-            } else {
-              return const SignUpLarge();
-            }
+        child: GetBuilder<AuthenticationController>(
+          init: AuthenticationController(),
+          initState: (_) {},
+          builder: (controller) {
+            return LayoutBuilder(
+              builder: (context, constraints) {
+                bool isPortrait =
+                    MediaQuery.of(context).orientation == Orientation.portrait;
+                double aspectRatio =
+                    constraints.maxWidth / constraints.maxHeight;
+                if (isPortrait) {
+                  return aspectRatio > 0.55
+                      ? SignUpThickPortrait(
+                          controller: controller,
+                        )
+                      : SignUpPortrait(
+                          controller: controller,
+                        );
+                } else {
+                  return SignUpLarge(
+                    controller: controller,
+                  );
+                }
+              },
+            );
           },
         ),
       ),

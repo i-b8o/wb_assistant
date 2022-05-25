@@ -9,8 +9,8 @@ import '../sign_in/sign_in.dart';
 
 // TODO use MediaQueryData widget
 class SignUpPortrait extends StatelessWidget {
-  const SignUpPortrait({Key? key}) : super(key: key);
-
+  const SignUpPortrait({Key? key, required this.controller}) : super(key: key);
+  final AuthenticationController controller;
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -25,50 +25,34 @@ class SignUpPortrait extends StatelessWidget {
             headerText: Constants.signUpHeaderText,
             greetingText: Constants.signUpGreetingText,
           ),
-          GetBuilder<AuthenticationController>(
-            init: AuthenticationController(),
-            initState: (_) {},
-            builder: (controller) {
-              return Column(
-                children: [
-                  TextFieldsWidget(
-                    fields: [
-                      RoundedInputField(
-                          email: false,
-                          hintText: Constants.nameInputText,
-                          onChanged: (username) =>
-                              controller.username = username,
-                          height: width * 0.15,
-                          width: width * 0.85),
-                      RoundedInputField(
-                          hintText: Constants.emailInputText,
-                          onChanged: (email) => controller.email = email,
-                          height: width * 0.15,
-                          width: width * 0.85),
-                      RoundedPasswordField(
-                        onChanged: (password) => controller.password = password,
-                        height: width * 0.15,
-                        width: width * 0.85,
-                      )
-                    ],
-                  ),
-                  // TODO Create the ConfirmMail Page and perform transition to the confirm mail page with autmatic transition to SignIn
-                  WelcomeBtns(
-                    onPressed: () {
-                      controller.signUpOnPressed().then((message) {
-                        if (message.isEmpty) {
-                          Get.to(() => const ConfirmEmailPage());
-                        } else {
-                          Get.snackbar("title", message);
-                        }
-                      });
-                    },
-                    signIn: false,
-                    btnText: Constants.regBtnText,
-                  ),
+          Column(
+            children: [
+              TextFieldsWidget(
+                fields: [
+                  RoundedInputField(
+                      email: false,
+                      hintText: Constants.nameInputText,
+                      onChanged: (username) => controller.username = username,
+                      height: width * 0.15,
+                      width: width * 0.85),
+                  RoundedInputField(
+                      hintText: Constants.emailInputText,
+                      onChanged: (email) => controller.email = email,
+                      height: width * 0.15,
+                      width: width * 0.85),
+                  RoundedPasswordField(
+                    onChanged: (password) => controller.password = password,
+                    height: width * 0.15,
+                    width: width * 0.85,
+                  )
                 ],
-              );
-            },
+              ),
+              WelcomeBtns(
+                onPressed: controller.onSignUpBtnPressed,
+                signIn: false,
+                btnText: Constants.regBtnText,
+              ),
+            ],
           ),
           SizedBox(
             height: width * 0.2,

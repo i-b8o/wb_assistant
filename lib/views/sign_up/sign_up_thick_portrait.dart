@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wb_assistant/controllers/authentication_controller.dart';
 
 import '../../constants.dart';
 
@@ -9,8 +10,9 @@ import '../sign_in/sign_in.dart';
 import 'sign_up_components/sign_up_components.dart';
 
 class SignUpThickPortrait extends StatelessWidget {
-  const SignUpThickPortrait({Key? key}) : super(key: key);
-
+  const SignUpThickPortrait({Key? key, required this.controller})
+      : super(key: key);
+  final AuthenticationController controller;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

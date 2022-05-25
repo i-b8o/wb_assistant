@@ -10,14 +10,15 @@ import '../components/rounded_password_field.dart';
 import '../components/welcome_btns.dart';
 
 import '../components/welcome_text_fields.dart';
-import '../home/home.dart';
 import '../sign_up/sign_up_page.dart';
 
 class SignInThickPortrait extends StatelessWidget {
-  const SignInThickPortrait({Key? key}) : super(key: key);
-
+  const SignInThickPortrait({Key? key, required this.controller})
+      : super(key: key);
+  final AuthenticationController controller;
   @override
   Widget build(BuildContext context) {
+    print("SignInThickPortrait");
     Size size = MediaQuery.of(context).size;
     return Column(
       children: [
@@ -44,54 +45,45 @@ class SignInThickPortrait extends StatelessWidget {
               style: GoogleFonts.robotoMono(
                 color: const Color.fromRGBO(128, 124, 142, 1),
                 fontSize: size.height * 0.03,
-                // fontWeight: FontWeight.bold,
               )),
         ),
         SizedBox(
           height: size.height * 0.05,
         ),
-        GetBuilder<AuthenticationController>(builder: (controller) {
-          return Column(
-            children: [
-              TextFieldsWidget(
-                fields: [
-                  RoundedInputField(
-                      hintText: Constants.emailInputText,
-                      onChanged: (value) {
-                        controller.email = value;
-                      },
-                      height: size.width * 0.15,
-                      width: size.width * 0.85),
-                  RoundedPasswordField(
+        Column(
+          children: [
+            TextFieldsWidget(
+              fields: [
+                RoundedInputField(
+                    hintText: Constants.emailInputText,
                     onChanged: (value) {
-                      controller.password = value;
+                      controller.email = value;
                     },
                     height: size.width * 0.15,
-                    width: size.width * 0.85,
-                  ),
-                  WelcomeBtns(
-                    onPressed: () async {
-                      String mes = await controller.signInOnPressed();
-                      if (mes == "") {
-                        Get.offAll(() => const Home());
-                      }
-                      Get.snackbar("Ошибка", mes);
-                    },
-                    btnText: Constants.logBtnText,
-                  ),
-                  SizedBox(
-                    height: size.height * 0.04,
-                  ),
-                  AlreadyHaveAnAccountCheck(
-                    onPressed: () => Get.to(() => const SignUpPage(),
-                        transition: Transition.fadeIn),
-                    fontSize: size.width * 0.03,
-                  ),
-                ],
-              ),
-            ],
-          );
-        }),
+                    width: size.width * 0.85),
+                RoundedPasswordField(
+                  onChanged: (value) {
+                    controller.password = value;
+                  },
+                  height: size.width * 0.15,
+                  width: size.width * 0.85,
+                ),
+                WelcomeBtns(
+                  onPressed: () => controller.onSignInBtnPressed(),
+                  btnText: Constants.logBtnText,
+                ),
+                SizedBox(
+                  height: size.height * 0.04,
+                ),
+                AlreadyHaveAnAccountCheck(
+                  onPressed: () => Get.to(() => const SignUpPage(),
+                      transition: Transition.fadeIn),
+                  fontSize: size.width * 0.03,
+                ),
+              ],
+            ),
+          ],
+        ),
       ],
     );
   }

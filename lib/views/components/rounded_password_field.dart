@@ -19,7 +19,7 @@ class RoundedPasswordField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
+    // double width = MediaQuery.of(context).size.width;
 
     return TextFieldConainer(
       bottomPadding: mobile ? width * 0.04 : width * 0.015,

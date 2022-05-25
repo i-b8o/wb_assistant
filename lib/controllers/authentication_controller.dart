@@ -8,6 +8,9 @@ import 'package:wb_assistant/models/details.dart';
 import 'package:wb_assistant/models/server_error.dart';
 import 'package:wb_assistant/models/token.dart';
 
+import '../views/confirm/confirm_email.dart';
+import '../views/home/home.dart';
+
 class AuthenticationController extends GetxController {
   String username = "";
   String email = "";
@@ -46,47 +49,63 @@ class AuthenticationController extends GetxController {
     return "";
   }
 
-  Future<String> signUpOnPressed() async {
+  onSignUpBtnPressed() {
+    signUp().then((message) {
+      if (message.isEmpty) {
+        Get.to(() => const ConfirmEmailPage());
+      } else {
+        Get.snackbar("Ошибка", message);
+      }
+    });
+  }
+
+  Future<String> signUp() async {
     var s = validateEmail();
     s = s + validateName();
     s = s + validatePassword();
     if (s.isNotEmpty) return s;
 
-    BeRepository.signUpUser(email, password, username).then((response) {
-      if (response.statusCode == 200) {
-        LocalStorageController.setCredentials(
-            Credentials(email: username, password: password));
-      }
-    });
-    print("SignUp SC: empty");
+    var response = await BeRepository.signUpUser(email, password, username);
+    print("AAAAAAAAAAAAAAAAA:${response.body} --- ${response.statusCode}");
+    if (response.statusCode == 200) {
+      return "";
+    } else if (response.statusCode == 500) {
+      return "Пользователь с такими данными уже зарегистрирован!";
+    } else if (response.statusCode == 400) {
+      return "Введены некорректные данные!";
+    }
     return "";
   }
 
-  Future<String> signInOnPressed() async {
+  onSignInBtnPressed() async {
+    String mes = await signIn();
+    if (mes == "") {
+      Get.offAll(() => const Home());
+    }
+    Get.snackbar("Ошибка", mes);
+  }
+
+  Future<String> signIn() async {
     print("SignUp");
     var s = validateEmail();
     s = s + validatePassword();
     if (s.isNotEmpty) return s;
-
-    await BeRepository.signInUser(email, password).then((response) async {
-      print("email: $email, password: $password");
-      if (response.statusCode == 200) {
-        TokenMessage tokenMes =
-            TokenMessage.fromJson(jsonDecode(response.body));
-        await LocalStorageController.setJWT(tokenMes.token);
-        print(tokenMes.token);
-      } else {
-        print("SignUp SC: ${response.statusCode}");
-        return ServerErr.fromJson(jsonDecode(response.body)).message;
-      }
-    });
-    print("SignUp SC: empty");
+    var response = await BeRepository.signInUser(email, password);
+    if (response.statusCode == 200) {
+      TokenMessage tokenMessage =
+          TokenMessage.fromJson(jsonDecode(response.body));
+      await LocalStorageController.setJWT(tokenMessage.token);
+    } else if (response.statusCode == 500) {
+      return "Пользователя с такими данными не существует!";
+    } else if (response.statusCode == 400) {
+      return "Введены некорректные данные!";
+    }
     return "";
   }
 
   Future<String> getDetails(String token) async {
     print("Get Details");
-    BeRepository.details(token).then((response) {
+    await BeRepository.details(token).then((response) {
       if (response.statusCode == 200) {
         Details details = Details.fromJson(jsonDecode(response.body));
         gotDetails.value = true;

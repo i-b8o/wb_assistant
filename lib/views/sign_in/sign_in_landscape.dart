@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../constants.dart';
+import '../../controllers/authentication_controller.dart';
 import '../components/already_have_an_account_check.dart';
 import '../components/body_large.dart';
 import '../components/rounded_input_field.dart';
@@ -13,10 +14,13 @@ import '../components/welcome_text_fields.dart';
 class SignInLandscape extends StatelessWidget {
   const SignInLandscape({
     Key? key,
+    required this.controller,
   }) : super(key: key);
 
+  final AuthenticationController controller;
   @override
   Widget build(BuildContext context) {
+    print("SignInLandscape");
     double width = MediaQuery.of(context).size.width;
     return BodyLarge(
       child: SingleChildScrollView(
@@ -51,9 +55,10 @@ class SignInLandscape extends StatelessWidget {
                 )
               ],
             ),
-            const WelcomeBtns(
+            WelcomeBtns(
               mobile: false,
               btnText: Constants.logBtnText,
+              onPressed: () => controller.onSignInBtnPressed(),
             ),
           ],
         ),

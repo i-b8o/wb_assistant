@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:wb_assistant/views/components/responsive_widget.dart';
+import 'package:wb_assistant/views/sign_in/sign_in.dart';
 
 import '../../constants.dart';
 
-import '../sign_in/sign_in_landscape.dart';
 import 'welcome_portrait.dart';
 import 'welcome_thick_portrait.dart';
 
@@ -18,7 +18,7 @@ class WelcomePage extends StatelessWidget {
         body: ResponsiveWidget(
           portrait: WelcomePortrait(),
           thickPortrait: WelcomeThickPortrait(),
-          landscape: SignInLandscape(),
+          landscape: SignInPage(),
         ));
   }
 }

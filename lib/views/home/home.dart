@@ -11,6 +11,7 @@ class Home extends StatelessWidget {
     String message = await aController.getDetails(jwt);
     print("HOME: $jwt");
     if (message.isNotEmpty) {
+      print("Message:$message|");
       Get.snackbar(
         "Снак",
         message,
@@ -53,7 +54,7 @@ class Home extends StatelessWidget {
                               Text(
                                   "username:${authController.details.username}|"),
                             ])
-                          : CircularProgressIndicator(),
+                          : const CircularProgressIndicator(),
                     );
                   }
                 }
