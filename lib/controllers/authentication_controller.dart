@@ -77,7 +77,7 @@ class AuthenticationController extends GetxController {
     String mes = await signIn();
 
     if (mes == "") {
-      Get.offAll(() => Home());
+      Get.offAll(() => const Home());
       return;
     }
     Get.snackbar("Ошибка", mes);

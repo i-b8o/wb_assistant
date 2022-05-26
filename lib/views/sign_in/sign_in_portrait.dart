@@ -19,7 +19,6 @@ class SignInPortrait extends StatelessWidget {
   final AuthenticationController controller;
   @override
   Widget build(BuildContext context) {
-    print("SignInPortrait");
     Size size = MediaQuery.of(context).size;
     return Column(
       children: [

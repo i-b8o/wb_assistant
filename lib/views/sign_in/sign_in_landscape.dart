@@ -20,7 +20,6 @@ class SignInLandscape extends StatelessWidget {
   final AuthenticationController controller;
   @override
   Widget build(BuildContext context) {
-    print("SignInLandscape");
     double width = MediaQuery.of(context).size.width;
     return BodyLarge(
       child: SingleChildScrollView(

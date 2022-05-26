@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wb_assistant/controllers/local_storage_controller.dart';
+import 'package:wb_assistant/views/confirm/confirm_email.dart';
 
 import '../../models/details.dart';
 
@@ -19,6 +20,9 @@ class Home extends StatelessWidget {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 Details details = snapshot.data as Details;
+                if (details.type == "none") {
+                  return const ConfirmEmailPage();
+                }
                 return Column(
                   children: [
                     Text(details.email),
@@ -37,18 +41,6 @@ class Home extends StatelessWidget {
             });
       },
     );
-    // return GetBuilder<AuthenticationController>(builder: (controller) async {
-    //   Details details = await LocalStorageController.loadDetails();
-    //   return Column(
-    //     children: [
-    //       Text(details.email),
-    //       Text(details.expires),
-    //       Text(details.id),
-    //       Text(details.username),
-    //       Text(details.expires)
-    //     ],
-    //   );
-    // });
   }
 
   Scaffold errorView(AsyncSnapshot<Object?> snapshot) {
