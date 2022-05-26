@@ -8,7 +8,7 @@ class BeRepository {
   static const signUpEndPoint = "/auth/sign-up";
   static const signInEndPoint = "/auth/sign-in";
   static const detailsInEndPoint = "/account/details";
-  static const resendEndPoint = "/update-email-verification-token";
+  static const resendEndPoint = "/account/update-email-verification-token";
   static const contentType = 'application/json; charset=UTF-8';
   static const contentKey = 'Content-Type';
 

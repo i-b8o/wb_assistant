@@ -126,7 +126,7 @@ class AuthenticationController extends GetxController {
   Future<String> resend() async {
     Details details = await LocalStorageController.loadDetails();
     String jwt = await LocalStorageController.getJWTFromLocalStorage();
-    print("AAAAAAAAAA:" + jwt + details.email + details.password);
+
     if (jwt == "" || details.email == "" || details.password == "") {
       return Constants.somethingWrong;
     }
@@ -137,6 +137,8 @@ class AuthenticationController extends GetxController {
       // OK
       return "";
     }
+    print(response.statusCode);
+    print(response.body);
     return Constants.somethingWrong;
   }
 }
