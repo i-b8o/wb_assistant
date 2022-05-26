@@ -16,7 +16,9 @@ class AuthenticationController extends GetxController {
   String password = "";
 
   String validateEmail() {
-    if (email.contains(" ")) {
+    if (email.length <= 5) {
+      return Constants.lessThanInEmailValidationErr;
+    } else if (email.contains(" ")) {
       return Constants.spaceInEmailValidationErr;
     } else if (!GetUtils.isEmail(email)) {
       return Constants.emailValidationErr;
@@ -45,6 +47,7 @@ class AuthenticationController extends GetxController {
   }
 
   onSignUpBtnPressed() {
+    print("PRESSED");
     signUp().then((message) {
       if (message.isEmpty) {
         Get.to(() => const ConfirmEmailPage());

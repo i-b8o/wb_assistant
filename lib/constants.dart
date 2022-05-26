@@ -20,6 +20,8 @@ class Constants {
       "На ваш адрес отправлено письмо подтверждения регистрации, удостоверьтесь не попало ли оно в папку «Спам»";
   static const String confirmBtnText = "Отправить повторно!";
 
+  static const String lessThanInEmailValidationErr =
+      "Email должен быть не менее 6 символов (x@y.zz)\n";
   static const String emailValidationErr = "Неверный адрес электронной почты\n";
   static const String spaceInEmailValidationErr =
       "Адрес электронной почты не может содержать пробел.\n";

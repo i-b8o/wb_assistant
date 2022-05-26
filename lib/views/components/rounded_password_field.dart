@@ -31,7 +31,7 @@ class RoundedPasswordField extends StatelessWidget {
         builder: (controller) {
           return TextField(
             onChanged: onChanged,
-            obscureText: controller.obscure.isTrue,
+            obscureText: controller.obscure.isFalse,
             style: TextStyle(fontSize: height * 0.25),
             decoration: InputDecoration(
                 hintText: "Пароль",
@@ -42,7 +42,7 @@ class RoundedPasswordField extends StatelessWidget {
                     controller.toggle();
                   },
                   icon: Icon(
-                    controller.obscure.isTrue
+                    controller.obscure.isFalse
                         ? Icons.visibility_off_outlined
                         : Icons.visibility_outlined,
                     color: Constants.greyColor,

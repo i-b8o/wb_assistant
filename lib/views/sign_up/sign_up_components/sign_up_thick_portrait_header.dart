@@ -22,21 +22,21 @@ class SignUpThickPortraitHeader extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: GoogleFonts.robotoMono(
                   color: const Color.fromRGBO(55, 48, 74, 1),
-                  fontSize: size.width * 0.03,
+                  fontSize: size.width * 0.04,
                   fontWeight: FontWeight.bold,
                 )),
             SizedBox(
-              height: size.width * 0.01,
+              height: size.width * 0.03,
             ),
             Text(Constants.signUpGreetingText,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.robotoMono(
                   color: const Color.fromRGBO(128, 124, 142, 1),
-                  fontSize: size.width * 0.02,
+                  fontSize: size.width * 0.03,
                   fontWeight: FontWeight.bold,
                 )),
             SizedBox(
-              height: size.width * 0.12,
+              height: size.width * 0.10,
             ),
           ]),
     );

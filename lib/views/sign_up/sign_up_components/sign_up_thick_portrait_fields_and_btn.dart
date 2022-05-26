@@ -42,7 +42,6 @@ class SignUpThickPortraitFieldsAndBtn extends StatelessWidget {
                 )
               ],
             ),
-            // TODO Create the ConfirmMail Page and perform transition to the confirm mail page with autmatic transition to SignIn
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -51,11 +50,8 @@ class SignUpThickPortraitFieldsAndBtn extends StatelessWidget {
                   width: size.width * 0.6,
                   text: Constants.regBtnText,
                   press: () {
-                    controller.signUp().then((message) {
-                      if (message.isNotEmpty) {
-                        Get.snackbar("title", message);
-                      }
-                    });
+                    print("BBBBBBBBBBBBBBBB");
+                    controller.onSignUpBtnPressed();
                   },
                 ),
               ],

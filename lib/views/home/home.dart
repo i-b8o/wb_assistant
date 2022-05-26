@@ -23,14 +23,17 @@ class Home extends StatelessWidget {
                 if (details.type == "none") {
                   return const ConfirmEmailPage();
                 }
-                return Column(
-                  children: [
-                    Text(details.email),
-                    Text(details.expires),
-                    Text(details.id),
-                    Text(details.type),
-                    Text(details.username),
-                  ],
+                return Container(
+                  color: Colors.blue,
+                  child: Column(
+                    children: [
+                      Text(details.email),
+                      Text(details.expires),
+                      Text(details.id),
+                      Text(details.type),
+                      Text(details.username),
+                    ],
+                  ),
                 );
               }
               return Center(

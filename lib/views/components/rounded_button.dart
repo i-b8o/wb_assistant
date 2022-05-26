@@ -25,7 +25,9 @@ class RoundedButton extends StatelessWidget {
         child: Container(
           color: color,
           child: TextButton(
-              onPressed: press,
+              onPressed: () {
+                press!();
+              },
               child: Text(text,
                   style: GoogleFonts.robotoMono(
                     fontWeight: FontWeight.bold,

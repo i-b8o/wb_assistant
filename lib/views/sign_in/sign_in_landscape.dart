@@ -10,6 +10,7 @@ import '../components/welcome_btns.dart';
 import '../components/welcome_header.dart';
 import '../components/welcome_text_fields.dart';
 
+// Fields looks bad
 class SignInLandscape extends StatelessWidget {
   const SignInLandscape({
     Key? key,
