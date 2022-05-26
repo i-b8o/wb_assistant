@@ -12,6 +12,7 @@ class WelcomeThickPortrait extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("WelcomeThickPortrait");
     Size size = MediaQuery.of(context).size;
 
     return SizedBox(

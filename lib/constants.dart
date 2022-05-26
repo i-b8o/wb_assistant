@@ -34,4 +34,11 @@ class Constants {
 
   static const String signUpInternalServerError =
       "Пользователь с такими адресом электронной почты уже зарегистрирован!";
+
+  static const String signInNotFound =
+      "Пользователя с такими данными не существует!";
+  static const String badRequest = "Введены некорректные данные!";
+
+  static const String serverErr = "Введены некорректные данные!";
+  static const String err = "Ошибка";
 }

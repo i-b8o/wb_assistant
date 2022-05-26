@@ -10,7 +10,6 @@ import '../components/welcome_btns.dart';
 import '../components/welcome_header.dart';
 import '../components/welcome_text_fields.dart';
 
-// TODO Make Large view for registration
 class SignInLandscape extends StatelessWidget {
   const SignInLandscape({
     Key? key,
@@ -20,6 +19,7 @@ class SignInLandscape extends StatelessWidget {
   final AuthenticationController controller;
   @override
   Widget build(BuildContext context) {
+    print('SignInLandscape');
     double width = MediaQuery.of(context).size.width;
     return BodyLarge(
       child: SingleChildScrollView(

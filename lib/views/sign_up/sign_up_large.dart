@@ -9,6 +9,7 @@ class SignUpLarge extends StatelessWidget {
   final AuthenticationController controller;
   @override
   Widget build(BuildContext context) {
+    print("SignUpLarge");
     double width = MediaQuery.of(context).size.width;
     return BodyLarge(
       child: Column(

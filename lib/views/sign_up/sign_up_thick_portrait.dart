@@ -15,6 +15,7 @@ class SignUpThickPortrait extends StatelessWidget {
   final AuthenticationController controller;
   @override
   Widget build(BuildContext context) {
+    print('SignUpThickPortrait');
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(

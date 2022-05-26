@@ -50,7 +50,7 @@ class AuthenticationController extends GetxController {
         Get.to(() => const ConfirmEmailPage());
         return;
       }
-      Get.snackbar("Ошибка", message);
+      Get.snackbar(Constants.err, message);
       return;
     });
   }
@@ -68,7 +68,7 @@ class AuthenticationController extends GetxController {
     } else if (response.statusCode == 500) {
       return Constants.signUpInternalServerError;
     } else if (response.statusCode == 400) {
-      return "Введены некорректные данные!";
+      return Constants.badRequest;
     }
     return "";
   }
@@ -80,7 +80,7 @@ class AuthenticationController extends GetxController {
       Get.offAll(() => const Home());
       return;
     }
-    Get.snackbar("Ошибка", mes);
+    Get.snackbar(Constants.err, mes);
     return;
   }
 
@@ -98,11 +98,11 @@ class AuthenticationController extends GetxController {
       return "";
     } else if (response.statusCode == 404) {
       // Not Found
-      return "Пользователя с такими данными не существует!";
+      return Constants.signInNotFound;
     } else if (response.statusCode == 400) {
       // Bad request
-      return "Введены некорректные данные!";
+      return Constants.badRequest;
     }
-    return "Ошибка на сервере!";
+    return Constants.serverErr;
   }
 }

@@ -12,6 +12,7 @@ class WelcomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("WelcomePage");
     return const Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: Constants.bgColor,

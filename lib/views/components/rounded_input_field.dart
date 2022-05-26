@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'components.dart';
 
+// TODO TextFields text so small and alignment is not correct
 class RoundedInputField extends StatelessWidget {
   final String hintText;
   final ValueChanged<String> onChanged;

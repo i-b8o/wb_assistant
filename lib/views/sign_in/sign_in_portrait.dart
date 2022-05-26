@@ -12,13 +12,13 @@ import '../components/welcome_header.dart';
 import '../components/welcome_text_fields.dart';
 import '../sign_up/sign_up_page.dart';
 
-// TODO too small letters in link
 class SignInPortrait extends StatelessWidget {
   const SignInPortrait({Key? key, required this.controller}) : super(key: key);
 
   final AuthenticationController controller;
   @override
   Widget build(BuildContext context) {
+    print("SignInPortrait");
     Size size = MediaQuery.of(context).size;
     return Column(
       children: [
@@ -50,11 +50,6 @@ class SignInPortrait extends StatelessWidget {
                 SizedBox(
                   height: size.height * 0.04,
                 ),
-                AlreadyHaveAnAccountCheck(
-                  onPressed: () => Get.to(() => const SignUpPage(),
-                      transition: Transition.fadeIn),
-                  fontSize: size.width * 0.03,
-                ),
               ],
             ),
           ],
@@ -65,7 +60,7 @@ class SignInPortrait extends StatelessWidget {
         AlreadyHaveAnAccountCheck(
           onPressed: () =>
               Get.to(() => const SignUpPage(), transition: Transition.fadeIn),
-          fontSize: size.width * 0.03,
+          fontSize: size.width * 0.04,
         ),
       ],
     );

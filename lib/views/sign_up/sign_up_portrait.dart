@@ -11,6 +11,7 @@ class SignUpPortrait extends StatelessWidget {
   final AuthenticationController controller;
   @override
   Widget build(BuildContext context) {
+    print('SignUpPortrait');
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
@@ -59,7 +60,7 @@ class SignUpPortrait extends StatelessWidget {
             onPressed: () =>
                 Get.to(() => const SignInPage(), transition: Transition.fadeIn),
             signIn: false,
-            fontSize: width * 0.03,
+            fontSize: width * 0.04,
           ),
         ],
       ),
