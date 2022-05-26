@@ -5,6 +5,7 @@ class WaitLoadingDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("WaitLoadingDetailsPage");
     return Scaffold(
       appBar: AppBar(
         title: const Text(''),

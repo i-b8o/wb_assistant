@@ -10,6 +10,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("Home");
     Size size = MediaQuery.of(context).size;
     return GetBuilder<LocalStorageController>(
       init: LocalStorageController(),
@@ -36,11 +37,14 @@ class Home extends StatelessWidget {
                   ),
                 );
               }
-              return Center(
-                  child: Padding(
-                padding: EdgeInsets.all(size.width * 0.8),
-                child: const CircularProgressIndicator(),
-              ));
+              return Container(
+                color: Colors.blue,
+                child: Center(
+                    child: Padding(
+                  padding: EdgeInsets.all(size.width * 0.8),
+                  child: const CircularProgressIndicator(),
+                )),
+              );
             });
       },
     );

@@ -4,9 +4,11 @@ class Details {
   final String expires;
   final String type;
   final String username;
+  final String password;
 
   Details(
-      {required this.id,
+      {required this.password,
+      required this.id,
       required this.email,
       required this.expires,
       required this.type,
@@ -19,6 +21,7 @@ class Details {
       expires: json['Expires'],
       type: json['Type'],
       username: json['Username'],
+      password: json['Password'] ?? "",
     );
   }
 }

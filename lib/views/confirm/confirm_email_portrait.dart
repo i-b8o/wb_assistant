@@ -10,11 +10,8 @@ class ConfirmEmailPortrait extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    //   statusBarColor: Colors.transparent,
-    // ));
     Size size = MediaQuery.of(context).size;
-
+    print("ConfirmEmailPortrait");
     return Scaffold(
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
@@ -74,7 +71,7 @@ class ConfirmEmailPortrait extends StatelessWidget {
                     GetBuilder<AuthenticationController>(builder: (controller) {
                   return TextButton(
                       onPressed: () {
-                        // controller.resend();
+                        controller.onResendBtnPressed();
                       },
                       child: Text(Constants.confirmBtnText,
                           style: GoogleFonts.robotoMono(

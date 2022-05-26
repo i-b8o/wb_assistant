@@ -8,6 +8,7 @@ class BeRepository {
   static const signUpEndPoint = "/auth/sign-up";
   static const signInEndPoint = "/auth/sign-in";
   static const detailsInEndPoint = "/account/details";
+  static const resendEndPoint = "/update-email-verification-token";
   static const contentType = 'application/json; charset=UTF-8';
   static const contentKey = 'Content-Type';
 
@@ -52,17 +53,18 @@ class BeRepository {
     return response;
   }
 
-  // static Future<http.Response> resend(String email, password) async {
-  //   final response = await client.post(
-  //     Uri.parse('$domen$resendEndPoint'),
-  //     headers: <String, String>{
-  //       contentKey: contentType,
-  //     },
-  //     body: jsonEncode(<String, String>{
-  //       'Email': email,
-  //       'Password': password,
-  //     }),
-  //   );
-  //   return response;
-  // }
+  static Future<http.Response> resend(String token, email, password) async {
+    final response = await client.post(
+      Uri.parse('$domen$resendEndPoint'),
+      headers: <String, String>{
+        contentKey: contentType,
+        'Authorization': 'Bearer $token',
+      },
+      body: jsonEncode(<String, String>{
+        'Email': email,
+        'Password': password,
+      }),
+    );
+    return response;
+  }
 }

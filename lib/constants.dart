@@ -43,4 +43,5 @@ class Constants {
 
   static const String serverErr = "Введены некорректные данные!";
   static const String err = "Ошибка";
+  static const String somethingWrong = "Что-то пошло не так";
 }

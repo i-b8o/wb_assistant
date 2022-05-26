@@ -6,6 +6,7 @@ class WaitLoadingSignInPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("WaitLoadingSignInPage");
     return Scaffold(
       appBar: AppBar(
         title: const Text(''),

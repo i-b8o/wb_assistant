@@ -93,6 +93,7 @@ class LocalStorageController extends GetxController {
   saveDetails(Details details) async {
     await saveValue("username", details.username);
     await saveValue("email", details.email);
+    await saveValue("password", details.password);
     await saveValue("expires", details.expires);
     await saveValue("type", details.type);
     await saveValue("id", details.id);
@@ -102,11 +103,17 @@ class LocalStorageController extends GetxController {
   static Future<Details> loadDetails() async {
     String username = await getValue("username");
     String email = await getValue("email");
+    String password = await getValue("password");
     String expires = await getValue("expires");
     String type = await getValue("type");
     String id = await getValue("id");
     return Details(
-        id: id, email: email, expires: expires, type: type, username: username);
+        id: id,
+        email: email,
+        expires: expires,
+        type: type,
+        username: username,
+        password: password);
   }
 
   static saveValue(String key, value) async {

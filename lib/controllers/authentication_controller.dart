@@ -6,7 +6,9 @@ import 'package:wb_assistant/constants.dart';
 import 'package:wb_assistant/controllers/local_storage_controller.dart';
 
 import 'package:wb_assistant/models/token.dart';
+import 'package:wb_assistant/views/sign_in/sign_in.dart';
 
+import '../models/details.dart';
 import '../views/confirm/confirm_email.dart';
 import '../views/home/home.dart';
 
@@ -47,7 +49,6 @@ class AuthenticationController extends GetxController {
   }
 
   onSignUpBtnPressed() {
-    print("PRESSED");
     signUp().then((message) {
       if (message.isEmpty) {
         Get.to(() => const ConfirmEmailPage());
@@ -98,6 +99,8 @@ class AuthenticationController extends GetxController {
       TokenMessage tokenMessage =
           TokenMessage.fromJson(jsonDecode(response.body));
       await LocalStorageController.setJWT(tokenMessage.token);
+      // Need to save passoword for next requests because API never send in a response Password values
+      await LocalStorageController.saveValue("password", password);
       return "";
     } else if (response.statusCode == 404) {
       // Not Found
@@ -107,5 +110,33 @@ class AuthenticationController extends GetxController {
       return Constants.badRequest;
     }
     return Constants.serverErr;
+  }
+
+  onResendBtnPressed() async {
+    String mes = await resend();
+
+    if (mes == "") {
+      Get.offAll(() => const SignInPage());
+      return;
+    }
+    Get.snackbar(Constants.err, mes);
+    return;
+  }
+
+  Future<String> resend() async {
+    Details details = await LocalStorageController.loadDetails();
+    String jwt = await LocalStorageController.getJWTFromLocalStorage();
+    print("AAAAAAAAAA:" + jwt + details.email + details.password);
+    if (jwt == "" || details.email == "" || details.password == "") {
+      return Constants.somethingWrong;
+    }
+    print(jwt + details.email + details.password);
+    var response =
+        await BeRepository.resend(jwt, details.email, details.password);
+    if (response.statusCode == 200) {
+      // OK
+      return "";
+    }
+    return Constants.somethingWrong;
   }
 }
