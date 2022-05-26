@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wb_assistant/views/confirm/confirm_email.dart';
-
 import '../../constants.dart';
 import '../../controllers/authentication_controller.dart';
 import '../components/components.dart';

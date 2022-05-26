@@ -1,67 +1,54 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wb_assistant/controllers/authentication_controller.dart';
 import 'package:wb_assistant/controllers/local_storage_controller.dart';
+
+import '../../models/details.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
 
-  Future<void> initializeSettings(
-      AuthenticationController aController, String jwt) async {
-    String message = await aController.getDetails(jwt);
-    print("HOME: $jwt");
-    if (message.isNotEmpty) {
-      print("Message:$message|");
-      Get.snackbar(
-        "Снак",
-        message,
-        icon: const Icon(Icons.person, color: Colors.white),
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.green,
-      );
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<AuthenticationController>(
-        init: AuthenticationController(),
-        builder: (authController) {
-          return FutureBuilder(
-            future: initializeSettings(
-                authController, LocalStorageController.jwtToken),
+    Size size = MediaQuery.of(context).size;
+    return GetBuilder<LocalStorageController>(
+      init: LocalStorageController(),
+      initState: (_) {},
+      builder: (controller) {
+        return FutureBuilder<Details>(
+            future: LocalStorageController.loadDetails(),
             builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(
-                  child: CircularProgressIndicator(),
+              if (snapshot.hasData) {
+                Details details = snapshot.data as Details;
+                return Column(
+                  children: [
+                    Text(details.email),
+                    Text(details.expires),
+                    Text(details.id),
+                    Text(details.type),
+                    Text(details.username),
+                  ],
                 );
-              } else {
-                if (snapshot.hasError) {
-                  return errorView(snapshot);
-                } else {
-                  if (authController.details.type == "none") {
-                    return const Center(
-                        child: Text("Подтвердите адрес электронной почты"));
-                  } else {
-                    return Container(
-                      color: Colors.amber,
-                      child: authController.gotDetails.isTrue
-                          ? Column(children: [
-                              Text("Email: ${authController.details.email}|"),
-                              Text(
-                                  "expires:${authController.details.expires}|"),
-                              Text("type:${authController.details.type}|"),
-                              Text(
-                                  "username:${authController.details.username}|"),
-                            ])
-                          : const CircularProgressIndicator(),
-                    );
-                  }
-                }
               }
-            },
-          );
-        });
+              return Center(
+                  child: Padding(
+                padding: EdgeInsets.all(size.width * 0.8),
+                child: const CircularProgressIndicator(),
+              ));
+            });
+      },
+    );
+    // return GetBuilder<AuthenticationController>(builder: (controller) async {
+    //   Details details = await LocalStorageController.loadDetails();
+    //   return Column(
+    //     children: [
+    //       Text(details.email),
+    //       Text(details.expires),
+    //       Text(details.id),
+    //       Text(details.username),
+    //       Text(details.expires)
+    //     ],
+    //   );
+    // });
   }
 
   Scaffold errorView(AsyncSnapshot<Object?> snapshot) {

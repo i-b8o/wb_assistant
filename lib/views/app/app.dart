@@ -19,7 +19,8 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LocalStorageController.jwtInStorage.isTrue
+      home: LocalStorageController.jwtInStorage.isTrue &&
+              LocalStorageController.detailsInStorage.isTrue
           ? const Home()
           : const WelcomePage(),
     );

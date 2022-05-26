@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:wb_assistant/constants.dart';
 import 'package:wb_assistant/controllers/local_storage_controller.dart';
 
-import 'package:wb_assistant/models/details.dart';
 import 'package:wb_assistant/models/token.dart';
 
 import '../views/confirm/confirm_email.dart';
@@ -15,10 +14,6 @@ class AuthenticationController extends GetxController {
   String username = "";
   String email = "";
   String password = "";
-  var gotDetails = false.obs;
-  var serverError = "".obs;
-  Details details =
-      Details(email: "", expires: "", type: "", username: "", id: '');
 
   String validateEmail() {
     if (email.contains(" ")) {
@@ -80,8 +75,9 @@ class AuthenticationController extends GetxController {
 
   onSignInBtnPressed() async {
     String mes = await signIn();
+
     if (mes == "") {
-      Get.offAll(() => const Home());
+      Get.offAll(() => Home());
       return;
     }
     Get.snackbar("Ошибка", mes);
@@ -108,17 +104,5 @@ class AuthenticationController extends GetxController {
       return "Введены некорректные данные!";
     }
     return "Ошибка на сервере!";
-  }
-
-  Future<String> getDetails(String token) async {
-    var response = await BeRepository.details(token);
-    if (response.statusCode == 200) {
-      // OK
-      details = Details.fromJson(jsonDecode(response.body));
-      gotDetails.value = true;
-      return "";
-    }
-    // Bad request
-    return jsonDecode(response.body).message;
   }
 }
