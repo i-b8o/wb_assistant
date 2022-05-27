@@ -10,6 +10,7 @@ import '../components/rounded_password_field.dart';
 import '../components/welcome_btns.dart';
 import '../components/welcome_header.dart';
 import '../components/welcome_text_fields.dart';
+import '../password_recovery/password_recovery.dart';
 import '../sign_up/sign_up_page.dart';
 
 class SignInPortrait extends StatelessWidget {
@@ -45,6 +46,9 @@ class SignInPortrait extends StatelessWidget {
                 ),
                 WelcomeBtns(
                   onPressed: () => controller.onSignInBtnPressed(),
+                  recoverOnPressed: () => Get.to(
+                      () => const PasswordRecoveryPage(),
+                      transition: Transition.fadeIn),
                   btnText: Constants.logBtnText,
                 ),
                 SizedBox(

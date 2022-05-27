@@ -10,8 +10,9 @@ class WelcomeBtns extends StatelessWidget {
     this.signIn = true,
     this.mobile = true,
     this.onPressed = _defaultFunction,
+    this.recoverOnPressed = _defaultFunction,
   }) : super(key: key);
-  final VoidCallback onPressed;
+  final VoidCallback onPressed, recoverOnPressed;
   static _defaultFunction() {}
 
   final bool signIn, mobile;
@@ -33,7 +34,7 @@ class WelcomeBtns extends StatelessWidget {
                       padding: EdgeInsets.only(
                           right: mobile ? width * 0.07 : width * 0.11),
                       child: TextButton(
-                        onPressed: onPressed,
+                        onPressed: recoverOnPressed,
                         child: Text(
                           "Восстановление пароля",
                           style: GoogleFonts.robotoMono(

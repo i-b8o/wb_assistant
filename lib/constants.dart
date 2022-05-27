@@ -5,6 +5,11 @@ class Constants {
   static const pinkColor = Color.fromRGBO(222, 157, 255, 1);
   static const greyColor = Color.fromRGBO(198, 194, 205, 1);
   static const azureColor = Color.fromRGBO(24, 59, 102, 1);
+  static const recoverPasswordBGColor = Color.fromRGBO(240, 242, 247, 1);
+  static const recoverPasswordBtnColor = Color.fromRGBO(130, 45, 243, 1);
+  static const String resetPasswordHeader = "Сбросить пароль";
+  static const String resetPasswordText =
+      "Введите адрес электронной почты к которому привязан ваш аккаунт и мы отправим письмо с инструкцией как сбросить пароль";
   static const String signUpHeaderText = "Добро пожаловать!";
   static const String signUpGreetingText =
       "Давайте зарегистрируем вам аккаунт.";

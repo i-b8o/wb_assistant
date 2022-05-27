@@ -10,6 +10,7 @@ import '../components/rounded_password_field.dart';
 import '../components/welcome_btns.dart';
 
 import '../components/welcome_text_fields.dart';
+import '../password_recovery/password_recovery.dart';
 import '../sign_up/sign_up_page.dart';
 
 class SignInThickPortrait extends StatelessWidget {
@@ -70,13 +71,16 @@ class SignInThickPortrait extends StatelessWidget {
                 ),
                 WelcomeBtns(
                   onPressed: () => controller.onSignInBtnPressed(),
+                  recoverOnPressed: () => Get.to(
+                      () => const PasswordRecoveryPage(),
+                      transition: Transition.fadeIn),
                   btnText: Constants.logBtnText,
                 ),
                 SizedBox(
                   height: size.height * 0.04,
                 ),
                 AlreadyHaveAnAccountCheck(
-                  onPressed: () => Get.to(() => const SignUpPage(),
+                  onPressed: () => Get.off(() => const SignUpPage(),
                       transition: Transition.fadeIn),
                   fontSize: size.width * 0.03,
                 ),

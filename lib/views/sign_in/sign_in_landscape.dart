@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wb_assistant/views/password_recovery/password_recovery.dart';
 
 import '../../constants.dart';
 import '../../controllers/authentication_controller.dart';
@@ -67,6 +68,8 @@ class SignInLandscape extends StatelessWidget {
               mobile: false,
               btnText: Constants.logBtnText,
               onPressed: () => controller.onSignInBtnPressed(),
+              recoverOnPressed: () => Get.to(() => const PasswordRecoveryPage(),
+                  transition: Transition.fadeIn),
             ),
           ],
         ),
