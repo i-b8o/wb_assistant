@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:wb_assistant/controllers/authentication_controller.dart';
 
 import '../../constants.dart';
 import '../components/components.dart';
+import '../sign_in/sign_in.dart';
 
 class SignUpLarge extends StatelessWidget {
   const SignUpLarge({Key? key, required this.controller}) : super(key: key);
@@ -19,6 +21,8 @@ class SignUpLarge extends StatelessWidget {
             height: width * 0.03,
           ),
           AlreadyHaveAnAccountCheck(
+            onPressed: () =>
+                Get.to(() => const SignInPage(), transition: Transition.fadeIn),
             signIn: false,
             mobile: false,
             fontSize: width * 0.01,
@@ -34,18 +38,18 @@ class SignUpLarge extends StatelessWidget {
                   mobile: false,
                   email: false,
                   hintText: Constants.nameInputText,
-                  onChanged: (s) {},
+                  onChanged: (username) => controller.username = username,
                   height: width * 0.05,
                   width: width * 0.3),
               RoundedInputField(
                   mobile: false,
                   hintText: Constants.emailInputText,
-                  onChanged: (s) {},
+                  onChanged: (email) => controller.email = email,
                   height: width * 0.05,
                   width: width * 0.3),
               RoundedPasswordField(
                 mobile: false,
-                onChanged: (s) {},
+                onChanged: (password) => controller.password = password,
                 height: width * 0.05,
                 width: width * 0.3,
               )
