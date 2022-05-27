@@ -34,7 +34,7 @@ class Constants {
   static const String spaceInNameValidationErr =
       "Имя не может содержать пробел.\n";
 
-  static const String signUpInternalServerError =
+  static const String signUpConflict =
       "Пользователь с такими адресом электронной почты уже зарегистрирован!";
 
   static const String signInNotFound =

@@ -69,8 +69,10 @@ class AuthenticationController extends GetxController {
 
     if (response.statusCode == 200) {
       return "";
+    } else if (response.statusCode == 409) {
+      return Constants.signUpConflict;
     } else if (response.statusCode == 500) {
-      return Constants.signUpInternalServerError;
+      return Constants.somethingWrong;
     } else if (response.statusCode == 400) {
       return Constants.badRequest;
     }
