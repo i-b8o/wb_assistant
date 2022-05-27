@@ -19,7 +19,8 @@ class RoundedPasswordField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // double width = MediaQuery.of(context).size.width;
+    Size size = MediaQuery.of(context).size;
+    double ar = size.width / size.height;
 
     return TextFieldConainer(
       bottomPadding: mobile ? width * 0.04 : width * 0.015,
@@ -37,11 +38,15 @@ class RoundedPasswordField extends StatelessWidget {
             child: TextField(
               onChanged: onChanged,
               obscureText: controller.obscure.isFalse,
-              style: TextStyle(fontSize: height * 0.3),
+              style: TextStyle(
+                fontSize: ar < 1.8 ? height * 0.3 : height * 0.2,
+              ),
               textAlignVertical: TextAlignVertical.center,
               decoration: InputDecoration(
                   hintText: "Пароль",
-                  hintStyle: TextStyle(fontSize: height * 0.3),
+                  hintStyle: TextStyle(
+                    fontSize: ar < 1.8 ? height * 0.3 : height * 0.2,
+                  ),
                   border: InputBorder.none,
                   suffixIcon: InkWell(
                     onTap: () {

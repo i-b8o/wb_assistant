@@ -37,11 +37,15 @@ class RoundedInputField extends StatelessWidget {
                 email ? TextInputType.emailAddress : TextInputType.name,
             onChanged: onChanged,
             style: TextStyle(
-              fontSize: height * 0.3,
+              fontSize: ar < 1.8 ? height * 0.3 : height * 0.2,
             ),
             textAlignVertical: TextAlignVertical.center,
-            decoration:
-                InputDecoration(hintText: hintText, border: InputBorder.none),
+            decoration: InputDecoration(
+                hintText: hintText,
+                hintStyle: TextStyle(
+                  fontSize: ar < 1.8 ? height * 0.3 : height * 0.2,
+                ),
+                border: InputBorder.none),
           ),
         ));
   }
