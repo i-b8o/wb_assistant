@@ -32,10 +32,11 @@ class RoundedPasswordField extends StatelessWidget {
           return TextField(
             onChanged: onChanged,
             obscureText: controller.obscure.isFalse,
-            style: TextStyle(fontSize: height * 0.25),
+            style: TextStyle(fontSize: height * 0.3),
+            textAlignVertical: TextAlignVertical.center,
             decoration: InputDecoration(
                 hintText: "Пароль",
-                hintStyle: TextStyle(fontSize: height * 0.25),
+                hintStyle: TextStyle(fontSize: height * 0.3),
                 border: InputBorder.none,
                 suffixIcon: InkWell(
                   onTap: () {

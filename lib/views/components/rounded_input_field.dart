@@ -20,7 +20,6 @@ class RoundedInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // double width = MediaQuery.of(context).size.width;
     return TextFieldConainer(
         bottomPadding: mobile ? width * 0.04 : width * 0.015,
         height: height,
@@ -28,7 +27,8 @@ class RoundedInputField extends StatelessWidget {
         child: TextField(
           keyboardType: email ? TextInputType.emailAddress : TextInputType.name,
           onChanged: onChanged,
-          style: TextStyle(fontSize: height * 0.25),
+          style: TextStyle(fontSize: height * 0.3),
+          textAlignVertical: TextAlignVertical.center,
           decoration:
               InputDecoration(hintText: hintText, border: InputBorder.none),
         ));
