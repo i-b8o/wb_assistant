@@ -15,7 +15,6 @@ class TextFieldConainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(bottom: bottomPadding),
-      // padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       alignment: Alignment.center,
       width: width,
       height: height,
