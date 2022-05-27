@@ -29,27 +29,33 @@ class RoundedPasswordField extends StatelessWidget {
         init: RoundedPasswordFieldObscureController(),
         initState: (_) {},
         builder: (controller) {
-          return TextField(
-            onChanged: onChanged,
-            obscureText: controller.obscure.isFalse,
-            style: TextStyle(fontSize: height * 0.3),
-            textAlignVertical: TextAlignVertical.center,
-            decoration: InputDecoration(
-                hintText: "Пароль",
-                hintStyle: TextStyle(fontSize: height * 0.3),
-                border: InputBorder.none,
-                suffixIcon: InkWell(
-                  onTap: () {
-                    controller.toggle();
-                  },
-                  child: Icon(
-                    controller.obscure.isFalse
-                        ? Icons.visibility_off_outlined
-                        : Icons.visibility_outlined,
-                    color: Constants.greyColor,
-                    size: height * 0.4,
-                  ),
-                )),
+          return Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: width * 0.03,
+              vertical: height * 0.23,
+            ),
+            child: TextField(
+              onChanged: onChanged,
+              obscureText: controller.obscure.isFalse,
+              style: TextStyle(fontSize: height * 0.3),
+              textAlignVertical: TextAlignVertical.center,
+              decoration: InputDecoration(
+                  hintText: "Пароль",
+                  hintStyle: TextStyle(fontSize: height * 0.3),
+                  border: InputBorder.none,
+                  suffixIcon: InkWell(
+                    onTap: () {
+                      controller.toggle();
+                    },
+                    child: Icon(
+                      controller.obscure.isFalse
+                          ? Icons.visibility_off_outlined
+                          : Icons.visibility_outlined,
+                      color: Constants.greyColor,
+                      size: height * 0.4,
+                    ),
+                  )),
+            ),
           );
         },
       ),
