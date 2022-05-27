@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../constants.dart';
 import '../../controllers/authentication_controller.dart';
@@ -9,6 +10,7 @@ import '../components/rounded_password_field.dart';
 import '../components/welcome_btns.dart';
 import '../components/welcome_header.dart';
 import '../components/welcome_text_fields.dart';
+import '../sign_up/sign_up_page.dart';
 
 // Fields looks bad
 class SignInLandscape extends StatelessWidget {
@@ -33,6 +35,8 @@ class SignInLandscape extends StatelessWidget {
             AlreadyHaveAnAccountCheck(
               mobile: false,
               fontSize: width * 0.01,
+              onPressed: () => Get.to(() => const SignUpPage(),
+                  transition: Transition.fadeIn),
             ),
             const WelcomeHeader(
               mobile: false,
@@ -44,12 +48,16 @@ class SignInLandscape extends StatelessWidget {
                 RoundedInputField(
                     mobile: false,
                     hintText: Constants.emailInputText,
-                    onChanged: (s) {},
+                    onChanged: (value) {
+                      controller.email = value;
+                    },
                     height: width * 0.05,
                     width: width * 0.3),
                 RoundedPasswordField(
                   mobile: false,
-                  onChanged: (s) {},
+                  onChanged: (value) {
+                    controller.password = value;
+                  },
                   height: width * 0.05,
                   width: width * 0.3,
                 )

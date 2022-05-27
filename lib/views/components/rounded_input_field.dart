@@ -21,7 +21,6 @@ class RoundedInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     double ar = size.width / size.height;
-    print(ar);
 
     return TextFieldConainer(
         bottomPadding: mobile ? width * 0.04 : width * 0.015,

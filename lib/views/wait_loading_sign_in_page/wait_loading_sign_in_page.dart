@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-// TODO Create Wait Sign Page
 class WaitLoadingSignInPage extends StatelessWidget {
   const WaitLoadingSignInPage({Key? key}) : super(key: key);
 
