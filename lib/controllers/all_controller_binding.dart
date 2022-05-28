@@ -7,12 +7,8 @@ import 'rounded_password_field_obscure_controller.dart';
 class AllControllerBinding implements Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<AuthenticationController>(() => AuthenticationController(),
-        fenix: true);
-    Get.lazyPut<LocalStorageController>(() => LocalStorageController(),
-        fenix: true);
-    Get.lazyPut<RoundedPasswordFieldObscureController>(
-        () => RoundedPasswordFieldObscureController(),
-        fenix: true);
+    Get.put(AuthenticationController());
+    Get.put(LocalStorageController());
+    Get.put(RoundedPasswordFieldObscureController());
   }
 }

@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.i_rm.wb_assistant">
+   <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="wb_assistant"
         android:name="${applicationName}"

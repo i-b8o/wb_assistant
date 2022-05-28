@@ -10,7 +10,6 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("Home");
     Size size = MediaQuery.of(context).size;
 
     return FutureBuilder<Details>(
@@ -25,21 +24,40 @@ class Home extends StatelessWidget {
               color: Colors.blue,
               child: Column(
                 children: [
-                  Text(details.email),
-                  Text(details.expires),
-                  Text(details.id),
-                  Text(details.type),
-                  Text(details.username),
+                  Text(
+                    "email: ${details.email}",
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                  Text(
+                    "expires: ${details.expires}",
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                  Text(
+                    "id: ${details.id}",
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                  Text(
+                    "type: ${details.type}",
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                  Text(
+                    "username: ${details.username}",
+                    style: const TextStyle(color: Colors.white),
+                  ),
                 ],
               ),
             );
           }
+          String jwt = LocalStorageController.jwtToken;
+          Get.find<LocalStorageController>().getAndSaveDetails(jwt);
           return Container(
             color: Colors.blue,
             child: Center(
                 child: Padding(
               padding: EdgeInsets.all(size.width * 0.8),
-              child: const CircularProgressIndicator(),
+              child: const CircularProgressIndicator(
+                color: Colors.red,
+              ),
             )),
           );
         });

@@ -12,7 +12,7 @@ class ConfirmEmailThickPortrait extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    print("ConfirmEmailThickPortrait");
+
     return Scaffold(
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,

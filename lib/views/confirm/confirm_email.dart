@@ -10,7 +10,6 @@ class ConfirmEmailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("ConfirmEmailPage");
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: false,

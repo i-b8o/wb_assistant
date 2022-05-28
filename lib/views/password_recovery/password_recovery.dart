@@ -17,7 +17,6 @@ class PasswordRecoveryPage extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     bool keyboard = MediaQuery.of(context).viewInsets.bottom > 0.0;
 
-    print("PasswordRecoveryPage");
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(

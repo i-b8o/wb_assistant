@@ -5,7 +5,6 @@ class ConfirmEmailLarge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("ConfirmEmailLarge");
     return Scaffold(
       appBar: AppBar(
         title: const Text(''),
