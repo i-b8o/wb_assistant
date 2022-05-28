@@ -4,14 +4,14 @@ import 'package:get/get.dart';
 import '../../constants.dart';
 import '../../controllers/authentication_controller.dart';
 
-class EmailTextFieldThickPortrait extends StatelessWidget {
-  const EmailTextFieldThickPortrait({Key? key}) : super(key: key);
+class EmailTextFieldLandscape extends StatelessWidget {
+  const EmailTextFieldLandscape({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SizedBox(
-      width: size.width * 0.85,
+      width: size.width * 0.30,
       height: size.height * 0.08,
       child: TextField(
         style: TextStyle(fontSize: size.height * 0.02),
@@ -33,7 +33,7 @@ class EmailTextFieldThickPortrait extends StatelessWidget {
           hintText: Constants.emailInputText,
           contentPadding: EdgeInsets.symmetric(
             vertical: size.height * 0.03,
-            horizontal: size.width * 0.04,
+            horizontal: size.width * 0.01,
           ),
         ),
       ),

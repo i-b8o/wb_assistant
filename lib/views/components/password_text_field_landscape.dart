@@ -5,14 +5,14 @@ import '../../constants.dart';
 import '../../controllers/authentication_controller.dart';
 import '../../controllers/rounded_password_field_obscure_controller.dart';
 
-class PasswordTextFieldThickPortrait extends StatelessWidget {
-  const PasswordTextFieldThickPortrait({Key? key}) : super(key: key);
+class PasswordTextFieldLandscape extends StatelessWidget {
+  const PasswordTextFieldLandscape({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SizedBox(
-      width: size.width * 0.85,
+      width: size.width * 0.30,
       height: size.height * 0.08,
       child: GetX<RoundedPasswordFieldObscureController>(
         init: RoundedPasswordFieldObscureController(),
@@ -39,7 +39,7 @@ class PasswordTextFieldThickPortrait extends StatelessWidget {
                 hintText: Constants.passInputText,
                 contentPadding: EdgeInsets.symmetric(
                   vertical: size.height * 0.03,
-                  horizontal: size.width * 0.04,
+                  horizontal: size.width * 0.01,
                 ),
                 suffixIcon: InkWell(
                   onTap: () {

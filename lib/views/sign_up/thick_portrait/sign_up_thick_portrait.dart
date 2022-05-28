@@ -26,7 +26,12 @@ class SignUpThickPortrait extends StatelessWidget {
     print('SignUpThickPortrait');
     Size size = MediaQuery.of(context).size;
     bool keyboard = MediaQuery.of(context).viewInsets.bottom > 0.0;
-    return Column(
+
+    return ListView(
+      padding: EdgeInsets.only(
+        left: size.width * 0.07,
+        right: size.width * 0.07,
+      ),
       children: [
         keyboard
             ? SizedBox(height: size.height * 0.1)
@@ -34,10 +39,12 @@ class SignUpThickPortrait extends StatelessWidget {
                 headerText: Constants.signUpHeaderText,
                 greetingText: Constants.signUpGreetingText,
               ),
-        const TextFieldsWidget(
+        TextFieldsWidget(
           fields: [
             NameTextFieldThickPortrait(),
+            SizedBox(height: size.height * 0.01),
             EmailTextFieldThickPortrait(),
+            SizedBox(height: size.height * 0.01),
             PasswordTextFieldThickPortrait(),
           ],
         ),

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wb_assistant/controllers/authentication_controller.dart';
 
-import '../../constants.dart';
-import '../components/components.dart';
-import '../sign_in/sign_in.dart';
+import '../../../constants.dart';
+import '../../components/components.dart';
+import '../../sign_in/sign_in.dart';
 
 class SignUpLarge extends StatelessWidget {
   const SignUpLarge({

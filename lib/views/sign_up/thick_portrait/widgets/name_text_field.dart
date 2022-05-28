@@ -12,7 +12,7 @@ class NameTextFieldThickPortrait extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return SizedBox(
       width: size.width * 0.85,
-      height: size.width * 0.15,
+      height: size.height * 0.08,
       child: TextField(
         style: TextStyle(fontSize: size.height * 0.02),
         textAlignVertical: TextAlignVertical.center,
@@ -32,7 +32,7 @@ class NameTextFieldThickPortrait extends StatelessWidget {
           ),
           hintText: Constants.nameInputText,
           contentPadding: EdgeInsets.symmetric(
-            vertical: size.height * 0.01,
+            vertical: size.height * 0.03,
             horizontal: size.width * 0.04,
           ),
         ),

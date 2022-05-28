@@ -22,6 +22,7 @@ class SignInThickPortrait extends StatelessWidget {
     print("SignInThickPortrait");
     Size size = MediaQuery.of(context).size;
     bool keyboard = MediaQuery.of(context).viewInsets.bottom > 0.0;
+    print(keyboard);
     return Column(
       children: [
         keyboard
@@ -37,7 +38,11 @@ class SignInThickPortrait extends StatelessWidget {
             TextFieldsWidget(
               fields: [
                 const EmailTextFieldThickPortrait(),
+                SizedBox(height: size.height * 0.01),
                 const PasswordTextFieldThickPortrait(),
+                SizedBox(
+                  height: size.height * 0.05,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -59,6 +64,9 @@ class SignInThickPortrait extends StatelessWidget {
                       ),
                     )
                   ],
+                ),
+                SizedBox(
+                  height: size.height * 0.05,
                 ),
                 BtnThickPortrait(
                     text: Constants.signInBtnText,
