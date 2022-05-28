@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-import '../../constants.dart';
-import '../../controllers/authentication_controller.dart';
+import 'password_recovery_components/reset_password_btn.dart';
+import 'password_recovery_components/reset_password_description.dart';
+import 'password_recovery_components/reset_password_text_field.dart';
 
 class PasswordRecoveryPage extends StatelessWidget {
   const PasswordRecoveryPage({Key? key}) : super(key: key);
@@ -11,10 +11,12 @@ class PasswordRecoveryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    bool keyboard = MediaQuery.of(context).viewInsets.bottom > 0.0;
+
     print("PasswordRecoveryPage");
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 101, 82, 82),
       resizeToAvoidBottomInset: false,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         elevation: 0,
@@ -43,92 +45,17 @@ class PasswordRecoveryPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: size.height * 0.12,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: size.width * 0.06),
-                child: Text(
-                  Constants.resetPasswordHeader,
-                  style: TextStyle(
-                      color: Constants.azureColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: size.height * 0.03),
-                ),
-              ),
-              SizedBox(
-                height: size.height * 0.025,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: size.width * 0.06),
-                child: Text(
-                  Constants.resetPasswordText,
-                  style: TextStyle(
-                      color: Constants.azureColor,
-                      fontSize: size.height * 0.02),
-                ),
-              ),
-              SizedBox(
-                height: size.height * 0.1,
-              ),
-            ],
+          SizedBox(
+            height: keyboard ? 0 : size.height * 0.12,
           ),
+          const ResetPasswordDescription(),
           Column(
             children: [
-              Container(
-                alignment: Alignment.center,
-                width: size.width * 0.85,
-                height: size.height * 0.05,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                    border:
-                        Border.all(color: Constants.recoverPasswordBGColor)),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: size.width * 0.025,
-                    vertical: size.width * 0.0345,
-                  ),
-                  child: TextField(
-                    keyboardType: TextInputType.emailAddress,
-                    onChanged: (value) {
-                      Get.find<AuthenticationController>().email = value;
-                    },
-                    textAlignVertical: TextAlignVertical.center,
-                    decoration: InputDecoration(
-                        hintText: Constants.emailInputText,
-                        hintStyle: TextStyle(
-                          fontSize: size.height * 0.045,
-                        ),
-                        border: InputBorder.none),
-                  ),
-                ),
-              ),
+              const ResetPasswordTextField(),
               SizedBox(
                 height: size.height * 0.02,
               ),
-              SizedBox(
-                width: size.width * 0.85,
-                height: size.height * 0.05,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Container(
-                      color: Constants.recoverPasswordBtnColor,
-                      child: TextButton(
-                          onPressed: () {
-                            // controller.onResendBtnPressed();
-                            print("Button pressed");
-                          },
-                          child: Text(Constants.confirmBtnText,
-                              style: GoogleFonts.robotoMono(
-                                fontSize: size.height * 0.02,
-                                color: Colors.white,
-                              )))),
-                ),
-              ),
+              const ResetPasswordBtn(),
             ],
           ),
           SizedBox(
