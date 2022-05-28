@@ -14,9 +14,10 @@ import '../password_recovery/password_recovery.dart';
 import '../sign_up/sign_up_page.dart';
 
 class SignInThickPortrait extends StatelessWidget {
-  const SignInThickPortrait({Key? key, required this.controller})
-      : super(key: key);
-  final AuthenticationController controller;
+  const SignInThickPortrait({
+    Key? key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     print("SignInThickPortrait");
@@ -58,19 +59,20 @@ class SignInThickPortrait extends StatelessWidget {
                 RoundedInputField(
                     hintText: Constants.emailInputText,
                     onChanged: (value) {
-                      controller.email = value;
+                      Get.find<AuthenticationController>().email = value;
                     },
                     height: size.width * 0.15,
                     width: size.width * 0.85),
                 RoundedPasswordField(
                   onChanged: (value) {
-                    controller.password = value;
+                    Get.find<AuthenticationController>().password = value;
                   },
                   height: size.width * 0.15,
                   width: size.width * 0.85,
                 ),
                 WelcomeBtns(
-                  onPressed: () => controller.onSignInBtnPressed(),
+                  onPressed: () =>
+                      Get.find<AuthenticationController>().onSignInBtnPressed(),
                   recoverOnPressed: () => Get.to(
                       () => const PasswordRecoveryPage(),
                       transition: Transition.fadeIn),

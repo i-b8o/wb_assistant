@@ -8,7 +8,7 @@ import '../models/token.dart';
 
 class LocalStorageController extends GetxController {
   static var jwtInStorage = false.obs;
-  static var detailsInStorage = false.obs;
+  var detailsInStorage = false.obs;
   var credentialsInStorage = false.obs;
   static String jwtToken = "";
   LocalStorageController() {

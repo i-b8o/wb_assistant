@@ -7,8 +7,10 @@ import '../sign_in/sign_in.dart';
 
 // TODO use MediaQueryData widget
 class SignUpPortrait extends StatelessWidget {
-  const SignUpPortrait({Key? key, required this.controller}) : super(key: key);
-  final AuthenticationController controller;
+  const SignUpPortrait({
+    Key? key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     print('SignUpPortrait');
@@ -31,23 +33,29 @@ class SignUpPortrait extends StatelessWidget {
                   RoundedInputField(
                       email: false,
                       hintText: Constants.nameInputText,
-                      onChanged: (username) => controller.username = username,
+                      onChanged: (username) =>
+                          Get.find<AuthenticationController>().username =
+                              username,
                       height: width * 0.15,
                       width: width * 0.85),
                   RoundedInputField(
                       hintText: Constants.emailInputText,
-                      onChanged: (email) => controller.email = email,
+                      onChanged: (email) =>
+                          Get.find<AuthenticationController>().email = email,
                       height: width * 0.15,
                       width: width * 0.85),
                   RoundedPasswordField(
-                    onChanged: (password) => controller.password = password,
+                    onChanged: (password) =>
+                        Get.find<AuthenticationController>().password =
+                            password,
                     height: width * 0.15,
                     width: width * 0.85,
                   )
                 ],
               ),
               WelcomeBtns(
-                onPressed: controller.onSignUpBtnPressed,
+                onPressed:
+                    Get.find<AuthenticationController>().onSignUpBtnPressed,
                 signIn: false,
                 btnText: Constants.regBtnText,
               ),

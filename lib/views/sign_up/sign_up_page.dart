@@ -19,36 +19,22 @@ class SignUpPage extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       backgroundColor: Constants.bgColor,
       body: SizedBox(
-        width: double.infinity,
-        height: size.height,
-        child: GetBuilder<AuthenticationController>(
-          init: AuthenticationController(),
-          initState: (_) {},
-          builder: (controller) {
-            return LayoutBuilder(
-              builder: (context, constraints) {
-                bool isPortrait =
-                    MediaQuery.of(context).orientation == Orientation.portrait;
-                double aspectRatio =
-                    constraints.maxWidth / constraints.maxHeight;
-                if (isPortrait) {
-                  return aspectRatio > 0.55
-                      ? SignUpThickPortrait(
-                          controller: controller,
-                        )
-                      : SignUpPortrait(
-                          controller: controller,
-                        );
-                } else {
-                  return SignUpLarge(
-                    controller: controller,
-                  );
-                }
-              },
-            );
-          },
-        ),
-      ),
+          width: double.infinity,
+          height: size.height,
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              bool isPortrait =
+                  MediaQuery.of(context).orientation == Orientation.portrait;
+              double aspectRatio = constraints.maxWidth / constraints.maxHeight;
+              if (isPortrait) {
+                return aspectRatio > 0.55
+                    ? SignUpThickPortrait()
+                    : SignUpPortrait();
+              } else {
+                return SignUpLarge();
+              }
+            },
+          )),
     );
   }
 }

@@ -16,49 +16,46 @@ class SignUpThickPortraitFieldsAndBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return GetBuilder<AuthenticationController>(
-      init: AuthenticationController(),
-      initState: (_) {},
-      builder: (controller) {
-        return Column(
+    return Column(
+      children: [
+        TextFieldsWidget(
+          fields: [
+            RoundedInputField(
+                email: false,
+                hintText: Constants.nameInputText,
+                onChanged: (username) =>
+                    Get.find<AuthenticationController>().username = username,
+                height: size.height * 0.1,
+                width: size.width * 0.6),
+            RoundedInputField(
+                hintText: Constants.emailInputText,
+                onChanged: (email) =>
+                    Get.find<AuthenticationController>().email = email,
+                height: size.height * 0.1,
+                width: size.width * 0.6),
+            RoundedPasswordField(
+              onChanged: (password) =>
+                  Get.find<AuthenticationController>().password = password,
+              height: size.height * 0.1,
+              width: size.width * 0.6,
+            )
+          ],
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            TextFieldsWidget(
-              fields: [
-                RoundedInputField(
-                    email: false,
-                    hintText: Constants.nameInputText,
-                    onChanged: (username) => controller.username = username,
-                    height: size.height * 0.1,
-                    width: size.width * 0.6),
-                RoundedInputField(
-                    hintText: Constants.emailInputText,
-                    onChanged: (email) => controller.email = email,
-                    height: size.height * 0.1,
-                    width: size.width * 0.6),
-                RoundedPasswordField(
-                  onChanged: (password) => controller.password = password,
-                  height: size.height * 0.1,
-                  width: size.width * 0.6,
-                )
-              ],
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                RoundedButton(
-                  height: size.height * 0.1,
-                  width: size.width * 0.6,
-                  text: Constants.regBtnText,
-                  press: () {
-                    print("BBBBBBBBBBBBBBBB");
-                    controller.onSignUpBtnPressed();
-                  },
-                ),
-              ],
+            RoundedButton(
+              height: size.height * 0.1,
+              width: size.width * 0.6,
+              text: Constants.regBtnText,
+              press: () {
+                print("BBBBBBBBBBBBBBBB");
+                Get.find<AuthenticationController>().onSignUpBtnPressed();
+              },
             ),
           ],
-        );
-      },
+        ),
+      ],
     );
   }
 }

@@ -68,18 +68,15 @@ class ConfirmEmailThickPortrait extends StatelessWidget {
               borderRadius: BorderRadius.circular(size.width * 0.1),
               child: Container(
                 color: const Color.fromRGBO(238, 94, 125, 1),
-                child:
-                    GetBuilder<AuthenticationController>(builder: (controller) {
-                  return TextButton(
-                      onPressed: () {
-                        controller.onResendBtnPressed();
-                      },
-                      child: Text(Constants.confirmBtnText,
-                          style: GoogleFonts.robotoMono(
-                            fontSize: size.height * 0.02,
-                            color: Colors.white,
-                          )));
-                }),
+                child: TextButton(
+                    onPressed: () {
+                      Get.find<AuthenticationController>().onResendBtnPressed();
+                    },
+                    child: Text(Constants.confirmBtnText,
+                        style: GoogleFonts.robotoMono(
+                          fontSize: size.height * 0.02,
+                          color: Colors.white,
+                        ))),
               ),
             ),
           ),

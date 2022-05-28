@@ -7,8 +7,10 @@ import '../components/components.dart';
 import '../sign_in/sign_in.dart';
 
 class SignUpLarge extends StatelessWidget {
-  const SignUpLarge({Key? key, required this.controller}) : super(key: key);
-  final AuthenticationController controller;
+  const SignUpLarge({
+    Key? key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     print("SignUpLarge");
@@ -38,18 +40,21 @@ class SignUpLarge extends StatelessWidget {
                   mobile: false,
                   email: false,
                   hintText: Constants.nameInputText,
-                  onChanged: (username) => controller.username = username,
+                  onChanged: (username) =>
+                      Get.find<AuthenticationController>().username = username,
                   height: width * 0.05,
                   width: width * 0.3),
               RoundedInputField(
                   mobile: false,
                   hintText: Constants.emailInputText,
-                  onChanged: (email) => controller.email = email,
+                  onChanged: (email) =>
+                      Get.find<AuthenticationController>().email = email,
                   height: width * 0.05,
                   width: width * 0.3),
               RoundedPasswordField(
                 mobile: false,
-                onChanged: (password) => controller.password = password,
+                onChanged: (password) =>
+                    Get.find<AuthenticationController>().password = password,
                 height: width * 0.05,
                 width: width * 0.3,
               )
@@ -59,7 +64,7 @@ class SignUpLarge extends StatelessWidget {
             mobile: false,
             signIn: false,
             btnText: Constants.regBtnText,
-            onPressed: controller.onSignUpBtnPressed,
+            onPressed: Get.find<AuthenticationController>().onSignUpBtnPressed,
           ),
         ],
       ),

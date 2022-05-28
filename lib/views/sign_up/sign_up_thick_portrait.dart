@@ -10,9 +10,10 @@ import '../sign_in/sign_in.dart';
 import 'sign_up_components/sign_up_components.dart';
 
 class SignUpThickPortrait extends StatelessWidget {
-  const SignUpThickPortrait({Key? key, required this.controller})
-      : super(key: key);
-  final AuthenticationController controller;
+  const SignUpThickPortrait({
+    Key? key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     print('SignUpThickPortrait');

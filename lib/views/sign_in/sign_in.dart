@@ -18,20 +18,14 @@ class SignInPage extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Constants.bgColor,
-      body: GetBuilder<AuthenticationController>(
-        init: AuthenticationController(),
-        initState: (_) {},
-        builder: (controller) {
-          return SizedBox(
-              width: double.infinity,
-              height: size.height,
-              child: ResponsiveWidget(
-                portrait: SignInPortrait(controller: controller),
-                thickPortrait: SignInThickPortrait(controller: controller),
-                landscape: SignInLandscape(controller: controller),
-              ));
-        },
-      ),
+      body: SizedBox(
+          width: double.infinity,
+          height: size.height,
+          child: ResponsiveWidget(
+            portrait: SignInPortrait(),
+            thickPortrait: SignInThickPortrait(),
+            landscape: SignInLandscape(),
+          )),
     );
   }
 }

@@ -17,10 +17,8 @@ import '../sign_up/sign_up_page.dart';
 class SignInLandscape extends StatelessWidget {
   const SignInLandscape({
     Key? key,
-    required this.controller,
   }) : super(key: key);
 
-  final AuthenticationController controller;
   @override
   Widget build(BuildContext context) {
     print('SignInLandscape');
@@ -50,14 +48,14 @@ class SignInLandscape extends StatelessWidget {
                     mobile: false,
                     hintText: Constants.emailInputText,
                     onChanged: (value) {
-                      controller.email = value;
+                      Get.find<AuthenticationController>().email = value;
                     },
                     height: width * 0.05,
                     width: width * 0.3),
                 RoundedPasswordField(
                   mobile: false,
                   onChanged: (value) {
-                    controller.password = value;
+                    Get.find<AuthenticationController>().password = value;
                   },
                   height: width * 0.05,
                   width: width * 0.3,
@@ -67,7 +65,8 @@ class SignInLandscape extends StatelessWidget {
             WelcomeBtns(
               mobile: false,
               btnText: Constants.logBtnText,
-              onPressed: () => controller.onSignInBtnPressed(),
+              onPressed: () =>
+                  Get.find<AuthenticationController>().onSignInBtnPressed(),
               recoverOnPressed: () => Get.to(() => const PasswordRecoveryPage(),
                   transition: Transition.fadeIn),
             ),

@@ -12,42 +12,37 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     print("Home");
     Size size = MediaQuery.of(context).size;
-    return GetBuilder<LocalStorageController>(
-      init: LocalStorageController(),
-      initState: (_) {},
-      builder: (controller) {
-        return FutureBuilder<Details>(
-            future: LocalStorageController.loadDetails(),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                Details details = snapshot.data as Details;
-                if (details.type == "none") {
-                  return const ConfirmEmailPage();
-                }
-                return Container(
-                  color: Colors.blue,
-                  child: Column(
-                    children: [
-                      Text(details.email),
-                      Text(details.expires),
-                      Text(details.id),
-                      Text(details.type),
-                      Text(details.username),
-                    ],
-                  ),
-                );
-              }
-              return Container(
-                color: Colors.blue,
-                child: Center(
-                    child: Padding(
-                  padding: EdgeInsets.all(size.width * 0.8),
-                  child: const CircularProgressIndicator(),
-                )),
-              );
-            });
-      },
-    );
+
+    return FutureBuilder<Details>(
+        future: LocalStorageController.loadDetails(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            Details details = snapshot.data as Details;
+            if (details.type == "none") {
+              return const ConfirmEmailPage();
+            }
+            return Container(
+              color: Colors.blue,
+              child: Column(
+                children: [
+                  Text(details.email),
+                  Text(details.expires),
+                  Text(details.id),
+                  Text(details.type),
+                  Text(details.username),
+                ],
+              ),
+            );
+          }
+          return Container(
+            color: Colors.blue,
+            child: Center(
+                child: Padding(
+              padding: EdgeInsets.all(size.width * 0.8),
+              child: const CircularProgressIndicator(),
+            )),
+          );
+        });
   }
 
   Scaffold errorView(AsyncSnapshot<Object?> snapshot) {
