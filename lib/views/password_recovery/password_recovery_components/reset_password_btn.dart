@@ -18,7 +18,7 @@ class ResetPasswordBtn extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
         child: Container(
-            color: Constants.recoverPasswordBtnColor,
+            color: Constants.btnColor,
             child: TextButton(
                 onPressed: () {
                   // controller.onResendBtnPressed();

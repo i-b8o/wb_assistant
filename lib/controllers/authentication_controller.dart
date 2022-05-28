@@ -132,15 +132,44 @@ class AuthenticationController extends GetxController {
     if (jwt == "" || details.email == "" || details.password == "") {
       return Constants.somethingWrong;
     }
-    print(jwt + details.email + details.password);
+
     var response =
         await BeRepository.resend(jwt, details.email, details.password);
     if (response.statusCode == 200) {
       // OK
       return "";
     }
-    print(response.statusCode);
-    print(response.body);
+
     return Constants.somethingWrong;
+  }
+
+  onRecoverBtnPressed() async {
+    String mes = await recover();
+
+    if (mes == "") {
+      Get.offAll(() => const SignInPage());
+      return;
+    }
+    Get.snackbar(Constants.err, mes);
+    return;
+  }
+
+  Future<String> recover() async {
+    var s = validateEmail();
+
+    if (s.isNotEmpty) return s;
+    var response = await BeRepository.recover(email);
+
+    if (response.statusCode == 200) {
+      // OK
+      return "";
+    } else if (response.statusCode == 404) {
+      // Not Found
+      return Constants.signInNotFound;
+    } else if (response.statusCode == 400) {
+      // Bad request
+      return Constants.badRequest;
+    }
+    return Constants.serverErr;
   }
 }

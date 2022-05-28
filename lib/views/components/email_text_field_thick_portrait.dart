@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../constants.dart';
-import '../../../controllers/authentication_controller.dart';
+import '../../constants.dart';
+import '../../controllers/authentication_controller.dart';
 
-class ResetPasswordTextField extends StatelessWidget {
-  const ResetPasswordTextField({
-    Key? key,
-  }) : super(key: key);
+class EmailTextFieldThickPortrait extends StatelessWidget {
+  const EmailTextFieldThickPortrait({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'password_recovery_components/reset_password_btn.dart';
+import 'package:wb_assistant/constants.dart';
+import 'package:wb_assistant/views/components/btn_thick_portrait.dart';
+import 'package:wb_assistant/views/components/email_text_field_thick_portrait.dart';
+
+import '../../controllers/authentication_controller.dart';
+
 import 'password_recovery_components/reset_password_description.dart';
-import 'password_recovery_components/reset_password_text_field.dart';
 
 class PasswordRecoveryPage extends StatelessWidget {
   const PasswordRecoveryPage({Key? key}) : super(key: key);
@@ -16,11 +20,10 @@ class PasswordRecoveryPage extends StatelessWidget {
     print("PasswordRecoveryPage");
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.white,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         elevation: 0,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         centerTitle: false,
         title: GestureDetector(
           onTap: () => Get.back(),
@@ -51,11 +54,20 @@ class PasswordRecoveryPage extends StatelessWidget {
           const ResetPasswordDescription(),
           Column(
             children: [
-              const ResetPasswordTextField(),
+              const EmailTextFieldThickPortrait(),
               SizedBox(
                 height: size.height * 0.02,
               ),
-              const ResetPasswordBtn(),
+              GetBuilder<AuthenticationController>(
+                init: AuthenticationController(),
+                initState: (_) {},
+                builder: (controller) {
+                  return BtnThickPortrait(
+                    press: () => controller.onRecoverBtnPressed(),
+                    text: Constants.passRecoverBtnText,
+                  );
+                },
+              ),
             ],
           ),
           SizedBox(

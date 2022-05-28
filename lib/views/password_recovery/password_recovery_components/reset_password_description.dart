@@ -32,7 +32,7 @@ class ResetPasswordDescription extends StatelessWidget {
           child: Text(
             Constants.resetPasswordText,
             style: TextStyle(
-                color: Constants.recoverPasswordTextColor,
+                // color: Constants.recoverPasswordTextColor,
                 fontSize: size.height * 0.02),
           ),
         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wb_assistant/constants.dart';
 import 'package:wb_assistant/controllers/all_controller_binding.dart';
 import 'package:wb_assistant/controllers/authentication_controller.dart';
 import 'package:wb_assistant/views/home/home.dart';
@@ -18,6 +19,14 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      theme: ThemeData(
+        scaffoldBackgroundColor: Constants.bgColor,
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+            primary: Constants.btnColor,
+          ),
+        ),
+      ),
       initialBinding: AllControllerBinding(),
       debugShowCheckedModeBanner: false,
       home: LocalStorageController.jwtInStorage.isTrue &&

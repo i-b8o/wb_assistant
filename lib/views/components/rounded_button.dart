@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:wb_assistant/constants.dart';
 
 class RoundedButton extends StatelessWidget {
   final String text;
@@ -9,7 +10,7 @@ class RoundedButton extends StatelessWidget {
     Key? key,
     required this.text,
     required this.press,
-    this.color = const Color.fromRGBO(248, 107, 102, 1),
+    this.color = Constants.btnColor,
     this.textColor = Colors.white,
     required this.width,
     required this.height,

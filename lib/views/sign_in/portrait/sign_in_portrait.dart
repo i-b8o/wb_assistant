@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../constants.dart';
-import '../../controllers/authentication_controller.dart';
+import '../../../constants.dart';
+import '../../../controllers/authentication_controller.dart';
 
-import '../components/already_have_an_account_check.dart';
-import '../components/rounded_input_field.dart';
-import '../components/rounded_password_field.dart';
-import '../components/welcome_btns.dart';
-import '../components/welcome_header.dart';
-import '../components/welcome_text_fields.dart';
-import '../password_recovery/password_recovery.dart';
-import '../sign_up/sign_up_page.dart';
+import '../../components/already_have_an_account_check.dart';
+import '../../components/rounded_input_field.dart';
+import '../../components/rounded_password_field.dart';
+import '../../components/welcome_btns.dart';
+import '../../components/welcome_header.dart';
+import '../../components/welcome_text_fields.dart';
+import '../../password_recovery/password_recovery.dart';
+import '../../sign_up/sign_up_page.dart';
 
 class SignInPortrait extends StatelessWidget {
   const SignInPortrait({
@@ -51,7 +51,7 @@ class SignInPortrait extends StatelessWidget {
                   recoverOnPressed: () => Get.to(
                       () => const PasswordRecoveryPage(),
                       transition: Transition.fadeIn),
-                  btnText: Constants.logBtnText,
+                  btnText: Constants.signInBtnText,
                 ),
                 SizedBox(
                   height: size.height * 0.04,

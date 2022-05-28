@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wb_assistant/views/password_recovery/password_recovery.dart';
 
-import '../../constants.dart';
-import '../../controllers/authentication_controller.dart';
-import '../components/already_have_an_account_check.dart';
-import '../components/body_large.dart';
-import '../components/rounded_input_field.dart';
-import '../components/rounded_password_field.dart';
-import '../components/welcome_btns.dart';
-import '../components/welcome_header.dart';
-import '../components/welcome_text_fields.dart';
-import '../sign_up/sign_up_page.dart';
+import '../../../constants.dart';
+import '../../../controllers/authentication_controller.dart';
+import '../../components/already_have_an_account_check.dart';
+import '../../components/body_large.dart';
+import '../../components/rounded_input_field.dart';
+import '../../components/rounded_password_field.dart';
+import '../../components/welcome_btns.dart';
+import '../../components/welcome_header.dart';
+import '../../components/welcome_text_fields.dart';
+import '../../sign_up/sign_up_page.dart';
 
 // Fields looks bad
 class SignInLandscape extends StatelessWidget {
@@ -64,7 +64,7 @@ class SignInLandscape extends StatelessWidget {
             ),
             WelcomeBtns(
               mobile: false,
-              btnText: Constants.logBtnText,
+              btnText: Constants.signInBtnText,
               onPressed: () =>
                   Get.find<AuthenticationController>().onSignInBtnPressed(),
               recoverOnPressed: () => Get.to(() => const PasswordRecoveryPage(),

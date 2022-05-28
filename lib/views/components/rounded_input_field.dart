@@ -40,11 +40,15 @@ class RoundedInputField extends StatelessWidget {
             ),
             textAlignVertical: TextAlignVertical.center,
             decoration: InputDecoration(
-                hintText: hintText,
-                hintStyle: TextStyle(
-                  fontSize: ar < 1.8 ? height * 0.3 : height * 0.2,
-                ),
-                border: InputBorder.none),
+              hintText: hintText,
+              hintStyle: TextStyle(
+                fontSize: ar < 1.8 ? height * 0.3 : height * 0.2,
+              ),
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.all(
+                size.height * 0.01,
+              ),
+            ),
           ),
         ));
   }

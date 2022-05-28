@@ -7,6 +7,7 @@ class BeRepository {
   static const domen = "http://188.93.210.165:8080";
   static const signUpEndPoint = "/auth/sign-up";
   static const signInEndPoint = "/auth/sign-in";
+  static const recoverEndPoint = "/auth/recover";
   static const detailsInEndPoint = "/account/details";
   static const resendEndPoint = "/account/update-email-verification-token";
   static const contentType = 'application/json; charset=UTF-8';
@@ -63,6 +64,20 @@ class BeRepository {
       body: jsonEncode(<String, String>{
         'Email': email,
         'Password': password,
+      }),
+    );
+    return response;
+  }
+
+  static Future<http.Response> recover(String email) async {
+    print("Email: $email");
+    final response = await client.post(
+      Uri.parse('$domen$recoverEndPoint'),
+      headers: <String, String>{
+        contentKey: contentType,
+      },
+      body: jsonEncode(<String, String>{
+        'Email': email,
       }),
     );
     return response;

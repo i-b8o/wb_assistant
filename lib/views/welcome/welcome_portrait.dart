@@ -76,7 +76,7 @@ class WelcomePortrait extends StatelessWidget {
                           fixedSize: Size.fromRadius(size.width * 0.4),
                         ),
                         onPressed: () => Get.to(() => const SignInPage()),
-                        child: Text(Constants.logBtnText,
+                        child: Text(Constants.signInBtnText,
                             style: GoogleFonts.robotoMono(
                               fontWeight: FontWeight.bold,
                               fontSize: size.width * 0.03,
