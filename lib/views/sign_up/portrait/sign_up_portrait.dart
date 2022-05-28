@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../constants.dart';
-import '../../controllers/authentication_controller.dart';
-import '../components/components.dart';
-import '../sign_in/sign_in.dart';
+import '../../../constants.dart';
+import '../../../controllers/authentication_controller.dart';
+import '../../components/components.dart';
+import '../../sign_in/sign_in.dart';
 
 // TODO use MediaQueryData widget
 class SignUpPortrait extends StatelessWidget {
@@ -57,7 +57,7 @@ class SignUpPortrait extends StatelessWidget {
                 onPressed:
                     Get.find<AuthenticationController>().onSignUpBtnPressed,
                 signIn: false,
-                btnText: Constants.regBtnText,
+                btnText: Constants.signUpBtnText,
               ),
             ],
           ),

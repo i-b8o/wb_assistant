@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:wb_assistant/controllers/authentication_controller.dart';
 import '../../constants.dart';
 import 'sign_up_large.dart';
-import 'sign_up_portrait.dart';
-import 'sign_up_thick_portrait.dart';
+import 'portrait/sign_up_portrait.dart';
+import 'thick_portrait/sign_up_thick_portrait.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({

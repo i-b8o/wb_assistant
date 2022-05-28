@@ -6,9 +6,7 @@ class Constants {
   static const greyColor = Color.fromRGBO(198, 194, 205, 1);
   static const azureColor = Color.fromRGBO(24, 59, 102, 1);
   static const btnColor = Color.fromRGBO(248, 107, 102, 1);
-  // static const recoverPasswordBGColor = Color.fromRGBO(240, 242, 247, 1);
-  // static const recoverPasswordBtnColor = Color.fromRGBO(130, 45, 243, 1);
-  // static const recoverPasswordTextColor = Color.fromRGBO(81, 93, 115, 1);
+
   static const String resetPasswordHeader = "Сбросить пароль";
   static const String resetPasswordText =
       "Введите адрес электронной почты к которому привязан ваш аккаунт и мы отправим письмо с паролем";
@@ -19,10 +17,11 @@ class Constants {
   static const String signInHeaderText = "Привет!";
   static const String signInGreetingText =
       "Пожалуйста, войдите в свой аккаунт.";
-  static const String emailInputText = "Введите email";
-  static const String nameInputText = "Введите имя";
+
+  static const String emailInputText = "Email";
+  static const String nameInputText = "Имя";
   static const String passInputText = "Пароль";
-  static const String regBtnText = "Зарегистрировать";
+  static const String signUpBtnText = "Зарегистрировать";
   static const String signInBtnText = "Войти";
   static const String passRecoverBtnText = "Отправить";
   static const String confirmHeaderText = "Проверьте свой email!";

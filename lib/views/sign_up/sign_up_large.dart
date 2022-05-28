@@ -63,7 +63,7 @@ class SignUpLarge extends StatelessWidget {
           WelcomeBtns(
             mobile: false,
             signIn: false,
-            btnText: Constants.regBtnText,
+            btnText: Constants.signUpBtnText,
             onPressed: Get.find<AuthenticationController>().onSignUpBtnPressed,
           ),
         ],
