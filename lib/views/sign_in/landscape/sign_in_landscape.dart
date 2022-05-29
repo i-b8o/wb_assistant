@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wb_assistant/views/components/btn_landscape.dart';
 import 'package:wb_assistant/views/components/email_text_field_landscape.dart';
+import 'package:wb_assistant/views/components/header_landscape.dart';
 import 'package:wb_assistant/views/components/password_text_field_landscape.dart';
 import 'package:wb_assistant/views/password_recovery/password_recovery.dart';
 
@@ -21,124 +22,104 @@ class SignInLandscape extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print('SignInLandscape');
+    bool shrinked = MediaQuery.of(context).size.aspectRatio > 12;
+    bool keyboard = MediaQuery.of(context).viewInsets.bottom > 0.0;
+
     Size size = MediaQuery.of(context).size;
     return BodyLarge(
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: size.width * 0.5,
-              height: size.height * 0.2,
-              child: Padding(
-                padding: EdgeInsets.only(right: size.width * 0.05),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      Constants.noAccountYetText,
-                      style: TextStyle(
-                          color: const Color.fromRGBO(61, 57, 74, 1),
-                          fontWeight: FontWeight.bold,
-                          fontSize: size.width * 0.01),
-                    ),
-                    TextButton(
-                      onPressed: () => Get.to(() => const SignUpPage(),
-                          transition: Transition.fadeIn),
-                      child: Text(Constants.toReg,
-                          style: TextStyle(
-                              color: const Color.fromRGBO(54, 133, 240, 1),
-                              fontWeight: FontWeight.bold,
-                              fontSize: size.width * 0.01)),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(
-              width: size.width * 0.5,
-              height: size.height * 0.14,
-              child: Column(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(
+            width: size.width * 0.5,
+            height:
+                shrinked || keyboard ? size.height * 0.1 : size.height * 0.2,
+            child: Padding(
+              padding: EdgeInsets.only(right: size.width * 0.05),
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(Constants.signInHeaderText,
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.robotoMono(
-                        color: const Color.fromRGBO(55, 48, 74, 1),
-                        fontSize: size.width * 0.03,
+                  Text(
+                    Constants.noAccountYetText,
+                    style: TextStyle(
+                        color: const Color.fromRGBO(61, 57, 74, 1),
                         fontWeight: FontWeight.bold,
-                      )),
-                  SizedBox(
-                    height: size.width * 0.01,
+                        fontSize: size.height * 0.015),
                   ),
-                  Text(Constants.signInGreetingText,
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.robotoMono(
-                        color: const Color.fromRGBO(128, 124, 142, 1),
-                        fontSize: size.width * 0.015,
-                      )),
-                  SizedBox(
-                    height: size.width * 0.03,
+                  TextButton(
+                    onPressed: () => Get.to(() => const SignUpPage(),
+                        transition: Transition.fadeIn),
+                    child: Text(Constants.toReg,
+                        style: TextStyle(
+                            color: const Color.fromRGBO(54, 133, 240, 1),
+                            fontWeight: FontWeight.bold,
+                            fontSize: size.height * 0.015)),
                   )
                 ],
               ),
             ),
-            TextFieldsWidget(
-              fields: [
-                const EmailTextFieldLandscape(),
-                SizedBox(
-                  height: size.height * 0.01,
-                ),
-                const PasswordTextFieldLandscape(),
-              ],
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: size.width * 0.5,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(right: size.width * 0.11),
-                        child: TextButton(
-                          onPressed: () => Get.to(
-                              () => const PasswordRecoveryPage(),
-                              transition: Transition.fadeIn),
-                          child: Text(
-                            Constants.passRecText,
-                            style: GoogleFonts.robotoMono(
-                              fontWeight: FontWeight.bold,
-                              fontSize: size.width * 0.01,
-                              color: const Color.fromRGBO(128, 124, 142, 1),
+          ),
+          shrinked || keyboard
+              ? Container()
+              : const HeaderLandscape(
+                  headerText: Constants.signInHeaderText,
+                  greetingText: Constants.signInGreetingText),
+          TextFieldsWidget(
+            fields: [
+              const EmailTextFieldLandscape(),
+              shrinked
+                  ? Container()
+                  : SizedBox(
+                      height: size.height * 0.01,
+                    ),
+              const PasswordTextFieldLandscape(),
+            ],
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: size.width * 0.5,
+                child: keyboard
+                    ? SizedBox(
+                        height: size.height * 0.02,
+                      )
+                    : Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(right: size.width * 0.11),
+                            child: TextButton(
+                              onPressed: () => Get.to(
+                                  () => const PasswordRecoveryPage(),
+                                  transition: Transition.fadeIn),
+                              child: Text(
+                                Constants.passRecText,
+                                style: GoogleFonts.robotoMono(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: size.height * 0.015,
+                                  color: const Color.fromRGBO(128, 124, 142, 1),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
+                        ],
                       ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: size.width * 0.03,
-                ),
-                BtnLandscape(
-                  text: Constants.signInBtnText,
-                  press: () =>
-                      Get.find<AuthenticationController>().onSignInBtnPressed(),
-                )
-                // RoundedButton(
-                //   height: size.width * 0.05,
-                //   width: size.width * 0.3,
-                //   text: Constants.signInBtnText,
-                //   press: () =>
-                //       Get.find<AuthenticationController>().onSignInBtnPressed(),
-                // ),
-              ],
-            ),
-          ],
-        ),
+              ),
+              shrinked || keyboard
+                  ? Container()
+                  : SizedBox(
+                      height: size.height * 0.05,
+                    ),
+              BtnLandscape(
+                text: Constants.signInBtnText,
+                press: () =>
+                    Get.find<AuthenticationController>().onSignInBtnPressed(),
+              )
+            ],
+          ),
+        ],
       ),
     );
   }

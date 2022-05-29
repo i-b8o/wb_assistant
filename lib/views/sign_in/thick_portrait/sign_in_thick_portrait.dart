@@ -22,7 +22,7 @@ class SignInThickPortrait extends StatelessWidget {
     print("SignInThickPortrait");
     Size size = MediaQuery.of(context).size;
     bool keyboard = MediaQuery.of(context).viewInsets.bottom > 0.0;
-    print(keyboard);
+
     return Column(
       children: [
         keyboard
