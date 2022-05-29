@@ -49,11 +49,15 @@ class AuthenticationController extends GetxController {
   }
 
   onSignUpBtnPressed() {
+    print("Pressed$username-$email-$password");
     signUp().then((message) {
+      print(message);
       if (message.isEmpty) {
+        print("message empty");
         Get.to(() => const ConfirmEmailPage());
         return;
       }
+      print("After");
       Get.snackbar(Constants.err, message);
       return;
     });

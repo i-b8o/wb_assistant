@@ -10,7 +10,7 @@ import '../../../controllers/authentication_controller.dart';
 import '../../components/already_have_an_account_check.dart';
 import '../../components/welcome_text_fields.dart';
 import '../../sign_in/sign_in.dart';
-import 'widgets/name_text_field.dart';
+import '../../components/name_text_field_thick_portrait.dart';
 
 class SignUpThickPortrait extends StatelessWidget {
   const SignUpThickPortrait({

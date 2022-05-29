@@ -86,11 +86,9 @@ class SignUpLandscape extends StatelessWidget {
               : SizedBox(
                   height: size.height * 0.05,
                 ),
-          BtnLandscape(
-            text: Constants.signUpBtnText,
-            press: () =>
-                Get.find<AuthenticationController>().onSignUpBtnPressed(),
-          )
+          BtnLandscape(text: Constants.signUpBtnText, press: () => {}
+              // Get.find<AuthenticationController>().onSignUpBtnPressed(),
+              )
         ],
       ),
     );

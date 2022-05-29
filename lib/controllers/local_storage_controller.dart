@@ -56,7 +56,10 @@ class LocalStorageController extends GetxController {
           await setJWT(tokenMessage.token);
           // Try to get and save details
           Details? details = await getDetailsFromAPI(jwt);
-          saveDetails(details!);
+          if (details != null) {
+            saveDetails(details);
+          }
+
           return details;
         }
       }
