@@ -22,7 +22,7 @@ class SignInLandscape extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print('SignInLandscape');
-    bool shrinked = MediaQuery.of(context).size.aspectRatio > 12;
+    bool shrinked = MediaQuery.of(context).size.aspectRatio > 5;
     bool keyboard = MediaQuery.of(context).viewInsets.bottom > 0.0;
 
     Size size = MediaQuery.of(context).size;
@@ -75,49 +75,51 @@ class SignInLandscape extends StatelessWidget {
               const PasswordTextFieldLandscape(),
             ],
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: size.width * 0.5,
-                child: keyboard
-                    ? SizedBox(
-                        height: size.height * 0.02,
-                      )
-                    : Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(right: size.width * 0.11),
-                            child: TextButton(
-                              onPressed: () => Get.to(
-                                  () => const PasswordRecoveryPage(),
-                                  transition: Transition.fadeIn),
-                              child: Text(
-                                Constants.passRecText,
-                                style: GoogleFonts.robotoMono(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: size.height * 0.015,
-                                  color: const Color.fromRGBO(128, 124, 142, 1),
-                                ),
+          SizedBox(
+            height: size.height * 0.04,
+          ),
+          SizedBox(
+            width: size.width * 0.5,
+            child: keyboard
+                ? SizedBox(
+                    height: size.height * 0.02,
+                  )
+                : SizedBox(
+                    height: size.height * 0.02,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(right: size.width * 0.11),
+                          child: TextButton(
+                            onPressed: () => Get.to(
+                                () => const PasswordRecoveryPage(),
+                                transition: Transition.fadeIn),
+                            child: Text(
+                              Constants.passRecText,
+                              style: GoogleFonts.robotoMono(
+                                fontWeight: FontWeight.bold,
+                                fontSize: shrinked
+                                    ? size.height * 0.005
+                                    : size.height * 0.015,
+                                color: const Color.fromRGBO(128, 124, 142, 1),
                               ),
                             ),
                           ),
-                        ],
-                      ),
-              ),
-              shrinked || keyboard
-                  ? Container()
-                  : SizedBox(
-                      height: size.height * 0.05,
+                        ),
+                      ],
                     ),
-              BtnLandscape(
-                text: Constants.signInBtnText,
-                press: () =>
-                    Get.find<AuthenticationController>().onSignInBtnPressed(),
-              )
-            ],
+                  ),
+          ),
+          shrinked || keyboard
+              ? Container()
+              : SizedBox(
+                  height: size.height * 0.05,
+                ),
+          BtnLandscape(
+            text: Constants.signInBtnText,
+            press: () =>
+                Get.find<AuthenticationController>().onSignInBtnPressed(),
           ),
         ],
       ),
