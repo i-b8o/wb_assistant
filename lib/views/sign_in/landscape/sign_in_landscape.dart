@@ -44,7 +44,7 @@ class SignInLandscape extends StatelessWidget {
                     style: TextStyle(
                         color: const Color.fromRGBO(61, 57, 74, 1),
                         fontWeight: FontWeight.bold,
-                        fontSize: size.height * 0.015),
+                        fontSize: size.height * 0.02),
                   ),
                   TextButton(
                     onPressed: () => Get.to(() => const SignUpPage(),
@@ -53,7 +53,7 @@ class SignInLandscape extends StatelessWidget {
                         style: TextStyle(
                             color: const Color.fromRGBO(54, 133, 240, 1),
                             fontWeight: FontWeight.bold,
-                            fontSize: size.height * 0.015)),
+                            fontSize: size.height * 0.02)),
                   )
                 ],
               ),

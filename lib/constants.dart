@@ -21,6 +21,7 @@ class Constants {
   static const String toReg = "Зарегистрироваться";
   static const String passRecText = "Восстановление пароля";
   static const String noAccountYetText = "Ещё нет аккаунта?";
+  static const String haveAccountText = "Уже есть аккаунт?";
   static const String emailInputText = "Email";
   static const String nameInputText = "Имя";
   static const String passInputText = "Пароль";
