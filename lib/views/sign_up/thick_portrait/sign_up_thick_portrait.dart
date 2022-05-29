@@ -6,15 +6,11 @@ import 'package:wb_assistant/views/components/header_thick_portrait.dart';
 import 'package:wb_assistant/views/components/password_text_field_thick_portrait.dart';
 
 import '../../../constants.dart';
-
 import '../../../controllers/authentication_controller.dart';
 import '../../components/already_have_an_account_check.dart';
-
 import '../../components/welcome_text_fields.dart';
 import '../../sign_in/sign_in.dart';
-
 import 'widgets/name_text_field.dart';
-import 'widgets/sign_up_thick_portrait_header.dart';
 
 class SignUpThickPortrait extends StatelessWidget {
   const SignUpThickPortrait({
@@ -41,11 +37,11 @@ class SignUpThickPortrait extends StatelessWidget {
               ),
         TextFieldsWidget(
           fields: [
-            NameTextFieldThickPortrait(),
+            const NameTextFieldThickPortrait(),
             SizedBox(height: size.height * 0.01),
-            EmailTextFieldThickPortrait(),
+            const EmailTextFieldThickPortrait(),
             SizedBox(height: size.height * 0.01),
-            PasswordTextFieldThickPortrait(),
+            const PasswordTextFieldThickPortrait(),
           ],
         ),
         keyboard

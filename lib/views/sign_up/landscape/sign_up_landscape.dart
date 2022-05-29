@@ -6,8 +6,8 @@ import '../../../constants.dart';
 import '../../components/components.dart';
 import '../../sign_in/sign_in.dart';
 
-class SignUpLarge extends StatelessWidget {
-  const SignUpLarge({
+class SignUpLandscape extends StatelessWidget {
+  const SignUpLandscape({
     Key? key,
   }) : super(key: key);
 

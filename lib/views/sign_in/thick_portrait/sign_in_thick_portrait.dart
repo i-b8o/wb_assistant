@@ -43,28 +43,30 @@ class SignInThickPortrait extends StatelessWidget {
                 SizedBox(
                   height: size.height * 0.05,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(right: size.width * 0.07),
-                      child: TextButton(
-                        onPressed: () => Get.to(
-                            () => const PasswordRecoveryPage(),
-                            transition: Transition.fadeIn),
-                        child: Text(
-                          "Восстановление пароля",
-                          textAlign: TextAlign.end,
-                          style: GoogleFonts.robotoMono(
-                            fontWeight: FontWeight.bold,
-                            fontSize: size.width * 0.03,
-                            color: const Color.fromRGBO(128, 124, 142, 1),
-                          ),
-                        ),
+                keyboard
+                    ? Container()
+                    : Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(right: size.width * 0.07),
+                            child: TextButton(
+                              onPressed: () => Get.to(
+                                  () => const PasswordRecoveryPage(),
+                                  transition: Transition.fadeIn),
+                              child: Text(
+                                "Восстановление пароля",
+                                textAlign: TextAlign.end,
+                                style: GoogleFonts.robotoMono(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: size.width * 0.03,
+                                  color: const Color.fromRGBO(128, 124, 142, 1),
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
                       ),
-                    )
-                  ],
-                ),
                 SizedBox(
                   height: size.height * 0.05,
                 ),

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:wb_assistant/controllers/authentication_controller.dart';
 import '../../constants.dart';
-import 'landscape/sign_up_large.dart';
+import 'landscape/sign_up_landscape.dart';
 import 'portrait/sign_up_portrait.dart';
 import 'thick_portrait/sign_up_thick_portrait.dart';
 
@@ -28,10 +26,10 @@ class SignUpPage extends StatelessWidget {
               double aspectRatio = constraints.maxWidth / constraints.maxHeight;
               if (isPortrait) {
                 return aspectRatio > 0.55
-                    ? SignUpThickPortrait()
-                    : SignUpPortrait();
+                    ? const SignUpThickPortrait()
+                    : const SignUpPortrait();
               } else {
-                return SignUpLarge();
+                return const SignUpLandscape();
               }
             },
           )),

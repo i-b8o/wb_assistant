@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../constants.dart';
-
 class HeaderLandscape extends StatelessWidget {
   const HeaderLandscape(
       {Key? key, required this.headerText, required this.greetingText})
