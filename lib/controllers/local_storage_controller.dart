@@ -12,6 +12,11 @@ class LocalStorageController extends GetxController {
   var credentialsInStorage = false.obs;
   static String jwtToken = "";
   LocalStorageController() {
+    reset();
+  }
+
+  reset() async {
+    print("reset");
     getJWTFromLocalStorage().then((token) async {
       // JWT exists in local storage
       if (token.isNotEmpty) {
