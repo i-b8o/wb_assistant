@@ -10,55 +10,52 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    return GetX<LocalStorageController>(builder: (controller) {
-      controller.fetchDetails();
-      print("I am here!");
-      if (controller.isLoading.value) {
-        print("I am here now!");
-        return Center(
-          child: CircularProgressIndicator(
-            color: Colors.deepPurple[600],
-          ),
-        );
-      }
-
-      var type = controller.type;
-      print("Type $type");
-      if (type.value == "none") {
-        return const ConfirmEmailPage();
-      } else if (type.value == "end") {
-        return const Center(
-          child: Text("Просрочен"),
-        );
-      }
-      return Container(
-        color: Colors.blue,
-        child: Column(
-          children: [
-            Text(
-              "email: ${controller.email}",
-              style: const TextStyle(color: Colors.white),
-            ),
-            Text(
-              "expires: ${controller.expires}",
-              style: const TextStyle(color: Colors.white),
-            ),
-            Text(
-              "id: ${controller.id}",
-              style: const TextStyle(color: Colors.white),
-            ),
-            Text(
-              "type: ${controller.type}",
-              style: const TextStyle(color: Colors.white),
-            ),
-            Text(
-              "username: ${controller.username}",
-              style: const TextStyle(color: Colors.white),
-            ),
-          ],
+    print("I am here!");
+    if (Get.find<LocalStorageController>().isLoading.value) {
+      print("I am here now!");
+      return Center(
+        child: CircularProgressIndicator(
+          color: Colors.deepPurple[600],
         ),
       );
-    });
+    }
+
+    var accType = Get.find<LocalStorageController>().type.value;
+    print("Type $accType");
+    if (accType == "none") {
+      return const ConfirmEmailPage();
+    } else if (accType == "end") {
+      return const Center(
+        child: Text("Просрочен"),
+      );
+    }
+    return Container(
+      color: Colors.blue,
+      child: Column(
+        children: [
+          Text(
+            "email: ${Get.find<LocalStorageController>().email.value}",
+            style: const TextStyle(color: Colors.white),
+          ),
+          Text(
+            "expires: ${Get.find<LocalStorageController>().expires.value}",
+            style: const TextStyle(color: Colors.white),
+          ),
+          Text(
+            "id: ${Get.find<LocalStorageController>().id.value}",
+            style: const TextStyle(color: Colors.white),
+          ),
+          Text(
+            "type: ${Get.find<LocalStorageController>().type.value}",
+            style: const TextStyle(color: Colors.white),
+          ),
+          Text(
+            "username: ${Get.find<LocalStorageController>().username.value}",
+            style: const TextStyle(color: Colors.white),
+          ),
+        ],
+      ),
+    );
   }
 
   Scaffold errorView(AsyncSnapshot<Object?> snapshot) {

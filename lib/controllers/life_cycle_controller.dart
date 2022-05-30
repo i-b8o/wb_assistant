@@ -19,7 +19,6 @@ class LifeCycleController extends SuperController {
   @override
   void onPaused() {
     print("Paused");
-    Get.to(App());
   }
 
   @override

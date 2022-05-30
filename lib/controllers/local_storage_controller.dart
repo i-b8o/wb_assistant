@@ -46,35 +46,61 @@ class LocalStorageController extends GetxController {
     try {
       isLoading(true);
       print(isLoading.value);
-      getJWTFromLocalStorage().then((token) async {
-        // JWT exists in local storage
-        if (token.isNotEmpty) {
-          print("reset token.isNotEmpty");
-          jwtInStorage.value = true;
-          jwtToken = token;
-          // Try get details
-          Details? details = await getAndSaveDetails(token);
-          // If API response correctly
-          if (details != null) {
-            print("reset details != null ${details.type}");
-            detailsInStorage.value = true;
-          } else {
-            print("reset details != null else");
-            detailsInStorage.value = false;
-          }
+      String token = await getJWTFromLocalStorage();
+      if (token.isNotEmpty) {
+        print("reset token.isNotEmpty");
+        jwtInStorage.value = true;
+        jwtToken = token;
+        // Try get details
+        Details? details = await getAndSaveDetails(token);
+        // If API response correctly
+        if (details != null) {
+          print("reset details != null ${details.type}");
+          detailsInStorage.value = true;
         } else {
-          print("else");
-          // JWT does not exist in local storage
-
-          jwtInStorage.value = false;
+          print("reset details != null else");
           detailsInStorage.value = false;
         }
-      });
+      } else {
+        print("JWT empty");
+        // JWT does not exist in local storage
+
+        jwtInStorage.value = false;
+        detailsInStorage.value = false;
+      }
+      // getJWTFromLocalStorage().then((token) async {
+      //   // JWT exists in local storage
+      //   if (token.isNotEmpty) {
+      //     print("reset token.isNotEmpty");
+      //     jwtInStorage.value = true;
+      //     jwtToken = token;
+      //     // Try get details
+      //     Details? details = await getAndSaveDetails(token);
+      //     // If API response correctly
+      //     if (details != null) {
+      //       print("reset details != null ${details.type}");
+      //       detailsInStorage.value = true;
+      //     } else {
+      //       print("reset details != null else");
+      //       detailsInStorage.value = false;
+      //     }
+      //   } else {
+      //     print("JWT empty");
+      //     // JWT does not exist in local storage
+
+      //     jwtInStorage.value = false;
+      //     detailsInStorage.value = false;
+      //   }
+      // });
     } finally {
+      print("Finally");
       isLoading(false);
     }
     update();
+    print("update");
   }
+
+  static savePasswordAndFetch(String key, value) async {}
 
   Future<Details?> getAndSaveDetails(String jwt) async {
     print("getAndSaveDetails");
@@ -146,13 +172,15 @@ class LocalStorageController extends GetxController {
 
   saveDetails(Details details) async {
     print("saveDetails: ${details.type}");
-    type.value = details.type;
-    username.value = details.username;
-    email.value = details.email;
-    password.value = details.password;
-    expires.value = details.expires;
-    type.value = details.type;
-    id.value = details.id;
+    type(details.type);
+    username(details.username);
+    email(details.email);
+    password(details.password);
+    expires(details.expires);
+    type(details.type);
+    id(details.id);
+
+    if (details.email.isEmpty || details.type.isEmpty) return;
 
     await saveValue("username", details.username);
     await saveValue("email", details.email);
@@ -161,6 +189,7 @@ class LocalStorageController extends GetxController {
     await saveValue("type", details.type);
     await saveValue("id", details.id);
     detailsInStorage.value = true;
+    update();
   }
 
   static Future<Details> loadDetails() async {

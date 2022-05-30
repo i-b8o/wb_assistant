@@ -58,7 +58,6 @@ class PasswordRecoveryPage extends StatelessWidget {
                 height: size.height * 0.02,
               ),
               GetBuilder<AuthenticationController>(
-                init: AuthenticationController(),
                 initState: (_) {},
                 builder: (controller) {
                   return BtnThickPortrait(

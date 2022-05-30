@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:be_repo/be_repo.dart';
 import 'package:get/get.dart';
+
 import 'package:wb_assistant/constants.dart';
 import 'package:wb_assistant/controllers/local_storage_controller.dart';
-
 import 'package:wb_assistant/models/token.dart';
 import 'package:wb_assistant/views/sign_in/sign_in.dart';
 
@@ -16,7 +16,10 @@ class AuthenticationController extends GetxController {
   String username = "";
   String email = "";
   String password = "";
-
+  LocalStorageController localStorageController;
+  AuthenticationController({
+    required this.localStorageController,
+  });
   String validateEmail() {
     if (email.length <= 5) {
       return Constants.lessThanInEmailValidationErr;
@@ -108,7 +111,7 @@ class AuthenticationController extends GetxController {
       await LocalStorageController.setJWT(tokenMessage.token);
       // Need to save passoword for next requests because API never send in a response Password values
       await LocalStorageController.saveValue("password", password);
-
+      localStorageController.fetchDetails();
       return "";
     } else if (response.statusCode == 404) {
       // Not Found
