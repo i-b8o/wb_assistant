@@ -87,7 +87,8 @@ class AuthenticationController extends GetxController {
     String mes = await signIn();
 
     if (mes == "") {
-      Get.offAll(() => const Home());
+      print("MAST GO TO HOME()");
+      Get.to(() => const Home());
       return;
     }
     Get.snackbar(Constants.err, mes);
@@ -107,6 +108,7 @@ class AuthenticationController extends GetxController {
       await LocalStorageController.setJWT(tokenMessage.token);
       // Need to save passoword for next requests because API never send in a response Password values
       await LocalStorageController.saveValue("password", password);
+
       return "";
     } else if (response.statusCode == 404) {
       // Not Found
@@ -122,7 +124,7 @@ class AuthenticationController extends GetxController {
     String mes = await resend();
 
     if (mes == "") {
-      Get.offAll(() => const SignInPage());
+      Get.to(() => const SignInPage());
       return;
     }
     Get.snackbar(Constants.err, mes);
@@ -151,7 +153,7 @@ class AuthenticationController extends GetxController {
     String mes = await recover();
 
     if (mes == "") {
-      Get.offAll(() => const SignInPage());
+      Get.to(() => const SignInPage());
       return;
     }
     Get.snackbar(Constants.err, mes);

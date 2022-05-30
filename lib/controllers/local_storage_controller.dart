@@ -10,50 +10,92 @@ class LocalStorageController extends GetxController {
   static var jwtInStorage = false.obs;
   var detailsInStorage = false.obs;
   var credentialsInStorage = false.obs;
-  static String jwtToken = "";
-  LocalStorageController() {
-    reset();
+
+  var isLoading = true.obs;
+
+  var username = "".obs;
+  var email = "".obs;
+  var password = "".obs;
+  var expires = "".obs;
+  var type = "".obs;
+  var id = "".obs;
+
+  @override
+  void onInit() {
+    print("LocalStorageController onInit");
+    super.onInit();
   }
 
-  reset() async {
-    print("reset");
-    getJWTFromLocalStorage().then((token) async {
-      // JWT exists in local storage
-      if (token.isNotEmpty) {
-        jwtInStorage.value = true;
-        jwtToken = token;
-        // Try get details
-        Details? details = await getAndSaveDetails(token);
-        // If API response correctly
-        if (details != null) {
-          detailsInStorage.value = true;
+  @override
+  void onReady() {
+    print("LocalStorageController onReady");
+    fetchDetails();
+    super.onReady();
+  }
+
+  @override
+  void onClose() {
+    print("LocalStorageController onClose");
+    super.onClose();
+  }
+
+  static String jwtToken = "";
+
+  void fetchDetails() async {
+    print("fetchDetails");
+    try {
+      isLoading(true);
+      print(isLoading.value);
+      getJWTFromLocalStorage().then((token) async {
+        // JWT exists in local storage
+        if (token.isNotEmpty) {
+          print("reset token.isNotEmpty");
+          jwtInStorage.value = true;
+          jwtToken = token;
+          // Try get details
+          Details? details = await getAndSaveDetails(token);
+          // If API response correctly
+          if (details != null) {
+            print("reset details != null ${details.type}");
+            detailsInStorage.value = true;
+          } else {
+            print("reset details != null else");
+            detailsInStorage.value = false;
+          }
         } else {
+          print("else");
+          // JWT does not exist in local storage
+
+          jwtInStorage.value = false;
           detailsInStorage.value = false;
         }
-      } else {
-        // JWT does not exist in local storage
-
-        jwtInStorage.value = false;
-        detailsInStorage.value = false;
-      }
-    });
+      });
+    } finally {
+      isLoading(false);
+    }
+    update();
   }
 
   Future<Details?> getAndSaveDetails(String jwt) async {
+    print("getAndSaveDetails");
     Details? details = await getDetailsFromAPI(jwt);
     if (details != null) {
+      print("getAndSaveDetails details != null");
       // Save details
       saveDetails(details);
       return details;
     } else {
+      print("getAndSaveDetails else");
       // JWT is expired
       // Try to get username and passwordfrom local storage
       String email = await getValue("email");
       String password = await getValue("password");
       if (email.isNotEmpty && password.isNotEmpty) {
+        print("getAndSaveDetails email.isNotEmpty && password.isNotEmpty");
         // Exist
         var response = await BeRepository.signInUser(email, password);
         if (response.statusCode == 200) {
+          print("getAndSaveDetails response.statusCode == 200");
           // Status OK
           TokenMessage tokenMessage =
               TokenMessage.fromJson(jsonDecode(response.body));
@@ -62,6 +104,7 @@ class LocalStorageController extends GetxController {
           // Try to get and save details
           Details? details = await getDetailsFromAPI(jwt);
           if (details != null) {
+            print("getAndSaveDetails details != null");
             saveDetails(details);
           }
 
@@ -73,8 +116,10 @@ class LocalStorageController extends GetxController {
   }
 
   Future<Details?> getDetailsFromAPI(String token) async {
+    print("getDetailsFromAPI");
     var response = await BeRepository.details(token);
     if (response.statusCode == 200) {
+      print("getDetailsFromAPI 200");
       // OK
       Details details = Details.fromJson(jsonDecode(response.body));
       return details;
@@ -100,6 +145,15 @@ class LocalStorageController extends GetxController {
   }
 
   saveDetails(Details details) async {
+    print("saveDetails: ${details.type}");
+    type.value = details.type;
+    username.value = details.username;
+    email.value = details.email;
+    password.value = details.password;
+    expires.value = details.expires;
+    type.value = details.type;
+    id.value = details.id;
+
     await saveValue("username", details.username);
     await saveValue("email", details.email);
     await saveValue("password", details.password);

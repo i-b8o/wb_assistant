@@ -27,6 +27,8 @@ class App extends StatelessWidget {
         initialBinding: AllControllerBinding(),
         debugShowCheckedModeBanner: false,
         home: GetX<LocalStorageController>(builder: (controller) {
+          print(
+              "App: ${LocalStorageController.jwtInStorage.isTrue} <==> ${controller.detailsInStorage.isTrue}");
           return LocalStorageController.jwtInStorage.isTrue &&
                   controller.detailsInStorage.isTrue
               ? const Home()

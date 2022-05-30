@@ -3,8 +3,6 @@ import 'package:get/get.dart';
 import 'package:wb_assistant/controllers/local_storage_controller.dart';
 import 'package:wb_assistant/views/confirm/confirm_email.dart';
 
-import '../../models/details.dart';
-
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -12,55 +10,55 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    return FutureBuilder<Details>(
-        future: LocalStorageController.loadDetails(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            Details details = snapshot.data as Details;
-            if (details.type == "none") {
-              return const ConfirmEmailPage();
-            }
-            return Container(
-              color: Colors.blue,
-              child: Column(
-                children: [
-                  Text(
-                    "email: ${details.email}",
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                  Text(
-                    "expires: ${details.expires}",
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                  Text(
-                    "id: ${details.id}",
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                  Text(
-                    "type: ${details.type}",
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                  Text(
-                    "username: ${details.username}",
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                ],
-              ),
-            );
-          }
-          String jwt = LocalStorageController.jwtToken;
-          Get.find<LocalStorageController>().getAndSaveDetails(jwt);
-          return Container(
-            color: Colors.blue,
-            child: Center(
-                child: Padding(
-              padding: EdgeInsets.all(size.width * 0.8),
-              child: const CircularProgressIndicator(
-                color: Colors.red,
-              ),
-            )),
-          );
-        });
+    return GetX<LocalStorageController>(builder: (controller) {
+      controller.fetchDetails();
+      print("I am here!");
+      if (controller.isLoading.value) {
+        print("I am here now!");
+        return Center(
+          child: CircularProgressIndicator(
+            color: Colors.deepPurple[600],
+          ),
+        );
+      }
+
+      var type = controller.type;
+      print("Type $type");
+      if (type.value == "none") {
+        return const ConfirmEmailPage();
+      } else if (type.value == "end") {
+        return const Center(
+          child: Text("Просрочен"),
+        );
+      }
+      return Container(
+        color: Colors.blue,
+        child: Column(
+          children: [
+            Text(
+              "email: ${controller.email}",
+              style: const TextStyle(color: Colors.white),
+            ),
+            Text(
+              "expires: ${controller.expires}",
+              style: const TextStyle(color: Colors.white),
+            ),
+            Text(
+              "id: ${controller.id}",
+              style: const TextStyle(color: Colors.white),
+            ),
+            Text(
+              "type: ${controller.type}",
+              style: const TextStyle(color: Colors.white),
+            ),
+            Text(
+              "username: ${controller.username}",
+              style: const TextStyle(color: Colors.white),
+            ),
+          ],
+        ),
+      );
+    });
   }
 
   Scaffold errorView(AsyncSnapshot<Object?> snapshot) {

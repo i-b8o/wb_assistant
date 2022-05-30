@@ -78,7 +78,7 @@ class SignInThickPortrait extends StatelessWidget {
                   height: size.height * 0.04,
                 ),
                 AlreadyHaveAnAccountCheck(
-                  onPressed: () => Get.off(() => const SignUpPage(),
+                  onPressed: () => Get.to(() => const SignUpPage(),
                       transition: Transition.fadeIn),
                   fontSize: size.width * 0.03,
                 ),

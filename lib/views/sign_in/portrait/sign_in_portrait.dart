@@ -10,10 +10,6 @@ import '../../components/btn_thick_portrait.dart';
 import '../../components/email_text_field_thick_portrait.dart';
 import '../../components/header_thick_portrait.dart';
 import '../../components/password_text_field_thick_portrait.dart';
-import '../../components/rounded_input_field.dart';
-import '../../components/rounded_password_field.dart';
-import '../../components/welcome_btns.dart';
-import '../../components/welcome_header.dart';
 import '../../components/welcome_text_fields.dart';
 import '../../password_recovery/password_recovery.dart';
 import '../../sign_up/sign_up_page.dart';
@@ -86,7 +82,7 @@ class SignInPortrait extends StatelessWidget {
                   height: size.height * 0.04,
                 ),
                 AlreadyHaveAnAccountCheck(
-                  onPressed: () => Get.off(() => const SignUpPage(),
+                  onPressed: () => Get.to(() => const SignUpPage(),
                       transition: Transition.fadeIn),
                   fontSize: size.width * 0.03,
                 ),
