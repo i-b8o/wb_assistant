@@ -91,7 +91,7 @@ class AuthenticationController extends GetxController {
 
     if (mes == "") {
       print("MAST GO TO HOME()");
-      Get.to(() => const Home());
+      Get.to(() => Home());
       return;
     }
     Get.snackbar(Constants.err, mes);
