@@ -8,6 +8,7 @@ import 'package:wb_assistant/views/welcome/welcome.dart';
 
 import '../../bloc/app/app_bloc.dart';
 
+// Try to use User-generated schemes (UGS)
 class App extends StatefulWidget {
   const App({
     Key? key,
