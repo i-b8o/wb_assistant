@@ -1,12 +1,13 @@
-name: be_repo
-description: Dart package which manages the backend domain.
+name: storage_repo
+description: Dart package which manages the storage domain.
 publish_to: none
 
 environment:
   sdk: ">=2.16.0 <3.0.0"
 
 dependencies:
-  http: ^0.13.4
+  shared_preferences: ^2.0.15
+
 dev_dependencies: 
   flutter_lints: ^1.0.4
 

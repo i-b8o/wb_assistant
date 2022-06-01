@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-import 'package:be_repo/be_repo.dart';
+import 'package:auth_repo/auth_repo.dart';
 import 'package:get/get.dart';
 
 import 'package:wb_assistant/constants.dart';
 import 'package:wb_assistant/controllers/local_storage_controller.dart';
-import 'package:wb_assistant/models/token.dart';
+
 import 'package:wb_assistant/views/sign_in/sign_in.dart';
 
 import '../models/details.dart';
@@ -72,17 +72,17 @@ class AuthenticationController extends GetxController {
     s = s + validatePassword();
     if (s.isNotEmpty) return s;
 
-    var response = await BeRepository.signUpUser(email, password, username);
+    // var response = await BeRepository.signUpUser(email, password, username);
 
-    if (response.statusCode == 200) {
-      return "";
-    } else if (response.statusCode == 409) {
-      return Constants.signUpConflict;
-    } else if (response.statusCode == 500) {
-      return Constants.somethingWrong;
-    } else if (response.statusCode == 400) {
-      return Constants.badRequest;
-    }
+    // if (response.statusCode == 200) {
+    //   return "";
+    // } else if (response.statusCode == 409) {
+    //   return Constants.signUpConflict;
+    // } else if (response.statusCode == 500) {
+    //   return Constants.somethingWrong;
+    // } else if (response.statusCode == 400) {
+    //   return Constants.badRequest;
+    // }
     return "";
   }
 
@@ -91,7 +91,7 @@ class AuthenticationController extends GetxController {
 
     if (mes == "") {
       print("MAST GO TO HOME()");
-      Get.to(() => Home());
+      // Get.to(() => Home());
       return;
     }
     Get.snackbar(Constants.err, mes);
@@ -102,24 +102,24 @@ class AuthenticationController extends GetxController {
     var s = validateEmail();
     s = s + validatePassword();
     if (s.isNotEmpty) return s;
-    var response = await BeRepository.signInUser(email, password);
+    // var response = await BeRepository.signInUser(email, password);
 
-    if (response.statusCode == 200) {
-      // OK
-      TokenMessage tokenMessage =
-          TokenMessage.fromJson(jsonDecode(response.body));
-      await LocalStorageController.setJWT(tokenMessage.token);
-      // Need to save passoword for next requests because API never send in a response Password values
-      await LocalStorageController.saveValue("password", password);
-      localStorageController.fetchDetails();
-      return "";
-    } else if (response.statusCode == 404) {
-      // Not Found
-      return Constants.signInNotFound;
-    } else if (response.statusCode == 400) {
-      // Bad request
-      return Constants.badRequest;
-    }
+    // if (response.statusCode == 200) {
+    //   // OK
+    //   TokenMessage tokenMessage =
+    //       TokenMessage.fromJson(jsonDecode(response.body));
+    //   await LocalStorageController.setJWT(tokenMessage.token);
+    //   // Need to save passoword for next requests because API never send in a response Password values
+    //   await LocalStorageController.saveValue("password", password);
+    //   localStorageController.fetchDetails();
+    //   return "";
+    // } else if (response.statusCode == 404) {
+    //   // Not Found
+    //   return Constants.signInNotFound;
+    // } else if (response.statusCode == 400) {
+    //   // Bad request
+    //   return Constants.badRequest;
+    // }
     return Constants.serverErr;
   }
 
@@ -135,19 +135,19 @@ class AuthenticationController extends GetxController {
   }
 
   Future<String> resend() async {
-    Details details = await LocalStorageController.loadDetails();
-    String jwt = await LocalStorageController.getJWTFromLocalStorage();
+    // Details details = await LocalStorageController.loadDetails();
+    // String jwt = await LocalStorageController.getJWTFromLocalStorage();
 
-    if (jwt == "" || details.email == "" || details.password == "") {
-      return Constants.somethingWrong;
-    }
+    // if (jwt == "" || details.email == "" || details.password == "") {
+    //   return Constants.somethingWrong;
+    // }
 
-    var response =
-        await BeRepository.resend(jwt, details.email, details.password);
-    if (response.statusCode == 200) {
-      // OK
-      return "";
-    }
+    // var response =
+    //     await BeRepository.resend(jwt, details.email, details.password);
+    // if (response.statusCode == 200) {
+    //   // OK
+    //   return "";
+    // }
 
     return Constants.somethingWrong;
   }
@@ -166,19 +166,19 @@ class AuthenticationController extends GetxController {
   Future<String> recover() async {
     var s = validateEmail();
 
-    if (s.isNotEmpty) return s;
-    var response = await BeRepository.recover(email);
+    // if (s.isNotEmpty) return s;
+    // var response = await BeRepository.recover(email);
 
-    if (response.statusCode == 200) {
-      // OK
-      return "";
-    } else if (response.statusCode == 404) {
-      // Not Found
-      return Constants.signInNotFound;
-    } else if (response.statusCode == 400) {
-      // Bad request
-      return Constants.badRequest;
-    }
+    // if (response.statusCode == 200) {
+    //   // OK
+    //   return "";
+    // } else if (response.statusCode == 404) {
+    //   // Not Found
+    //   return Constants.signInNotFound;
+    // } else if (response.statusCode == 400) {
+    //   // Bad request
+    //   return Constants.badRequest;
+    // }
     return Constants.serverErr;
   }
 }

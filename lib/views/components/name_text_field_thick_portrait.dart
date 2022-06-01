@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../constants.dart';
 import '../../controllers/authentication_controller.dart';
@@ -18,7 +17,6 @@ class NameTextFieldThickPortrait extends StatelessWidget {
         textAlignVertical: TextAlignVertical.center,
         onChanged: (value) {
           print("Change value: $value");
-          Get.find<AuthenticationController>().username = value;
         },
         decoration: InputDecoration(
           filled: true,

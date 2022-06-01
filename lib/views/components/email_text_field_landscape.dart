@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../constants.dart';
 import '../../controllers/authentication_controller.dart';
@@ -16,9 +15,7 @@ class EmailTextFieldLandscape extends StatelessWidget {
       child: TextField(
         style: TextStyle(fontSize: size.height * 0.02),
         textAlignVertical: TextAlignVertical.center,
-        onChanged: (value) {
-          Get.find<AuthenticationController>().email = value;
-        },
+        onChanged: (value) {},
         decoration: InputDecoration(
           filled: true,
           fillColor: Colors.white,

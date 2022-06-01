@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../constants.dart';
@@ -25,7 +25,7 @@ class ConfirmEmailThickPortrait extends StatelessWidget {
             color: Colors.black,
             size: size.width * 0.1,
           ),
-          onPressed: () => Get.to(() => const SignInPage()),
+          onPressed: () => {},
         ),
       ),
       body: Column(
@@ -69,9 +69,7 @@ class ConfirmEmailThickPortrait extends StatelessWidget {
               child: Container(
                 color: const Color.fromRGBO(238, 94, 125, 1),
                 child: TextButton(
-                    onPressed: () {
-                      Get.find<AuthenticationController>().onResendBtnPressed();
-                    },
+                    onPressed: () {},
                     child: Text(Constants.confirmBtnText,
                         style: GoogleFonts.robotoMono(
                           fontSize: size.height * 0.02,

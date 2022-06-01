@@ -22,8 +22,10 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.2
 
-  be_repo:
-    path: packages/be_repo
+  auth_repo:
+    path: packages/auth_repo
+  storage_repo:
+    path: packages/storage_repo  
 
 dev_dependencies:
   flutter_test:

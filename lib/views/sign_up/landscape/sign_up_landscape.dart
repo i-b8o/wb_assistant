@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
 import 'package:wb_assistant/controllers/authentication_controller.dart';
 import 'package:wb_assistant/views/components/email_text_field_landscape.dart';
 import 'package:wb_assistant/views/components/password_text_field_landscape.dart';

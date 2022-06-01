@@ -1,18 +1,15 @@
 part of 'app_bloc.dart';
 
-class AppState {
-  const AppState._(
-      {this.status = AuthenticationStatus.unknown,
-      this.token = "",
-      this.details = Details.empty});
-  final AuthenticationStatus status;
-  final String token;
-  final Details details;
+@immutable
+abstract class AppState {}
 
-  const AppState.unknown() : this._();
-  const AppState.authenticated(Details details)
-      : this._(status: AuthenticationStatus.authenticated, details: details);
+class AppInitial extends AppState {}
 
-  const AppState.unauthenticated()
-      : this._(status: AuthenticationStatus.unauthenticated);
+class AppLoadInProgressState extends AppState {}
+
+class AppSignInSuccessState extends AppState {
+  final User user;
+  AppSignInSuccessState({required this.user});
 }
+
+class AppTokenNotFound extends AppState {}

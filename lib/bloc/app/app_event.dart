@@ -4,10 +4,6 @@ abstract class AppEvent {
   const AppEvent();
 }
 
-class AppStatusChanged extends AppEvent {
-  const AppStatusChanged(this.status, this.details);
-  final AuthenticationStatus status;
-  final Details details;
-}
+class AuthRequest extends AppEvent {}
 
 class AppLogoutRequested extends AppEvent {}

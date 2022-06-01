@@ -12,8 +12,8 @@ class AllControllerBinding implements Bindings {
     Get.put(AuthenticationController(
         localStorageController: LocalStorageController()));
 
-    Get.put(
-        LifeCycleController(localStorageController: LocalStorageController()));
+    // Get.put(
+    // LifeCycleController(localStorageController: LocalStorageController()));
     Get.put(RoundedPasswordFieldObscureController());
   }
 }

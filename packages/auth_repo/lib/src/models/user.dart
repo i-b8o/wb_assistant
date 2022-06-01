@@ -1,4 +1,4 @@
-class Details {
+class User {
   final String id;
   final String email;
   final String expires;
@@ -6,7 +6,7 @@ class Details {
   final String username;
   final String password;
 
-  const Details(
+  const User(
       {required this.password,
       required this.id,
       required this.email,
@@ -14,8 +14,8 @@ class Details {
       required this.type,
       required this.username});
 
-  factory Details.fromJson(Map<String, dynamic> json) {
-    return Details(
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
       id: json['ID'].toString(),
       email: json['Email'],
       expires: json['Expires'],
@@ -25,7 +25,7 @@ class Details {
     );
   }
 
-  static const empty = Details(
+  static const empty = User(
     id: "",
     email: "",
     expires: "",

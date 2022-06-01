@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wb_assistant/views/components/btn_landscape.dart';
 import 'package:wb_assistant/views/components/email_text_field_landscape.dart';

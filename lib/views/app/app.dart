@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:wb_assistant/constants.dart';
 
 import 'package:wb_assistant/views/home/home.dart';
+import 'package:wb_assistant/views/welcome/welcome.dart';
+
+import '../../bloc/app/app_bloc.dart';
 
 class App extends StatefulWidget {
   const App({
@@ -43,17 +47,34 @@ class _AppState extends State<App> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     print("App build");
-    return MaterialApp(
-      theme: ThemeData(
-        scaffoldBackgroundColor: Constants.bgColor,
-        textButtonTheme: TextButtonThemeData(
-          style: TextButton.styleFrom(
-            primary: Constants.btnColor,
+    return BlocProvider(
+      create: (context) => AppBloc()..add(AuthRequest()),
+      child: MaterialApp(
+        theme: ThemeData(
+          scaffoldBackgroundColor: Constants.bgColor,
+          textButtonTheme: TextButtonThemeData(
+            style: TextButton.styleFrom(
+              primary: Constants.btnColor,
+            ),
           ),
         ),
+        debugShowCheckedModeBanner: false,
+        home: BlocBuilder<AppBloc, AppState>(
+          buildWhen: (previous, current) => previous != current,
+          builder: (context, state) {
+            if (state is AppLoadInProgressState) {
+              return const CircularProgressIndicator.adaptive(
+                backgroundColor: Colors.pink,
+              );
+            } else if (state is AppTokenNotFound) {
+              return const WelcomePage();
+            } else if (state is AppSignInSuccessState) {
+              return Home(user: state.user);
+            }
+            return ErrorWidget(Exception);
+          },
+        ),
       ),
-      debugShowCheckedModeBanner: false,
-      home: Home(),
     );
   }
 }

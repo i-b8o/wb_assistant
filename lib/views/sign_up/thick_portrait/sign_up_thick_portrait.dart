@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
 import 'package:wb_assistant/views/components/btn_thick_portrait.dart';
 import 'package:wb_assistant/views/components/email_text_field_thick_portrait.dart';
 import 'package:wb_assistant/views/components/header_thick_portrait.dart';

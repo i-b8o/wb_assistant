@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:wb_assistant/views/components/responsive_widget.dart';
 import 'package:wb_assistant/views/sign_in/sign_in.dart';
 
 import '../../constants.dart';
 
-import '../../controllers/local_storage_controller.dart';
 import 'welcome_portrait.dart';
 import 'welcome_thick_portrait.dart';
 
@@ -14,9 +12,6 @@ class WelcomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(
-        "APP ${LocalStorageController.jwtInStorage.isTrue} ${Get.find<LocalStorageController>().detailsInStorage.isTrue}");
-    print("WelcomePage");
     return const Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: Constants.bgColor,

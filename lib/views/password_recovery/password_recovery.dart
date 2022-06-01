@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import 'package:wb_assistant/constants.dart';
 import 'package:wb_assistant/views/components/btn_thick_portrait.dart';
@@ -25,7 +24,7 @@ class PasswordRecoveryPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         centerTitle: false,
         title: GestureDetector(
-          onTap: () => Get.back(),
+          onTap: () => {},
           child: Row(children: [
             Icon(
               Icons.keyboard_backspace,
@@ -57,14 +56,9 @@ class PasswordRecoveryPage extends StatelessWidget {
               SizedBox(
                 height: size.height * 0.02,
               ),
-              GetBuilder<AuthenticationController>(
-                initState: (_) {},
-                builder: (controller) {
-                  return BtnThickPortrait(
-                    press: () => controller.onRecoverBtnPressed(),
-                    text: Constants.passRecoverBtnText,
-                  );
-                },
+              BtnThickPortrait(
+                press: () => {},
+                text: Constants.passRecoverBtnText,
               ),
             ],
           ),

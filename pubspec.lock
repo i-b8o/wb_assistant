@@ -8,10 +8,10 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.8.2"
-  be_repo:
+  auth_repo:
     dependency: "direct main"
     description:
-      path: "packages/be_repo"
+      path: "packages/auth_repo"
       relative: true
     source: path
     version: "0.0.0"
@@ -357,6 +357,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.10.0"
+  storage_repo:
+    dependency: "direct main"
+    description:
+      path: "packages/storage_repo"
+      relative: true
+    source: path
+    version: "0.0.0"
   stream_channel:
     dependency: transitive
     description:
