@@ -1,29 +1,29 @@
-import 'package:get/get.dart';
+// import 'package:get/get.dart';
 
-import 'package:wb_assistant/controllers/local_storage_controller.dart';
+// import 'package:wb_assistant/controllers/local_storage_controller.dart';
 
-import '../views/app/app.dart';
+// import '../views/app/app.dart';
 
-class LifeCycleController extends SuperController {
-  LocalStorageController localStorageController;
+// class LifeCycleController extends SuperController {
+//   LocalStorageController localStorageController;
 
-  LifeCycleController({
-    required this.localStorageController,
-  });
-  @override
-  void onDetached() {}
+//   LifeCycleController({
+//     required this.localStorageController,
+//   });
+//   @override
+//   void onDetached() {}
 
-  @override
-  void onInactive() {}
+//   @override
+//   void onInactive() {}
 
-  @override
-  void onPaused() {
-    print("Paused");
-  }
+//   @override
+//   void onPaused() {
+//     print("Paused");
+//   }
 
-  @override
-  void onResumed() {
-    print("Onresumed");
-    localStorageController.fetchDetails();
-  }
-}
+//   @override
+//   void onResumed() {
+//     print("Onresumed");
+//     localStorageController.fetchDetails();
+//   }
+// }

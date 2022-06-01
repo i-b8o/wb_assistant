@@ -1,6 +1,16 @@
+import 'dart:async';
 import 'dart:convert';
 
+import 'package:be_repo/be_repo.dart';
 import 'package:http/http.dart' as http;
+import 'models/token.dart';
+
+enum AuthenticationStatus {
+  unknown,
+  registered,
+  authenticated,
+  unauthenticated
+}
 
 class BeRepository {
   static var client = http.Client();
@@ -13,9 +23,10 @@ class BeRepository {
   static const contentType = 'application/json; charset=UTF-8';
   static const contentKey = 'Content-Type';
 
-  static Future<http.Response> signUpUser(
-      String email, password, username) async {
-    final response = await client.post(
+  final controller = StreamController<Response>();
+
+  Future<void> signUpUser(String email, password, username) async {
+    final httpresponse = await client.post(
       Uri.parse('$domen$signUpEndPoint'),
       headers: <String, String>{
         contentKey: contentType,
@@ -26,12 +37,21 @@ class BeRepository {
         'Username': username,
       }),
     );
-
-    return response;
+    Response response = Response(
+      statusCode: httpresponse.statusCode,
+      authenticationStatus: AuthenticationStatus.unknown,
+      details: Details.empty,
+    );
+    if (httpresponse.statusCode == 200) {
+      Response response = Response(
+          authenticationStatus: AuthenticationStatus.registered,
+          details: Details.empty);
+    }
+    controller.sink.add(response);
   }
 
-  static Future<http.Response> signInUser(String email, password) async {
-    final response = await client.post(
+  Future<void> signInUser(String email, password) async {
+    final httpResponse = await client.post(
       Uri.parse('$domen$signInEndPoint'),
       headers: <String, String>{
         contentKey: contentType,
@@ -41,21 +61,45 @@ class BeRepository {
         'Password': password,
       }),
     );
-    return response;
+    Response response = Response(
+      statusCode: httpResponse.statusCode,
+      authenticationStatus: AuthenticationStatus.unknown,
+      details: Details.empty,
+    );
+    if (httpResponse.statusCode == 200) {
+      TokenMessage tokenMessage =
+          TokenMessage.fromJson(jsonDecode(httpResponse.body));
+      Response response = Response(
+          jwt: tokenMessage.token,
+          authenticationStatus: AuthenticationStatus.authenticated,
+          details: Details.empty);
+    }
+    controller.sink.add(response);
   }
 
-  static Future<http.Response> details(String token) async {
-    final response = await client.get(
+  Future<void> details(String token) async {
+    final httpResponse = await client.get(
       Uri.parse('$domen$detailsInEndPoint'),
       headers: <String, String>{
         'Authorization': 'Bearer $token',
       },
     );
-    return response;
+    Response response = Response(
+      statusCode: httpResponse.statusCode,
+      authenticationStatus: AuthenticationStatus.unknown,
+      details: Details.empty,
+    );
+    if (httpResponse.statusCode == 200) {
+      Details details = Details.fromJson(jsonDecode(httpResponse.body));
+      Response response = Response(
+          authenticationStatus: AuthenticationStatus.authenticated,
+          details: details);
+    }
+    controller.sink.add(response);
   }
 
-  static Future<http.Response> resend(String token, email, password) async {
-    final response = await client.post(
+  Future<void> resend(String token, email, password) async {
+    final httpResponse = await client.post(
       Uri.parse('$domen$resendEndPoint'),
       headers: <String, String>{
         contentKey: contentType,
@@ -66,12 +110,18 @@ class BeRepository {
         'Password': password,
       }),
     );
-    return response;
+    Response response = Response(
+      statusCode: httpResponse.statusCode,
+      authenticationStatus: AuthenticationStatus.unknown,
+      details: Details.empty,
+    );
+
+    controller.sink.add(response);
   }
 
-  static Future<http.Response> recover(String email) async {
+  Future<void> recover(String email) async {
     print("Email: $email");
-    final response = await client.post(
+    final httpResponse = await client.post(
       Uri.parse('$domen$recoverEndPoint'),
       headers: <String, String>{
         contentKey: contentType,
@@ -80,6 +130,12 @@ class BeRepository {
         'Email': email,
       }),
     );
-    return response;
+    Response response = Response(
+      statusCode: httpResponse.statusCode,
+      authenticationStatus: AuthenticationStatus.unknown,
+      details: Details.empty,
+    );
+
+    controller.sink.add(response);
   }
 }

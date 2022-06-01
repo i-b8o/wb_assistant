@@ -4,7 +4,7 @@ import 'package:be_repo/be_repo.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import '../models/details.dart';
-import '../models/token.dart';
+import '../../packages/be_repo/lib/src/models/token.dart';
 
 class LocalStorageController extends GetxController {
   static var jwtInStorage = false.obs;

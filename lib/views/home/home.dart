@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:wb_assistant/bloc/life_cycle/bloc/lifecycle_bloc.dart';
 
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
-  LifecycleBloc _lifecycleBloc = LifecycleBloc();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     print("Home");
-    return BlocProvider(
-      create: (context) => LifecycleBloc(),
-      child: Container(),
-    );
+    return Container();
   }
 }
 
