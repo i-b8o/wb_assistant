@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../constants.dart';
-import '../../controllers/authentication_controller.dart';
-import '../sign_in/sign_in.dart';
 
 class ConfirmEmailThickPortrait extends StatelessWidget {
   const ConfirmEmailThickPortrait({Key? key}) : super(key: key);
@@ -25,7 +23,9 @@ class ConfirmEmailThickPortrait extends StatelessWidget {
             color: Colors.black,
             size: size.width * 0.1,
           ),
-          onPressed: () => {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
       ),
       body: Column(

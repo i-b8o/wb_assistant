@@ -24,7 +24,9 @@ class ConfirmEmailPortrait extends StatelessWidget {
             color: Colors.black,
             size: size.width * 0.1,
           ),
-          onPressed: () => {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
       ),
       body: Column(
