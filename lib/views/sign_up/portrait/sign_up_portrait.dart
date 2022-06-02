@@ -7,6 +7,7 @@ import 'package:wb_assistant/views/components/password_text_field_thick_portrait
 
 import '../../../constants.dart';
 import '../../components/components.dart';
+import '../../sign_in/sign_in.dart';
 
 // TODO use MediaQueryData widget
 class SignUpPortrait extends StatelessWidget {
@@ -19,7 +20,9 @@ class SignUpPortrait extends StatelessWidget {
     print('SignUpPortrait');
     Size size = MediaQuery.of(context).size;
     bool keyboard = MediaQuery.of(context).viewInsets.bottom > 0.0;
-
+    final emailController = TextEditingController();
+    final usernameController = TextEditingController();
+    final passwordController = TextEditingController();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Constants.bgColor,
@@ -35,11 +38,15 @@ class SignUpPortrait extends StatelessWidget {
             children: [
               TextFieldsWidget(
                 fields: [
-                  const NameTextFieldThickPortrait(),
+                  NameTextFieldThickPortrait(controller: usernameController),
                   SizedBox(height: size.height * 0.01),
-                  const EmailTextFieldThickPortrait(),
+                  EmailTextFieldThickPortrait(
+                    controller: emailController,
+                  ),
                   SizedBox(height: size.height * 0.01),
-                  const PasswordTextFieldThickPortrait()
+                  PasswordTextFieldThickPortrait(
+                    controller: passwordController,
+                  )
                 ],
               ),
               keyboard
@@ -59,7 +66,12 @@ class SignUpPortrait extends StatelessWidget {
             height: size.width * 0.2,
           ),
           AlreadyHaveAnAccountCheck(
-            onPressed: () => {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SignInPage()),
+              );
+            },
             signIn: false,
             fontSize: size.width * 0.04,
           ),

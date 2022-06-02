@@ -10,10 +10,12 @@ import '../../components/components.dart';
 import '../../components/header_landscape.dart';
 
 class SignUpLandscape extends StatelessWidget {
-  const SignUpLandscape({
+  SignUpLandscape({
     Key? key,
   }) : super(key: key);
-
+  final emailController = TextEditingController();
+  final usernameController = TextEditingController();
+  final passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     bool shrinked = MediaQuery.of(context).size.aspectRatio > 12;
@@ -65,15 +67,21 @@ class SignUpLandscape extends StatelessWidget {
                   greetingText: Constants.signUpGreetingText),
           TextFieldsWidget(
             fields: [
-              const NameTextFieldLandscape(),
+              NameTextFieldLandscape(
+                controller: usernameController,
+              ),
               SizedBox(
                 height: size.height * 0.01,
               ),
-              const EmailTextFieldLandscape(),
+              EmailTextFieldLandscape(
+                controller: emailController,
+              ),
               SizedBox(
                 height: size.height * 0.01,
               ),
-              const PasswordTextFieldLandscape(),
+              PasswordTextFieldLandscape(
+                controller: passwordController,
+              ),
             ],
           ),
           shrinked || keyboard

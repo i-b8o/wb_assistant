@@ -4,8 +4,9 @@ import '../../constants.dart';
 import '../../controllers/authentication_controller.dart';
 
 class EmailTextFieldThickPortrait extends StatelessWidget {
-  const EmailTextFieldThickPortrait({Key? key}) : super(key: key);
-
+  const EmailTextFieldThickPortrait({Key? key, required this.controller})
+      : super(key: key);
+  final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -15,7 +16,7 @@ class EmailTextFieldThickPortrait extends StatelessWidget {
       child: TextField(
         style: TextStyle(fontSize: size.height * 0.02),
         textAlignVertical: TextAlignVertical.center,
-        onChanged: (value) {},
+        controller: controller,
         decoration: InputDecoration(
           filled: true,
           fillColor: Colors.white,

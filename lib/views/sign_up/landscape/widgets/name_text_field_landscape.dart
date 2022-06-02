@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import '../../../../constants.dart';
 
 class NameTextFieldLandscape extends StatelessWidget {
-  const NameTextFieldLandscape({Key? key}) : super(key: key);
-
+  const NameTextFieldLandscape({Key? key, required this.controller})
+      : super(key: key);
+  final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -14,7 +15,7 @@ class NameTextFieldLandscape extends StatelessWidget {
       child: TextField(
         style: TextStyle(fontSize: size.height * 0.02),
         textAlignVertical: TextAlignVertical.center,
-        onChanged: (value) {},
+        controller: controller,
         decoration: InputDecoration(
           filled: true,
           fillColor: Colors.white,

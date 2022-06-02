@@ -4,13 +4,12 @@ import 'package:wb_assistant/constants.dart';
 import 'package:wb_assistant/views/components/btn_thick_portrait.dart';
 import 'package:wb_assistant/views/components/email_text_field_thick_portrait.dart';
 
-import '../../controllers/authentication_controller.dart';
-
 import 'password_recovery_components/reset_password_description.dart';
 
 class PasswordRecoveryPage extends StatelessWidget {
-  const PasswordRecoveryPage({Key? key}) : super(key: key);
-
+  const PasswordRecoveryPage({Key? key, required this.controller})
+      : super(key: key);
+  final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -52,7 +51,9 @@ class PasswordRecoveryPage extends StatelessWidget {
           const ResetPasswordDescription(),
           Column(
             children: [
-              const EmailTextFieldThickPortrait(),
+              EmailTextFieldThickPortrait(
+                controller: controller,
+              ),
               SizedBox(
                 height: size.height * 0.02,
               ),

@@ -5,20 +5,18 @@ import 'package:wb_assistant/views/components/btn_landscape.dart';
 import 'package:wb_assistant/views/components/email_text_field_landscape.dart';
 import 'package:wb_assistant/views/components/header_landscape.dart';
 import 'package:wb_assistant/views/components/password_text_field_landscape.dart';
-import 'package:wb_assistant/views/password_recovery/password_recovery.dart';
 
 import '../../../constants.dart';
-import '../../../controllers/authentication_controller.dart';
 import '../../components/body_large.dart';
 import '../../components/welcome_text_fields.dart';
-import '../../sign_up/sign_up_page.dart';
 
 // Fields looks bad
 class SignInLandscape extends StatelessWidget {
-  const SignInLandscape({
+  SignInLandscape({
     Key? key,
   }) : super(key: key);
-
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     print('SignInLandscape');
@@ -65,13 +63,17 @@ class SignInLandscape extends StatelessWidget {
                   greetingText: Constants.signInGreetingText),
           TextFieldsWidget(
             fields: [
-              const EmailTextFieldLandscape(),
+              EmailTextFieldLandscape(
+                controller: emailController,
+              ),
               shrinked
                   ? Container()
                   : SizedBox(
                       height: size.height * 0.01,
                     ),
-              const PasswordTextFieldLandscape(),
+              PasswordTextFieldLandscape(
+                controller: passwordController,
+              ),
             ],
           ),
           SizedBox(

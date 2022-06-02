@@ -4,19 +4,20 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:wb_assistant/views/components/email_text_field_thick_portrait.dart';
 import 'package:wb_assistant/views/components/header_thick_portrait.dart';
 import '../../../constants.dart';
-import '../../../controllers/authentication_controller.dart';
+
 import '../../components/already_have_an_account_check.dart';
 import '../../components/btn_thick_portrait.dart';
 import '../../components/password_text_field_thick_portrait.dart';
 import '../../components/welcome_text_fields.dart';
-import '../../password_recovery/password_recovery.dart';
 import '../../sign_up/sign_up_page.dart';
+import '../sign_in.dart';
 
 class SignInThickPortrait extends StatelessWidget {
-  const SignInThickPortrait({
+  SignInThickPortrait({
     Key? key,
   }) : super(key: key);
-
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     print("SignInThickPortrait");
@@ -37,9 +38,13 @@ class SignInThickPortrait extends StatelessWidget {
           children: [
             TextFieldsWidget(
               fields: [
-                const EmailTextFieldThickPortrait(),
+                EmailTextFieldThickPortrait(
+                  controller: emailController,
+                ),
                 SizedBox(height: size.height * 0.01),
-                const PasswordTextFieldThickPortrait(),
+                PasswordTextFieldThickPortrait(
+                  controller: passwordController,
+                ),
                 SizedBox(
                   height: size.height * 0.05,
                 ),
@@ -74,7 +79,13 @@ class SignInThickPortrait extends StatelessWidget {
                   height: size.height * 0.04,
                 ),
                 AlreadyHaveAnAccountCheck(
-                  onPressed: () => {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SignUpPage()),
+                    );
+                  },
                   fontSize: size.width * 0.03,
                 ),
               ],

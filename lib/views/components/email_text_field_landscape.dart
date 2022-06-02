@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../../constants.dart';
-import '../../controllers/authentication_controller.dart';
 
 class EmailTextFieldLandscape extends StatelessWidget {
-  const EmailTextFieldLandscape({Key? key}) : super(key: key);
+  const EmailTextFieldLandscape({Key? key, required this.controller})
+      : super(key: key);
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class EmailTextFieldLandscape extends StatelessWidget {
       child: TextField(
         style: TextStyle(fontSize: size.height * 0.02),
         textAlignVertical: TextAlignVertical.center,
-        onChanged: (value) {},
+        controller: controller,
         decoration: InputDecoration(
           filled: true,
           fillColor: Colors.white,

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../../constants.dart';
-import '../../controllers/authentication_controller.dart';
 
 class NameTextFieldThickPortrait extends StatelessWidget {
-  const NameTextFieldThickPortrait({Key? key}) : super(key: key);
-
+  const NameTextFieldThickPortrait({Key? key, required this.controller})
+      : super(key: key);
+  final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -13,13 +13,10 @@ class NameTextFieldThickPortrait extends StatelessWidget {
       width: size.width * 0.85,
       height: size.height * 0.08,
       child: TextField(
+        controller: controller,
         style: TextStyle(fontSize: size.height * 0.02),
         textAlignVertical: TextAlignVertical.center,
-        onChanged: (value) {
-          print("Change value: $value");
-        },
         decoration: InputDecoration(
-          errorText: "неправильный адрес",
           filled: true,
           fillColor: Colors.white,
           focusedBorder: OutlineInputBorder(

@@ -17,7 +17,7 @@ class SignInPage extends StatelessWidget {
       body: SizedBox(
           width: double.infinity,
           height: size.height,
-          child: const ResponsiveWidget(
+          child: ResponsiveWidget(
             portrait: SignInPortrait(),
             thickPortrait: SignInThickPortrait(),
             landscape: SignInLandscape(),

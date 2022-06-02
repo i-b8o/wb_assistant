@@ -7,30 +7,12 @@ part 'signup_event.dart';
 part 'signup_state.dart';
 
 class SignupBloc extends Bloc<SignupEvent, SignupState> {
-  late String _username;
-  late String _email;
-  late String _password;
-
-  String get username => _username;
-  String get email => _email;
-  String get password => _password;
-
-  void changeUserName(String username) {
-    _username = username;
-  }
-
-  void changeEmail(String email) {
-    _email = email;
-  }
-
-  void changePassword(String password) {
-    _password = password;
-  }
-
   final _authRepo = AuthRepository();
   SignupBloc() : super(SignupInitial()) {
     on<SignupRequest>((event, emit) async {
-      String s = validateEmail() + validateName() + validatePassword();
+      String s = validateEmail(event.email) +
+          validateName(event.username) +
+          validatePassword(event.password);
       if (s.isNotEmpty) {
         emit(SignupFailedState(message: s));
       } else {
@@ -48,35 +30,35 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
             emit(SignupFailedState(message: Constants.badRequest));
           }
         } catch (e) {
-          print("Error: $e");
+          print("Error in SignupBloc: $e");
         }
       }
     });
   }
 
-  String validateEmail() {
+  String validateEmail(String email) {
     if (email.length <= 5) {
       return Constants.lessThanInEmailValidationErr;
-    } else if (_email.contains(" ")) {
+    } else if (email.contains(" ")) {
       return Constants.spaceInEmailValidationErr;
     }
     return "";
   }
 
-  String validatePassword() {
+  String validatePassword(String password) {
     if (password.length <= 4) {
       return Constants.lessThanInPasswordValidationErr;
-    } else if (_password.contains(" ")) {
+    } else if (password.contains(" ")) {
       return Constants.spaceInPasswordValidationErr;
     }
 
     return "";
   }
 
-  String validateName() {
+  String validateName(String username) {
     if (username.length < 4) {
       return Constants.lessThanInNameValidationErr;
-    } else if (_username.contains(" ")) {
+    } else if (username.contains(" ")) {
       return Constants.spaceInNameValidationErr;
     }
 

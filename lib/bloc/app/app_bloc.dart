@@ -7,7 +7,7 @@ part 'app_event.dart';
 part 'app_state.dart';
 
 class AppBloc extends Bloc<AppEvent, AppState> {
-  final _authRepo = AuthRepository();
+  final AuthRepository _authRepo = AuthRepository();
   final _storageRepo = StorageRepository();
 
   AppBloc() : super(AppInitial()) {
@@ -31,7 +31,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
           }
         }
       } catch (e) {
-        print("Error: $e");
+        print("Error in AppBloc: $e");
       }
     });
   }

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../../constants.dart';
-import '../../controllers/authentication_controller.dart';
-import '../../controllers/rounded_password_field_obscure_controller.dart';
 
 class PasswordTextFieldThickPortrait extends StatelessWidget {
-  const PasswordTextFieldThickPortrait({Key? key}) : super(key: key);
-
+  const PasswordTextFieldThickPortrait({Key? key, required this.controller})
+      : super(key: key);
+  final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -17,7 +16,7 @@ class PasswordTextFieldThickPortrait extends StatelessWidget {
         obscureText: false,
         style: TextStyle(fontSize: size.height * 0.02),
         textAlignVertical: TextAlignVertical.center,
-        onChanged: (value) {},
+        controller: controller,
         decoration: InputDecoration(
             filled: true,
             fillColor: Colors.white,

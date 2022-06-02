@@ -6,7 +6,7 @@ import 'package:auth_repo/src/provider/auth_provider.dart';
 import 'package:http/http.dart' as http;
 
 class AuthRepository {
-  late final AuthProvider authProvider;
+  final AuthProvider authProvider = AuthProvider();
 
   // Since auth API does not return any payload except a HTTP status code
   // signUpUser returns a status code only

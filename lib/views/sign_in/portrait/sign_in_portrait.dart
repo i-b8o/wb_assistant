@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../constants.dart';
-import '../../../controllers/authentication_controller.dart';
 
 import '../../components/already_have_an_account_check.dart';
 import '../../components/btn_thick_portrait.dart';
@@ -11,14 +10,14 @@ import '../../components/email_text_field_thick_portrait.dart';
 import '../../components/header_thick_portrait.dart';
 import '../../components/password_text_field_thick_portrait.dart';
 import '../../components/welcome_text_fields.dart';
-import '../../password_recovery/password_recovery.dart';
 import '../../sign_up/sign_up_page.dart';
 
 class SignInPortrait extends StatelessWidget {
-  const SignInPortrait({
+  SignInPortrait({
     Key? key,
   }) : super(key: key);
-
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     print("SignInPortrait");
@@ -41,9 +40,13 @@ class SignInPortrait extends StatelessWidget {
           children: [
             TextFieldsWidget(
               fields: [
-                const EmailTextFieldThickPortrait(),
+                EmailTextFieldThickPortrait(
+                  controller: emailController,
+                ),
                 SizedBox(height: size.height * 0.01),
-                const PasswordTextFieldThickPortrait(),
+                PasswordTextFieldThickPortrait(
+                  controller: passwordController,
+                ),
                 SizedBox(
                   height: size.height * 0.05,
                 ),
@@ -89,7 +92,12 @@ class SignInPortrait extends StatelessWidget {
           height: size.width * 0.4,
         ),
         AlreadyHaveAnAccountCheck(
-          onPressed: () => {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const SignUpPage()),
+            );
+          },
           fontSize: size.width * 0.04,
         ),
       ],

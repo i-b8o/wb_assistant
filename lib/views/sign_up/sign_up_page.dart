@@ -45,10 +45,10 @@ class SignUpPage extends StatelessWidget {
                           constraints.maxWidth / constraints.maxHeight;
                       if (isPortrait) {
                         return aspectRatio > 0.55
-                            ? const SignUpThickPortrait()
+                            ? SignUpThickPortrait()
                             : const SignUpPortrait();
                       } else {
-                        return const SignUpLandscape();
+                        return SignUpLandscape();
                       }
                     },
                   )),
