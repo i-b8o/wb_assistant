@@ -51,17 +51,12 @@ class SignUpThickPortrait extends StatelessWidget {
             : SizedBox(
                 height: size.height * 0.1,
               ),
-        BtnThickPortrait(
-          text: Constants.signUpBtnText,
-          press: () =>
-              Get.find<AuthenticationController>().onSignUpBtnPressed(),
-        ),
+        BtnThickPortrait(text: Constants.signUpBtnText, press: () => {}),
         SizedBox(
           height: size.width * 0.1,
         ),
         AlreadyHaveAnAccountCheck(
-          onPressed: () =>
-              Get.to(() => const SignInPage(), transition: Transition.fadeIn),
+          onPressed: () => {},
           signIn: false,
           fontSize: size.width * 0.03,
         ),

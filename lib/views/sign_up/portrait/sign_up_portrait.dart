@@ -53,8 +53,7 @@ class SignUpPortrait extends StatelessWidget {
                     ),
               BtnThickPortrait(
                 text: Constants.signUpBtnText,
-                press: () =>
-                    Get.find<AuthenticationController>().onSignUpBtnPressed(),
+                press: () => {},
               )
             ],
           ),
@@ -62,8 +61,7 @@ class SignUpPortrait extends StatelessWidget {
             height: size.width * 0.2,
           ),
           AlreadyHaveAnAccountCheck(
-            onPressed: () =>
-                Get.to(() => const SignInPage(), transition: Transition.fadeIn),
+            onPressed: () => {},
             signIn: false,
             fontSize: size.width * 0.04,
           ),

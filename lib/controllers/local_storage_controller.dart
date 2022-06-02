@@ -1,9 +1,5 @@
-import 'dart:convert';
-
-import 'package:auth_repo/auth_repo.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import '../models/details.dart';
 
 class LocalStorageController extends GetxController {
   static var jwtInStorage = false.obs;

@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:auth_repo/auth_repo.dart';
 
 import 'package:bloc/bloc.dart';
@@ -20,15 +18,16 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         print("try");
 
         final jwt = await _storageRepo.getJWT();
-        print("jwt");
+        print("jwt: $jwt");
         if (jwt.isEmpty) {
-          print("is empty");
+          print("JWT is empty");
           emit(AppTokenNotFound());
         } else {
-          print("else");
-          UserResponse userMessage = await _authRepo.getUser(jwt);
-          if (userMessage.statusCode == 200) {
-            emit(AppSignInSuccessState(user: userMessage.user));
+          print("JWT exists");
+          UserResponse userresponse = await _authRepo.getUser(jwt);
+          if (userresponse.statusCode == 200) {
+            print("GetUser successfull type: ${userresponse.user.type}");
+            emit(AppSignInSuccessState(user: userresponse.user));
           }
         }
       } catch (e) {
@@ -36,60 +35,4 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       }
     });
   }
-
-  // @override
-  // Stream<AppState> mapEventToState(AppEvent event) async* {
-  //   if (event is AuthRequest) {
-  //     yield AppLoadInProgress();
-  //     try {
-  //       final jwt = await _storageRepo.getJWT();
-  //     } catch (e){
-
-  //     }
-  //   }
-  // }
-  // AppBloc({required BeRepository beRepository})
-  //     : _beRepository = beRepository,
-  //       super(const AppState.unknown()) {
-  //   // on<AppStatusChanged>(_onAppStatusChanged);
-  //   // on<AppLogoutRequested>(_onAppLogoutRequested);
-  //   // _responseSubscription = _beRepository.controller.stream.listen((event) {
-  //   //   print(event);
-  //   // });
-  // }
-
-  // late StreamSubscription<Response> _responseSubscription;
-  // @override
-  // Future<void> close() {
-  //   _responseSubscription.cancel();
-  //   // _beRepository.dispose();
-  //   return super.close();
-  // }
-
-  // void _onAppLogoutRequested(
-  //     AppLogoutRequested event, Emitter<AppState> emit) {}
-
-  // void _onAppStatusChanged(
-  //     AppStatusChanged event, Emitter<AppState> emnit) async {
-  //   switch (event.status) {
-  //     case AuthenticationStatus.unauthenticated:
-  //       return emit(const AppState.unauthenticated());
-  //     case AuthenticationStatus.authenticated:
-  //       String token = "";
-  //       final details = await _tryGetDetails(token);
-  //       return emit(details != null
-  //           ? AppState.authenticated(details)
-  //           : const AppState.unauthenticated());
-  //     default:
-  //       return emit(const AppState.unknown());
-  //   }
-  // }
-
-  // Future<Details?> _tryGetDetails(String token) async {
-  //   try {
-  //     await _beRepository.details(token);
-  //   } catch (_) {
-  //     return null;
-  //   }
-  // }
 }

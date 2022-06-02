@@ -51,9 +51,7 @@ class SignInThickPortrait extends StatelessWidget {
                           Padding(
                             padding: EdgeInsets.only(right: size.width * 0.07),
                             child: TextButton(
-                              onPressed: () => Get.to(
-                                  () => const PasswordRecoveryPage(),
-                                  transition: Transition.fadeIn),
+                              onPressed: () => {},
                               child: Text(
                                 "Восстановление пароля",
                                 textAlign: TextAlign.end,
@@ -71,15 +69,12 @@ class SignInThickPortrait extends StatelessWidget {
                   height: size.height * 0.05,
                 ),
                 BtnThickPortrait(
-                    text: Constants.signInBtnText,
-                    press: () => Get.find<AuthenticationController>()
-                        .onSignInBtnPressed()),
+                    text: Constants.signInBtnText, press: () => {}),
                 SizedBox(
                   height: size.height * 0.04,
                 ),
                 AlreadyHaveAnAccountCheck(
-                  onPressed: () => Get.to(() => const SignUpPage(),
-                      transition: Transition.fadeIn),
+                  onPressed: () => {},
                   fontSize: size.width * 0.03,
                 ),
               ],

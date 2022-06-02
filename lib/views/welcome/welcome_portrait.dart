@@ -75,7 +75,10 @@ class WelcomePortrait extends StatelessWidget {
                         style: TextButton.styleFrom(
                           fixedSize: Size.fromRadius(size.width * 0.4),
                         ),
-                        onPressed: () => Get.to(() => const SignInPage()),
+                        onPressed: () => Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return const SignInPage();
+                            })),
                         child: Text(Constants.signInBtnText,
                             style: GoogleFonts.robotoMono(
                               fontWeight: FontWeight.bold,
@@ -94,7 +97,10 @@ class WelcomePortrait extends StatelessWidget {
                         style: TextButton.styleFrom(
                           fixedSize: Size.fromRadius(size.width * 0.4),
                         ),
-                        onPressed: () => Get.to(() => const SignUpPage()),
+                        onPressed: () => Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return const SignUpPage();
+                            })),
                         child: Text("Регистрация",
                             style: GoogleFonts.robotoMono(
                               fontWeight: FontWeight.bold,

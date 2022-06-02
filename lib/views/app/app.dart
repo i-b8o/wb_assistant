@@ -64,9 +64,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
           buildWhen: (previous, current) => previous != current,
           builder: (context, state) {
             if (state is AppLoadInProgressState) {
-              return const CircularProgressIndicator.adaptive(
-                backgroundColor: Colors.pink,
-              );
+              return const WelcomePage();
             } else if (state is AppTokenNotFound) {
               return const WelcomePage();
             } else if (state is AppSignInSuccessState) {

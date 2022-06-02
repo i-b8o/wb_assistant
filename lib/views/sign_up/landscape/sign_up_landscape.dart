@@ -47,8 +47,7 @@ class SignUpLandscape extends StatelessWidget {
                             keyboard ? size.height * 0 : size.height * 0.02),
                   ),
                   TextButton(
-                    onPressed: () => Get.to(() => const SignInPage(),
-                        transition: Transition.fadeIn),
+                    onPressed: () => {},
                     child: Text(Constants.signInBtnText,
                         style: TextStyle(
                             color: const Color.fromRGBO(54, 133, 240, 1),

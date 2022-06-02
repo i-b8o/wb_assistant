@@ -47,8 +47,7 @@ class SignInLandscape extends StatelessWidget {
                         fontSize: size.height * 0.02),
                   ),
                   TextButton(
-                    onPressed: () => Get.to(() => const SignUpPage(),
-                        transition: Transition.fadeIn),
+                    onPressed: () {},
                     child: Text(Constants.toReg,
                         style: TextStyle(
                             color: const Color.fromRGBO(54, 133, 240, 1),
@@ -92,9 +91,7 @@ class SignInLandscape extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.only(right: size.width * 0.11),
                           child: TextButton(
-                            onPressed: () => Get.to(
-                                () => const PasswordRecoveryPage(),
-                                transition: Transition.fadeIn),
+                            onPressed: () => {},
                             child: Text(
                               Constants.passRecText,
                               style: GoogleFonts.robotoMono(
@@ -116,11 +113,7 @@ class SignInLandscape extends StatelessWidget {
               : SizedBox(
                   height: size.height * 0.05,
                 ),
-          BtnLandscape(
-            text: Constants.signInBtnText,
-            press: () =>
-                Get.find<AuthenticationController>().onSignInBtnPressed(),
-          ),
+          BtnLandscape(text: Constants.signInBtnText, press: () => {}),
         ],
       ),
     );

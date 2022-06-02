@@ -6,7 +6,7 @@ import 'views/app/app.dart';
 
 Future<void> main() async {
   BlocOverrides.runZoned(
-    () => runApp(App()),
+    () => runApp(const App()),
     blocObserver: SimpleBlocObserver(),
   );
 }

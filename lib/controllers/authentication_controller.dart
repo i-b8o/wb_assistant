@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:auth_repo/auth_repo.dart';
 import 'package:get/get.dart';
 
 import 'package:wb_assistant/constants.dart';
@@ -8,9 +5,7 @@ import 'package:wb_assistant/controllers/local_storage_controller.dart';
 
 import 'package:wb_assistant/views/sign_in/sign_in.dart';
 
-import '../models/details.dart';
 import '../views/confirm/confirm_email.dart';
-import '../views/home/home.dart';
 
 class AuthenticationController extends GetxController {
   String username = "";
