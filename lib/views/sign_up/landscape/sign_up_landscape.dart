@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:wb_assistant/controllers/authentication_controller.dart';
 import 'package:wb_assistant/views/components/email_text_field_landscape.dart';
 import 'package:wb_assistant/views/components/password_text_field_landscape.dart';
 import 'package:wb_assistant/views/sign_up/landscape/widgets/name_text_field_landscape.dart';
@@ -9,7 +8,6 @@ import '../../../constants.dart';
 import '../../components/btn_landscape.dart';
 import '../../components/components.dart';
 import '../../components/header_landscape.dart';
-import '../../sign_in/sign_in.dart';
 
 class SignUpLandscape extends StatelessWidget {
   const SignUpLandscape({
@@ -85,9 +83,7 @@ class SignUpLandscape extends StatelessWidget {
               : SizedBox(
                   height: size.height * 0.05,
                 ),
-          BtnLandscape(text: Constants.signUpBtnText, press: () => {}
-              // Get.find<AuthenticationController>().onSignUpBtnPressed(),
-              )
+          BtnLandscape(text: Constants.signUpBtnText, press: () => {})
         ],
       ),
     );

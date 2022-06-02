@@ -19,6 +19,7 @@ class NameTextFieldThickPortrait extends StatelessWidget {
           print("Change value: $value");
         },
         decoration: InputDecoration(
+          errorText: "неправильный адрес",
           filled: true,
           fillColor: Colors.white,
           focusedBorder: OutlineInputBorder(

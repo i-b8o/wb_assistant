@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-
 import 'package:wb_assistant/views/components/btn_thick_portrait.dart';
 import 'package:wb_assistant/views/components/email_text_field_thick_portrait.dart';
 import 'package:wb_assistant/views/components/header_thick_portrait.dart';
 import 'package:wb_assistant/views/components/name_text_field_thick_portrait.dart';
 import 'package:wb_assistant/views/components/password_text_field_thick_portrait.dart';
+
 import '../../../constants.dart';
-import '../../../controllers/authentication_controller.dart';
 import '../../components/components.dart';
-import '../../sign_in/sign_in.dart';
 
 // TODO use MediaQueryData widget
 class SignUpPortrait extends StatelessWidget {
