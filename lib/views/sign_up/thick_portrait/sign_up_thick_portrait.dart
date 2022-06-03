@@ -15,13 +15,18 @@ import '../../components/already_have_an_account_check.dart';
 import '../../components/welcome_text_fields.dart';
 
 class SignUpThickPortrait extends StatelessWidget {
-  SignUpThickPortrait({
+  const SignUpThickPortrait({
     Key? key,
+    required this.emailController,
+    required this.usernameController,
+    required this.passwordController,
+    required this.onPress,
   }) : super(key: key);
-  final emailController = TextEditingController();
-  final usernameController = TextEditingController();
-  final passwordController = TextEditingController();
-
+  final TextEditingController emailController;
+  final TextEditingController usernameController;
+  final TextEditingController passwordController;
+  final void Function(BuildContext context, TextEditingController email,
+      TextEditingController pass, TextEditingController user) onPress;
   @override
   Widget build(BuildContext context) {
     print('SignUpThickPortrait');
@@ -63,14 +68,8 @@ class SignUpThickPortrait extends StatelessWidget {
             BtnThickPortrait(
                 text: Constants.signUpBtnText,
                 press: () {
-                  if (emailController.text.isNotEmpty &&
-                      passwordController.text.isNotEmpty &&
-                      usernameController.text.isNotEmpty) {
-                    context.read<SignupBloc>().add(SignupRequest(
-                        username: usernameController.text,
-                        email: emailController.text,
-                        password: passwordController.text));
-                  }
+                  onPress(context, emailController, passwordController,
+                      usernameController);
                 }),
             SizedBox(
               height: size.width * 0.1,

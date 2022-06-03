@@ -13,12 +13,19 @@ import '../../components/header_landscape.dart';
 import '../../sign_in/sign_in.dart';
 
 class SignUpLandscape extends StatelessWidget {
-  SignUpLandscape({
+  const SignUpLandscape({
     Key? key,
+    required this.emailController,
+    required this.usernameController,
+    required this.passwordController,
+    required this.onPress,
   }) : super(key: key);
-  final emailController = TextEditingController();
-  final usernameController = TextEditingController();
-  final passwordController = TextEditingController();
+  final TextEditingController emailController;
+  final TextEditingController usernameController;
+  final TextEditingController passwordController;
+  final void Function(BuildContext context, TextEditingController email,
+      TextEditingController pass, TextEditingController user) onPress;
+
   @override
   Widget build(BuildContext context) {
     bool shrinked = MediaQuery.of(context).size.aspectRatio > 12;
@@ -106,17 +113,10 @@ class SignUpLandscape extends StatelessWidget {
                     ),
               BtnLandscape(
                   text: Constants.signUpBtnText,
-                  press: () => {
-                        if (emailController.text.isNotEmpty &&
-                            passwordController.text.isNotEmpty &&
-                            usernameController.text.isNotEmpty)
-                          {
-                            context.read<SignupBloc>().add(SignupRequest(
-                                username: usernameController.text,
-                                email: emailController.text,
-                                password: passwordController.text))
-                          }
-                      })
+                  press: () {
+                    onPress(context, emailController, passwordController,
+                        usernameController);
+                  })
             ],
           );
         },

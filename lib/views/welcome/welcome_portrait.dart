@@ -99,7 +99,7 @@ class WelcomePortrait extends StatelessWidget {
                         ),
                         onPressed: () => Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
-                              return const SignUpPage();
+                              return SignUpPage();
                             })),
                         child: Text("Регистрация",
                             style: GoogleFonts.robotoMono(

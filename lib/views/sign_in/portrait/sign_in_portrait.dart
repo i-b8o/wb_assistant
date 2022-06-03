@@ -84,8 +84,7 @@ class SignInPortrait extends StatelessWidget {
                   onPressed: () => {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => const SignUpPage()),
+                      MaterialPageRoute(builder: (context) => SignUpPage()),
                     )
                   },
                   fontSize: size.width * 0.03,
@@ -101,7 +100,7 @@ class SignInPortrait extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const SignUpPage()),
+              MaterialPageRoute(builder: (context) => SignUpPage()),
             );
           },
           fontSize: size.width * 0.04,

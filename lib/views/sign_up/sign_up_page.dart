@@ -9,9 +9,19 @@ import 'portrait/sign_up_portrait.dart';
 import 'thick_portrait/sign_up_thick_portrait.dart';
 
 class SignUpPage extends StatelessWidget {
-  const SignUpPage({
+  SignUpPage({
     Key? key,
   }) : super(key: key);
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  void onPress(BuildContext context, TextEditingController email, pass, user) {
+    if (email.text.isNotEmpty && pass.text.isNotEmpty && user.text.isNotEmpty) {
+      context.read<SignupBloc>().add(SignupRequest(
+          username: user.text, email: email.text, password: pass.text));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,10 +56,25 @@ class SignUpPage extends StatelessWidget {
                           constraints.maxWidth / constraints.maxHeight;
                       if (isPortrait) {
                         return aspectRatio > 0.55
-                            ? SignUpThickPortrait()
-                            : const SignUpPortrait();
+                            ? SignUpThickPortrait(
+                                emailController: emailController,
+                                passwordController: passwordController,
+                                usernameController: usernameController,
+                                onPress: onPress,
+                              )
+                            : SignUpPortrait(
+                                emailController: emailController,
+                                passwordController: passwordController,
+                                usernameController: usernameController,
+                                onPress: onPress,
+                              );
                       } else {
-                        return SignUpLandscape();
+                        return SignUpLandscape(
+                          emailController: emailController,
+                          passwordController: passwordController,
+                          usernameController: usernameController,
+                          onPress: onPress,
+                        );
                       }
                     },
                   )),

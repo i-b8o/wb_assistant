@@ -121,8 +121,7 @@ class SignInLandscape extends StatelessWidget {
               press: () => {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => const SignUpPage()),
+                      MaterialPageRoute(builder: (context) => SignUpPage()),
                     )
                   }),
         ],
