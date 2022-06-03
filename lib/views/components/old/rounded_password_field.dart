@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../constants.dart';
+import '../../../constants.dart';
 // import '../../controllers/rounded_password_field_obscure_controller.dart';
-import 'components.dart';
+import '../components.dart';
 
-class RoundedPasswordField extends StatelessWidget {
+class OldRoundedPasswordField extends StatelessWidget {
   final ValueChanged<String> onChanged;
-  const RoundedPasswordField({
+  const OldRoundedPasswordField({
     Key? key,
     required this.onChanged,
     required this.height,

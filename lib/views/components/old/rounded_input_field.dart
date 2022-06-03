@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import 'components.dart';
+import '../components.dart';
 
-class RoundedInputField extends StatelessWidget {
+class OldRoundedInputField extends StatelessWidget {
   final String hintText;
   final ValueChanged<String> onChanged;
   final double height, width;
   final bool email, mobile;
-  const RoundedInputField({
+  const OldRoundedInputField({
     Key? key,
     required this.hintText,
     required this.onChanged,

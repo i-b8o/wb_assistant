@@ -63,7 +63,6 @@ class SignUpThickPortrait extends StatelessWidget {
             BtnThickPortrait(
                 text: Constants.signUpBtnText,
                 press: () {
-                  print(emailController.text);
                   if (emailController.text.isNotEmpty &&
                       passwordController.text.isNotEmpty &&
                       usernameController.text.isNotEmpty) {

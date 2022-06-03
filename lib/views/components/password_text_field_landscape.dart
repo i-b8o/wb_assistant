@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../constants.dart';
-import '../../controllers/authentication_controller.dart';
-import '../../controllers/rounded_password_field_obscure_controller.dart';
 
 class PasswordTextFieldLandscape extends StatelessWidget {
   const PasswordTextFieldLandscape({Key? key, required this.controller})

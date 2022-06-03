@@ -22,6 +22,7 @@ class SignUpPage extends StatelessWidget {
       child: BlocListener<SignupBloc, SignupState>(
         listener: (context, state) {
           if (state is SignupFailedState) {
+            print("I`m here ${state.message}");
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(state.message)));
           }

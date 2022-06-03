@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'components.dart';
+import '../components.dart';
 
-class WelcomeBtns extends StatelessWidget {
-  const WelcomeBtns({
+class OldWelcomeBtns extends StatelessWidget {
+  const OldWelcomeBtns({
     Key? key,
     required this.btnText,
     this.signIn = true,
@@ -52,12 +52,12 @@ class WelcomeBtns extends StatelessWidget {
         SizedBox(
           height: width * 0.03,
         ),
-        RoundedButton(
-          height: mobile ? width * 0.15 : width * 0.05,
-          width: mobile ? width * 0.85 : width * 0.3,
-          text: btnText,
-          press: onPressed,
-        ),
+        // RoundedButton(
+        //   height: mobile ? width * 0.15 : width * 0.05,
+        //   width: mobile ? width * 0.85 : width * 0.3,
+        //   text: btnText,
+        //   press: onPressed,
+        // ),
       ],
     );
   }

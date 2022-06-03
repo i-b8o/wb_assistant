@@ -81,7 +81,13 @@ class SignInPortrait extends StatelessWidget {
                   height: size.height * 0.04,
                 ),
                 AlreadyHaveAnAccountCheck(
-                  onPressed: () => {},
+                  onPressed: () => {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SignUpPage()),
+                    )
+                  },
                   fontSize: size.width * 0.03,
                 ),
               ],

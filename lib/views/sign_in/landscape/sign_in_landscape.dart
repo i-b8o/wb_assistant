@@ -9,6 +9,7 @@ import 'package:wb_assistant/views/components/password_text_field_landscape.dart
 import '../../../constants.dart';
 import '../../components/body_large.dart';
 import '../../components/welcome_text_fields.dart';
+import '../../sign_up/sign_up_page.dart';
 
 // Fields looks bad
 class SignInLandscape extends StatelessWidget {
@@ -115,7 +116,15 @@ class SignInLandscape extends StatelessWidget {
               : SizedBox(
                   height: size.height * 0.05,
                 ),
-          BtnLandscape(text: Constants.signInBtnText, press: () => {}),
+          BtnLandscape(
+              text: Constants.signInBtnText,
+              press: () => {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SignUpPage()),
+                    )
+                  }),
         ],
       ),
     );

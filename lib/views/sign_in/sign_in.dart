@@ -5,6 +5,7 @@ import 'landscape/sign_in_landscape.dart';
 import 'portrait/sign_in_portrait.dart';
 import 'thick_portrait/sign_in_thick_portrait.dart';
 
+// Navigator pop all previous SignUps, signIns and Welcomes
 class SignInPage extends StatelessWidget {
   const SignInPage({Key? key}) : super(key: key);
 

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wb_assistant/constants.dart';
 
-class RoundedButton extends StatelessWidget {
+class OldRoundedButton extends StatelessWidget {
   final String text;
   final void Function()? press;
   final Color color, textColor;
-  const RoundedButton({
+  const OldRoundedButton({
     Key? key,
     required this.text,
     required this.press,
