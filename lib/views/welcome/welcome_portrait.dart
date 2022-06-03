@@ -77,7 +77,7 @@ class WelcomePortrait extends StatelessWidget {
                         ),
                         onPressed: () => Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
-                              return const SignInPage();
+                              return SignInPage();
                             })),
                         child: Text(Constants.signInBtnText,
                             style: GoogleFonts.robotoMono(

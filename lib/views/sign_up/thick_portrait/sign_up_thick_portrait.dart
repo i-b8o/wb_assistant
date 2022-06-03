@@ -78,7 +78,7 @@ class SignUpThickPortrait extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const SignInPage()),
+                  MaterialPageRoute(builder: (context) => SignInPage()),
                 );
               },
               signIn: false,

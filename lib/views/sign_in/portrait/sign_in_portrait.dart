@@ -13,11 +13,17 @@ import '../../components/welcome_text_fields.dart';
 import '../../sign_up/sign_up_page.dart';
 
 class SignInPortrait extends StatelessWidget {
-  SignInPortrait({
+  const SignInPortrait({
     Key? key,
+    required this.emailController,
+    required this.passwordController,
+    required this.onPress,
   }) : super(key: key);
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+
+  final TextEditingController emailController;
+  final TextEditingController passwordController;
+  final Function(BuildContext context, TextEditingController email,
+      TextEditingController pass) onPress;
   @override
   Widget build(BuildContext context) {
     print("SignInPortrait");
@@ -25,9 +31,6 @@ class SignInPortrait extends StatelessWidget {
     bool keyboard = MediaQuery.of(context).viewInsets.bottom > 0.0;
     return Column(
       children: [
-        // const WelcomeHeader(
-        //     headerText: Constants.signInHeaderText,
-        //     greetingText: Constants.signInGreetingText),
         keyboard
             ? SizedBox(height: size.height * 0.1)
             : const HeaderThickPortrait(
@@ -58,7 +61,7 @@ class SignInPortrait extends StatelessWidget {
                           Padding(
                             padding: EdgeInsets.only(right: size.width * 0.07),
                             child: TextButton(
-                              onPressed: () => {},
+                              onPressed: () {},
                               child: Text(
                                 "Восстановление пароля",
                                 textAlign: TextAlign.end,
@@ -76,7 +79,11 @@ class SignInPortrait extends StatelessWidget {
                   height: size.height * 0.05,
                 ),
                 BtnThickPortrait(
-                    text: Constants.signInBtnText, press: () => {}),
+                    text: Constants.signInBtnText,
+                    press: () {
+                      print("AAAAAAAAAAAAAAAAAAA");
+                      onPress(context, emailController, passwordController);
+                    }),
                 SizedBox(
                   height: size.height * 0.04,
                 ),

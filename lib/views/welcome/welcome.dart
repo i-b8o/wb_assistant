@@ -12,12 +12,12 @@ class WelcomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: Constants.bgColor,
         body: ResponsiveWidget(
-          portrait: WelcomePortrait(),
-          thickPortrait: WelcomeThickPortrait(),
+          portrait: const WelcomePortrait(),
+          thickPortrait: const WelcomeThickPortrait(),
           landscape: SignInPage(),
         ));
   }

@@ -17,6 +17,8 @@ dependencies:
   webview_flutter: ^3.0.4
   flutter_bloc: ^8.0.1
   bloc: ^8.0.3
+  another_flushbar: ^1.10.29
+
 
   flutter:
     sdk: flutter

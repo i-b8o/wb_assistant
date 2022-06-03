@@ -11,10 +11,8 @@ class SigninSuccessed extends SigninState {
   SigninSuccessed({required this.user});
 }
 
-class EmailNotConfirmed extends SigninState {}
-
-class ValidationFailed extends SigninState {
+class SigninFailedState extends SigninState {
   final String message;
 
-  ValidationFailed({required this.message});
+  SigninFailedState({required this.message});
 }

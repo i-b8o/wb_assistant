@@ -122,7 +122,7 @@ class AuthenticationController extends GetxController {
     String mes = await resend();
 
     if (mes == "") {
-      Get.to(() => const SignInPage());
+      Get.to(() => SignInPage());
       return;
     }
     Get.snackbar(Constants.err, mes);
@@ -151,7 +151,7 @@ class AuthenticationController extends GetxController {
     String mes = await recover();
 
     if (mes == "") {
-      Get.to(() => const SignInPage());
+      Get.to(() => SignInPage());
       return;
     }
     Get.snackbar(Constants.err, mes);

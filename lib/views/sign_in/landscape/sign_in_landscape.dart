@@ -15,9 +15,14 @@ import '../../sign_up/sign_up_page.dart';
 class SignInLandscape extends StatelessWidget {
   SignInLandscape({
     Key? key,
+    required this.emailController,
+    required this.passwordController,
+    required this.onPress,
   }) : super(key: key);
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  final TextEditingController emailController;
+  final TextEditingController passwordController;
+  final void Function(BuildContext context, TextEditingController email,
+      TextEditingController pass) onPress;
   @override
   Widget build(BuildContext context) {
     print('SignInLandscape');
@@ -46,7 +51,12 @@ class SignInLandscape extends StatelessWidget {
                         fontSize: size.height * 0.02),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SignUpPage()),
+                      );
+                    },
                     child: Text(Constants.toReg,
                         style: TextStyle(
                             color: const Color.fromRGBO(54, 133, 240, 1),
