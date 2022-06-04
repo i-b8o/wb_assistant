@@ -4,8 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:wb_assistant/constants.dart';
 
 class ConfirmEmailPortrait extends StatelessWidget {
-  const ConfirmEmailPortrait({Key? key}) : super(key: key);
-
+  const ConfirmEmailPortrait({Key? key, required this.onPress})
+      : super(key: key);
+  final void Function() onPress;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

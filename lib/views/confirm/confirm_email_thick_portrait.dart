@@ -5,8 +5,9 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../constants.dart';
 
 class ConfirmEmailThickPortrait extends StatelessWidget {
-  const ConfirmEmailThickPortrait({Key? key}) : super(key: key);
-
+  const ConfirmEmailThickPortrait({Key? key, required this.onPress})
+      : super(key: key);
+  final void Function() onPress;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -21,7 +22,7 @@ class ConfirmEmailThickPortrait extends StatelessWidget {
           icon: Icon(
             Icons.close,
             color: Colors.black,
-            size: size.width * 0.1,
+            size: size.height * 0.05,
           ),
           onPressed: () {
             Navigator.pop(context);
@@ -32,7 +33,6 @@ class ConfirmEmailThickPortrait extends StatelessWidget {
         children: [
           Image.asset(
             "assets/images/clouds.png",
-            // height: size.height * 0.5,
           ),
           SizedBox(
             height: size.height * 0.12,
@@ -69,7 +69,7 @@ class ConfirmEmailThickPortrait extends StatelessWidget {
               child: Container(
                 color: const Color.fromRGBO(238, 94, 125, 1),
                 child: TextButton(
-                    onPressed: () {},
+                    onPressed: onPress,
                     child: Text(Constants.confirmBtnText,
                         style: GoogleFonts.robotoMono(
                           fontSize: size.height * 0.02,
