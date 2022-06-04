@@ -10,7 +10,6 @@ import '../../../constants.dart';
 import '../../components/btn_landscape.dart';
 import '../../components/components.dart';
 import '../../components/header_landscape.dart';
-import '../../sign_in/sign_in.dart';
 
 class SignUpLandscape extends StatelessWidget {
   const SignUpLandscape({
@@ -31,7 +30,7 @@ class SignUpLandscape extends StatelessWidget {
   Widget build(BuildContext context) {
     bool shrinked = MediaQuery.of(context).size.aspectRatio > 12;
     bool keyboard = MediaQuery.of(context).viewInsets.bottom > 0.0;
-    print("SignUpLarge");
+    print("SignUpLandscape");
     Size size = MediaQuery.of(context).size;
     return BodyLarge(
       child: BlocBuilder<SignupBloc, SignupState>(

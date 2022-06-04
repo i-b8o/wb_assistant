@@ -6,6 +6,7 @@ class PasswordtextfieldBloc
     extends Bloc<PasswordtextfieldEvent, PasswordtextfieldState> {
   bool obscure = true;
   PasswordtextfieldBloc() : super(PasswordtextfieldInitial()) {
+    print("Created PasswordtextfieldBloc");
     on<Pushed>((event, emit) {
       obscure = !obscure;
       emit(PasswordtextfieldPushed(obscure: obscure));

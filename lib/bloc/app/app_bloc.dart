@@ -11,6 +11,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   final _storageRepo = StorageRepository();
 
   AppBloc() : super(AppInitial()) {
+    print("Created AppBloc");
     on<AuthRequest>((event, emit) async {
       print("AppLoadInProgressState");
       emit(AppLoadInProgressState());

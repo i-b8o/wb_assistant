@@ -10,6 +10,7 @@ part 'signup_state.dart';
 class SignupBloc extends Bloc<SignupEvent, SignupState> {
   final _authRepo = AuthRepository();
   SignupBloc() : super(SignupInitial()) {
+    print("Created SignupBloc");
     on<SignupRequest>((event, emit) async {
       final String email = event.email;
       final String username = event.username;

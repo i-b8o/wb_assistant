@@ -83,7 +83,6 @@ class SignInPortrait extends StatelessWidget {
                 BtnThickPortrait(
                     text: Constants.signInBtnText,
                     press: () {
-                      print("AAAAAAAAAAAAAAAAAAA");
                       onPress(context, emailController, passwordController);
                     }),
                 SizedBox(

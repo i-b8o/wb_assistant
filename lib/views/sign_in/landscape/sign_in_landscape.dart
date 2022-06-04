@@ -54,10 +54,7 @@ class SignInLandscape extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => SignUpPage()),
-                      );
+                      alreadyHaveAccountCheckOnPressed(context);
                     },
                     child: Text(Constants.toReg,
                         style: TextStyle(
@@ -131,7 +128,7 @@ class SignInLandscape extends StatelessWidget {
           BtnLandscape(
               text: Constants.signInBtnText,
               press: () {
-                alreadyHaveAccountCheckOnPressed(context);
+                onPress(context, emailController, passwordController);
               }),
         ],
       ),

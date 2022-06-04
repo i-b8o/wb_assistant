@@ -9,38 +9,16 @@ import 'package:wb_assistant/views/welcome/welcome.dart';
 import '../../bloc/app/app_bloc.dart';
 
 // Try to use User-generated schemes (UGS)
-class App extends StatefulWidget {
-  const App({
-    Key? key,
-  }) : super(key: key);
+// class App extends StatefulWidget {
+//   const App({
+//     Key? key,
+//   }) : super(key: key);
 
-  @override
-  State<App> createState() => _AppState();
-}
+//   @override
+//   State<App> createState() => _AppState();
+// }
 
-class _AppState extends State<App> with WidgetsBindingObserver {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addObserver(this);
-  }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    super.didChangeAppLifecycleState(state);
-    switch (state) {
-      case AppLifecycleState.inactive:
-        break;
-      case AppLifecycleState.resumed:
-        setState(() {});
-        break;
-      case AppLifecycleState.paused:
-        break;
-      case AppLifecycleState.detached:
-        break;
-    }
-  }
-
+class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print("App build");

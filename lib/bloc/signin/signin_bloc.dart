@@ -1,5 +1,6 @@
 import 'package:auth_repo/auth_repo.dart';
 import 'package:bloc/bloc.dart';
+import 'package:storage_repo/storage_repo.dart';
 
 import '../../constants.dart';
 import '../../helpers/validate.dart';
@@ -9,8 +10,11 @@ part 'signin_state.dart';
 
 class SigninBloc extends Bloc<SigninEvent, SigninState> {
   final _authRepo = AuthRepository();
+  final _storageRepo = StorageRepository();
   SigninBloc() : super(SigninInitial()) {
+    print("Created SigninBloc");
     on<SigninRequest>((event, emit) async {
+      print("SigninRequest");
       String email = event.email;
       String password = event.password;
       String s = validateEmail(email) + validatePassword(password);
@@ -21,6 +25,7 @@ class SigninBloc extends Bloc<SigninEvent, SigninState> {
           TokenResponse response = await _authRepo.signInUser(email, password);
           String token = response.token;
           if (response.statusCode == 200 && token.isNotEmpty) {
+            await _storageRepo.setJWT(token);
             UserResponse userResponse = await _authRepo.getUser(token);
             if (userResponse.statusCode == 200) {
               if (userResponse.user.type == "none") {

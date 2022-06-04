@@ -8,6 +8,7 @@ part 'confirmemail_state.dart';
 class ConfirmemailBloc extends Bloc<ConfirmEmailEvent, ConfirmemailState> {
   final _authRepo = AuthRepository();
   ConfirmemailBloc() : super(ConfirmemailInitial()) {
+    print("Created ConfirmemailBloc");
     on<ConfirmEmailResendRequest>((event, emit) async {
       try {
         int stastusCode = await _authRepo.resend(event.email, event.password);

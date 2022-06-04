@@ -12,6 +12,8 @@ class AuthProvider {
   static const resendEndPoint = "/auth/update-email-verification-token";
   static const contentType = 'application/json; charset=UTF-8';
   static const contentKey = 'Content-Type';
+  static const accessControlKey = 'Access-Control-Allow-Headers';
+  static const accessControlValue = 'Access-Control-Allow-Origin, Accept';
 
   Future<http.Response> signUpUser(String email, password, username) async {
     final httpResponse = await client.post(
@@ -33,6 +35,7 @@ class AuthProvider {
       Uri.parse('$domen$signInEndPoint'),
       headers: <String, String>{
         contentKey: contentType,
+        accessControlKey: accessControlValue
       },
       body: jsonEncode(<String, String>{
         'Email': email,
