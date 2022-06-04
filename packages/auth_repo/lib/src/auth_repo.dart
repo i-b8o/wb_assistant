@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:auth_repo/auth_repo.dart';
+import 'package:auth_repo/src/models/action_response.dart';
 import 'package:auth_repo/src/provider/auth_provider.dart';
 import 'package:http/http.dart' as http;
 
@@ -61,5 +62,18 @@ class AuthRepository {
     final http.Response response = await authProvider.recover(email);
 
     return response.statusCode;
+  }
+
+  // Since auth API returns status with 200 HTTP status code or any HTTP status code
+  // with message and message is used only for debugging.
+  // actions returns a HTTP status code and a jwt if exists
+  Future<ActionsResponse> actions(String action) async {
+    final http.Response response = await authProvider.actions(action);
+
+    final statusCode = response.statusCode;
+    if (statusCode == 200) {
+      return ActionsResponse.fromJson(jsonDecode(response.body));
+    }
+    return ActionsResponse(status: "", statusCode: statusCode);
   }
 }

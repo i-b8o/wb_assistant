@@ -42,8 +42,10 @@ flutter:
     - assets/images/girl.png
     - assets/images/clouds.png
 
-
-
+  fonts:
+   - family:  Custom
+     fonts:
+      - asset: assets/fonts/Custom.ttf
 
 
 

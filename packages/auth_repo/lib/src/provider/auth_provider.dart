@@ -9,6 +9,7 @@ class AuthProvider {
   static const signInEndPoint = "/auth/sign-in";
   static const recoverEndPoint = "/auth/recover";
   static const detailsInEndPoint = "/account/details";
+  static const actionsInEndPoint = "/account/actions";
   static const resendEndPoint = "/auth/update-email-verification-token";
   static const contentType = 'application/json; charset=UTF-8';
   static const contentKey = 'Content-Type';
@@ -78,6 +79,19 @@ class AuthProvider {
       },
       body: jsonEncode(<String, String>{
         'Email': email,
+      }),
+    );
+    return httpResponse;
+  }
+
+  Future<http.Response> actions(String action) async {
+    final httpResponse = await client.post(
+      Uri.parse('$domen$actionsInEndPoint'),
+      headers: <String, String>{
+        contentKey: contentType,
+      },
+      body: jsonEncode(<String, String>{
+        'action': action,
       }),
     );
     return httpResponse;

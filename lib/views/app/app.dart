@@ -8,17 +8,9 @@ import 'package:wb_assistant/views/welcome/welcome.dart';
 
 import '../../bloc/app/app_bloc.dart';
 
-// Try to use User-generated schemes (UGS)
-// class App extends StatefulWidget {
-//   const App({
-//     Key? key,
-//   }) : super(key: key);
-
-//   @override
-//   State<App> createState() => _AppState();
-// }
-
 class App extends StatelessWidget {
+  const App({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     print("App build");
