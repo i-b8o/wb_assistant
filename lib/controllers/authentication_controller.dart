@@ -5,8 +5,6 @@ import 'package:wb_assistant/controllers/local_storage_controller.dart';
 
 import 'package:wb_assistant/views/sign_in/sign_in.dart';
 
-import '../views/confirm/confirm_email.dart';
-
 class AuthenticationController extends GetxController {
   String username = "";
   String email = "";
@@ -52,7 +50,7 @@ class AuthenticationController extends GetxController {
       print(message);
       if (message.isEmpty) {
         print("message empty");
-        Get.to(() => const ConfirmEmailPage());
+        // Get.to(() => const ConfirmEmailPage());
         return;
       }
       print("After");

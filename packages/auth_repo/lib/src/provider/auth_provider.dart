@@ -52,12 +52,11 @@ class AuthProvider {
     return httpResponse;
   }
 
-  Future<http.Response> resend(String token, email, password) async {
+  Future<http.Response> resend(String email, password) async {
     final httpResponse = await client.post(
       Uri.parse('$domen$resendEndPoint'),
       headers: <String, String>{
         contentKey: contentType,
-        'Authorization': 'Bearer $token',
       },
       body: jsonEncode(<String, String>{
         'Email': email,

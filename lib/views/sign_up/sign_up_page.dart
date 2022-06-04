@@ -1,9 +1,11 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wb_assistant/views/confirm/confirm_email.dart';
 
 import '../../bloc/signup/signup_bloc.dart';
 import '../../constants.dart';
+import '../sign_in/sign_in.dart';
 import 'landscape/sign_up_landscape.dart';
 import 'portrait/sign_up_portrait.dart';
 import 'thick_portrait/sign_up_thick_portrait.dart';
@@ -23,6 +25,13 @@ class SignUpPage extends StatelessWidget {
     }
   }
 
+  void alreadyHaveAccountCheckOnPressed(BuildContext context) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => SignInPage()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     print('SignUpPage');
@@ -32,15 +41,20 @@ class SignUpPage extends StatelessWidget {
       child: BlocListener<SignupBloc, SignupState>(
         listener: (context, state) {
           if (state is SignupFailedState) {
-            print("I`m here ${state.message}");
-            ScaffoldMessenger.of(context)
-                .showSnackBar(SnackBar(content: Text(state.message)));
+            Flushbar(
+              title: "Ошибка",
+              message: state.message,
+              duration: const Duration(seconds: 3),
+            ).show(context);
           }
         },
         child: BlocBuilder<SignupBloc, SignupState>(
           builder: (context, state) {
             if (state is SignupSuccessState) {
-              return const ConfirmEmailPage();
+              return ConfirmEmailPage(
+                email: state.email,
+                password: state.password,
+              );
             }
             return Scaffold(
               resizeToAvoidBottomInset: false,
@@ -61,8 +75,12 @@ class SignUpPage extends StatelessWidget {
                                 passwordController: passwordController,
                                 usernameController: usernameController,
                                 onPress: onPress,
+                                alreadyHaveAccountCheckOnPressed:
+                                    alreadyHaveAccountCheckOnPressed,
                               )
                             : SignUpPortrait(
+                                alreadyHaveAccountCheckOnPressed:
+                                    alreadyHaveAccountCheckOnPressed,
                                 emailController: emailController,
                                 passwordController: passwordController,
                                 usernameController: usernameController,
@@ -70,6 +88,8 @@ class SignUpPage extends StatelessWidget {
                               );
                       } else {
                         return SignUpLandscape(
+                          alreadyHaveAccountCheckOnPressed:
+                              alreadyHaveAccountCheckOnPressed,
                           emailController: emailController,
                           passwordController: passwordController,
                           usernameController: usernameController,

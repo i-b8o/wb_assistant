@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../constants.dart';
-import '../../controllers/authentication_controller.dart';
 
 class EmailTextFieldThickPortrait extends StatelessWidget {
   const EmailTextFieldThickPortrait({Key? key, required this.controller})

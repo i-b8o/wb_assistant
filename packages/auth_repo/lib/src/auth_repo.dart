@@ -49,9 +49,8 @@ class AuthRepository {
 
   // Since auth API does not return any payload except a HTTP status code
   // resend returns a status code only
-  Future<int> resend(String token, email, password) async {
-    final http.Response response =
-        await authProvider.resend(token, email, password);
+  Future<int> resend(email, password) async {
+    final http.Response response = await authProvider.resend(email, password);
 
     return response.statusCode;
   }

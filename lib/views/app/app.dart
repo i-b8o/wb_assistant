@@ -29,19 +29,15 @@ class _AppState extends State<App> with WidgetsBindingObserver {
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
     switch (state) {
-      // case AppLifecycleState.inactive:
-      //   print('appLifeCycleState inactive');
-      //   break;
+      case AppLifecycleState.inactive:
+        break;
       case AppLifecycleState.resumed:
-        print('appLifeCycleState resumed');
         setState(() {});
         break;
-      // case AppLifecycleState.paused:
-      //   print('appLifeCycleState paused');
-      //   break;
-      // case AppLifecycleState.detached:
-      //   print('appLifeCycleState detached');
-      //   break;
+      case AppLifecycleState.paused:
+        break;
+      case AppLifecycleState.detached:
+        break;
     }
   }
 

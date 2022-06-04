@@ -9,7 +9,6 @@ import 'package:wb_assistant/views/components/password_text_field_thick_portrait
 import '../../../bloc/signup/signup_bloc.dart';
 import '../../../constants.dart';
 import '../../components/components.dart';
-import '../../sign_in/sign_in.dart';
 
 // TODO use MediaQueryData widget
 class SignUpPortrait extends StatelessWidget {
@@ -19,20 +18,20 @@ class SignUpPortrait extends StatelessWidget {
     required this.usernameController,
     required this.passwordController,
     required this.onPress,
+    required this.alreadyHaveAccountCheckOnPressed,
   }) : super(key: key);
   final TextEditingController emailController;
   final TextEditingController usernameController;
   final TextEditingController passwordController;
   final void Function(BuildContext context, TextEditingController email,
       TextEditingController pass, TextEditingController user) onPress;
+  final void Function(BuildContext context) alreadyHaveAccountCheckOnPressed;
   @override
   Widget build(BuildContext context) {
     print('SignUpPortrait');
     Size size = MediaQuery.of(context).size;
     bool keyboard = MediaQuery.of(context).viewInsets.bottom > 0.0;
-    final emailController = TextEditingController();
-    final usernameController = TextEditingController();
-    final passwordController = TextEditingController();
+
     return BlocBuilder<SignupBloc, SignupState>(
       builder: (context, state) {
         return Scaffold(
@@ -83,10 +82,7 @@ class SignUpPortrait extends StatelessWidget {
               ),
               AlreadyHaveAnAccountCheck(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SignInPage()),
-                  );
+                  alreadyHaveAccountCheckOnPressed(context);
                 },
                 signIn: false,
                 fontSize: size.width * 0.04,

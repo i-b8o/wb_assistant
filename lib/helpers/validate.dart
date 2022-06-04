@@ -1,12 +1,21 @@
 import '../constants.dart';
 
 String validateEmail(String email) {
+  RegExp emailValid = RegExp(
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+
   if (email.length <= 5) {
     return Constants.lessThanInEmailValidationErr;
   } else if (email.contains(" ")) {
     return Constants.spaceInEmailValidationErr;
+  } else if (!email.contains("@")) {
+    return Constants.emailValidationErrWhereDog;
+  } else if (!email.contains(".")) {
+    return Constants.emailValidationErrWherePoint;
+  } else if (emailValid.hasMatch(email)) {
+    return "";
   }
-  return "";
+  return Constants.emailValidationErr;
 }
 
 String validatePassword(String password) {

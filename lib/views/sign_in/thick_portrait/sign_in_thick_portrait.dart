@@ -10,7 +10,6 @@ import '../../components/btn_thick_portrait.dart';
 import '../../components/password_text_field_thick_portrait.dart';
 import '../../components/welcome_text_fields.dart';
 import '../../sign_up/sign_up_page.dart';
-import '../sign_in.dart';
 
 class SignInThickPortrait extends StatelessWidget {
   const SignInThickPortrait({
@@ -18,11 +17,13 @@ class SignInThickPortrait extends StatelessWidget {
     required this.emailController,
     required this.passwordController,
     required this.onPress,
+    required this.alreadyHaveAccountCheckOnPressed,
   }) : super(key: key);
   final TextEditingController emailController;
   final TextEditingController passwordController;
   final void Function(BuildContext context, TextEditingController email,
       TextEditingController pass) onPress;
+  final void Function(BuildContext context) alreadyHaveAccountCheckOnPressed;
   @override
   Widget build(BuildContext context) {
     print("SignInThickPortrait");
@@ -88,10 +89,7 @@ class SignInThickPortrait extends StatelessWidget {
                 ),
                 AlreadyHaveAnAccountCheck(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => SignUpPage()),
-                    );
+                    alreadyHaveAccountCheckOnPressed(context);
                   },
                   fontSize: size.width * 0.03,
                 ),

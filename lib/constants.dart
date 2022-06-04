@@ -36,6 +36,10 @@ class Constants {
   static const String lessThanInEmailValidationErr =
       "Email должен быть не менее 6 символов (x@y.zz)\n";
   static const String emailValidationErr = "Неверный адрес электронной почты\n";
+  static const String emailValidationErrWhereDog =
+      "Адрес электронной почты должен содержать @\n";
+  static const String emailValidationErrWherePoint =
+      "Адрес электронной почты должен содержать '.'\n";
   static const String spaceInEmailValidationErr =
       "Адрес электронной почты не может содержать пробел.\n";
   static const String lessThanInPasswordValidationErr =

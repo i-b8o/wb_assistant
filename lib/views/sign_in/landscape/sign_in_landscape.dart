@@ -18,11 +18,13 @@ class SignInLandscape extends StatelessWidget {
     required this.emailController,
     required this.passwordController,
     required this.onPress,
+    required this.alreadyHaveAccountCheckOnPressed,
   }) : super(key: key);
   final TextEditingController emailController;
   final TextEditingController passwordController;
   final void Function(BuildContext context, TextEditingController email,
       TextEditingController pass) onPress;
+  final void Function(BuildContext context) alreadyHaveAccountCheckOnPressed;
   @override
   Widget build(BuildContext context) {
     print('SignInLandscape');
@@ -128,12 +130,9 @@ class SignInLandscape extends StatelessWidget {
                 ),
           BtnLandscape(
               text: Constants.signInBtnText,
-              press: () => {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => SignUpPage()),
-                    )
-                  }),
+              press: () {
+                alreadyHaveAccountCheckOnPressed(context);
+              }),
         ],
       ),
     );

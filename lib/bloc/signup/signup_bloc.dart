@@ -11,18 +11,22 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
   final _authRepo = AuthRepository();
   SignupBloc() : super(SignupInitial()) {
     on<SignupRequest>((event, emit) async {
-      String s = validateEmail(event.email) +
-          validateName(event.username) +
-          validatePassword(event.password);
+      final String email = event.email;
+      final String username = event.username;
+      final String password = event.password;
+
+      String s = validateEmail(email) +
+          validateName(username) +
+          validatePassword(password);
       if (s.isNotEmpty) {
         emit(SignupFailedState(message: s));
       } else {
         try {
-          int statusCode = await _authRepo.signUpUser(
-              event.email, event.password, event.username);
+          int statusCode =
+              await _authRepo.signUpUser(email, password, username);
 
           if (statusCode == 200) {
-            emit(SignupSuccessState());
+            emit(SignupSuccessState(email: email, password: password));
           } else if (statusCode == 409) {
             emit(SignupFailedState(message: Constants.signUpConflict));
           } else if (statusCode == 500) {

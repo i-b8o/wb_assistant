@@ -1,6 +1,5 @@
 import 'package:auth_repo/auth_repo.dart';
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
 
 import '../../constants.dart';
 import '../../helpers/validate.dart';
@@ -12,22 +11,24 @@ class SigninBloc extends Bloc<SigninEvent, SigninState> {
   final _authRepo = AuthRepository();
   SigninBloc() : super(SigninInitial()) {
     on<SigninRequest>((event, emit) async {
-      print("AAAAAAAAAAAA0 ${event.email} ${event.password}");
-      String s = validateEmail(event.email) + validatePassword(event.password);
+      String email = event.email;
+      String password = event.password;
+      String s = validateEmail(email) + validatePassword(password);
       if (s.isNotEmpty) {
         emit(SigninFailedState(message: s));
       } else {
         try {
-          print("AAAAAAAAAAAA1");
-          TokenResponse response =
-              await _authRepo.signInUser(event.email, event.password);
-          print("AAAAAAAAAAAA2");
-          if (response.statusCode == 200 && response.token.isNotEmpty) {
-            print("AAAAAAAAAAAA3");
-            UserResponse userResponse = await _authRepo.getUser(response.token);
+          TokenResponse response = await _authRepo.signInUser(email, password);
+          String token = response.token;
+          if (response.statusCode == 200 && token.isNotEmpty) {
+            UserResponse userResponse = await _authRepo.getUser(token);
             if (userResponse.statusCode == 200) {
-              print("AAAAAAAAAAAA4");
-              emit(SigninSuccessed(user: userResponse.user));
+              if (userResponse.user.type == "none") {
+                emit(EmailIsNotConfirmed(
+                    token: token, email: email, password: password));
+              } else {
+                emit(SigninSuccessed(user: userResponse.user));
+              }
             } else if (response.statusCode == 400) {
               emit(SigninFailedState(message: Constants.badRequest));
             } else {
@@ -41,7 +42,7 @@ class SigninBloc extends Bloc<SigninEvent, SigninState> {
             emit(SigninFailedState(message: Constants.badRequest));
           }
         } catch (e) {
-          print("Error in SignupBloc: $e");
+          print("SigninBloc Error: $e");
         }
       }
     });

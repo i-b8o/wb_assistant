@@ -18,12 +18,14 @@ class SignInPortrait extends StatelessWidget {
     required this.emailController,
     required this.passwordController,
     required this.onPress,
+    required this.alreadyHaveAccountCheckOnPressed,
   }) : super(key: key);
 
   final TextEditingController emailController;
   final TextEditingController passwordController;
   final Function(BuildContext context, TextEditingController email,
       TextEditingController pass) onPress;
+  final void Function(BuildContext context) alreadyHaveAccountCheckOnPressed;
   @override
   Widget build(BuildContext context) {
     print("SignInPortrait");
@@ -88,11 +90,8 @@ class SignInPortrait extends StatelessWidget {
                   height: size.height * 0.04,
                 ),
                 AlreadyHaveAnAccountCheck(
-                  onPressed: () => {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => SignUpPage()),
-                    )
+                  onPressed: () {
+                    alreadyHaveAccountCheckOnPressed(context);
                   },
                   fontSize: size.width * 0.03,
                 ),

@@ -6,7 +6,13 @@ import 'confirm_email_portrait.dart';
 import 'confirm_email_thick_portrait.dart';
 
 class ConfirmEmailPage extends StatelessWidget {
-  const ConfirmEmailPage({Key? key}) : super(key: key);
+  const ConfirmEmailPage({
+    Key? key,
+    required this.email,
+    required this.password,
+  }) : super(key: key);
+  final String email;
+  final String password;
 
   @override
   Widget build(BuildContext context) {

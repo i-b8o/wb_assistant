@@ -19,13 +19,14 @@ class SignUpLandscape extends StatelessWidget {
     required this.usernameController,
     required this.passwordController,
     required this.onPress,
+    required this.alreadyHaveAccountCheckOnPressed,
   }) : super(key: key);
   final TextEditingController emailController;
   final TextEditingController usernameController;
   final TextEditingController passwordController;
   final void Function(BuildContext context, TextEditingController email,
       TextEditingController pass, TextEditingController user) onPress;
-
+  final void Function(BuildContext context) alreadyHaveAccountCheckOnPressed;
   @override
   Widget build(BuildContext context) {
     bool shrinked = MediaQuery.of(context).size.aspectRatio > 12;
@@ -61,12 +62,8 @@ class SignUpLandscape extends StatelessWidget {
                                 : size.height * 0.02),
                       ),
                       TextButton(
-                        onPressed: () => {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SignInPage()),
-                          )
+                        onPressed: () {
+                          alreadyHaveAccountCheckOnPressed(context);
                         },
                         child: Text(Constants.signInBtnText,
                             style: TextStyle(
