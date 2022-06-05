@@ -33,7 +33,7 @@ class WelcomeThickPortrait extends StatelessWidget {
             child: Text("Какой-то очень умный заголовок",
                 textAlign: TextAlign.center,
                 style: GoogleFonts.robotoMono(
-                  color: const Color.fromRGBO(55, 48, 74, 1),
+                  color: Constants.headerColor,
                   fontSize: size.height * 0.04,
                   fontWeight: FontWeight.bold,
                 )),
@@ -82,7 +82,7 @@ class WelcomeThickPortrait extends StatelessWidget {
                             style: GoogleFonts.robotoMono(
                               fontWeight: FontWeight.bold,
                               fontSize: size.width * 0.03,
-                              color: const Color.fromRGBO(55, 48, 74, 1),
+                              color: Constants.headerColor,
                             )))),
                 Container(
                     width: size.width * 0.4,
@@ -104,7 +104,7 @@ class WelcomeThickPortrait extends StatelessWidget {
                             style: GoogleFonts.robotoMono(
                               fontWeight: FontWeight.bold,
                               fontSize: size.width * 0.03,
-                              color: const Color.fromRGBO(55, 48, 74, 1),
+                              color: Constants.headerColor,
                             )))),
               ],
             ),

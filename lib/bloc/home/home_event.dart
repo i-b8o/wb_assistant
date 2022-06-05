@@ -1,4 +1,9 @@
 part of 'home_bloc.dart';
 
-@immutable
 abstract class HomeEvent {}
+
+class BottomNavItemPushedEvent extends HomeEvent {
+  final int index;
+
+  BottomNavItemPushedEvent(this.index);
+}

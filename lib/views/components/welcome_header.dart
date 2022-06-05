@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../constants.dart';
+
 class WelcomeHeader extends StatelessWidget {
   const WelcomeHeader({
     Key? key,
@@ -25,7 +27,7 @@ class WelcomeHeader extends StatelessWidget {
           Text(headerText,
               textAlign: TextAlign.center,
               style: GoogleFonts.robotoMono(
-                color: const Color.fromRGBO(55, 48, 74, 1),
+                color: Constants.headerColor,
                 fontSize: mobile ? width * 0.06 : width * 0.02,
                 fontWeight: FontWeight.bold,
               )),

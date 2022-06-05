@@ -3,9 +3,13 @@ import 'package:flutter/material.dart';
 class Constants {
   static const greenColor = Color.fromRGBO(0, 182, 92, 1);
   static const bgColor = Color.fromRGBO(224, 222, 229, 1);
+
+  static const headerColor = Color.fromRGBO(55, 48, 74, 1);
+
   static const pinkColor = Color.fromRGBO(222, 157, 255, 1);
   static const greyColor = Color.fromRGBO(198, 194, 205, 1);
-  static const lightGreyColor = Color.fromRGBO(246, 244, 253, 1);
+  static const lightGreyColor = Color.fromRGBO(243, 249, 255, 1);
+
   static const azureColor = Color.fromRGBO(24, 59, 102, 1);
   static const btnColor = Color.fromRGBO(248, 107, 102, 1);
 

@@ -12,18 +12,30 @@
 ///       - asset: fonts/Custom.ttf
 ///
 /// 
-/// * Iconic, Copyright (C) 2012 by P.J. Onori
-///         Author:    P.J. Onori
-///         License:   SIL (http://scripts.sil.org/OFL)
-///         Homepage:  http://somerandomdude.com/work/iconic/
-/// * Linecons, Copyright (C) 2013 by Designmodo
-///         Author:    Designmodo for Smashing Magazine
-///         License:   CC BY ()
-///         Homepage:  http://designmodo.com/linecons-free/
 /// * Linearicons Free, Copyright (C) Linearicons.com
 ///         Author:    Perxis
 ///         License:   CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
 ///         Homepage:  https://linearicons.com
+/// * Material Design Icons, Copyright (C) Google, Inc
+///         Author:    Google
+///         License:   Apache 2.0 (https://www.apache.org/licenses/LICENSE-2.0)
+///         Homepage:  https://design.google.com/icons/
+/// * Linecons, Copyright (C) 2013 by Designmodo
+///         Author:    Designmodo for Smashing Magazine
+///         License:   CC BY ()
+///         Homepage:  http://designmodo.com/linecons-free/
+/// * Web Symbols, Copyright (c) 2011 by Just Be Nice studio. All rights reserved.
+///         Author:    Just Be Nice studio
+///         License:   SIL (http://scripts.sil.org/OFL)
+///         Homepage:  http://www.justbenicestudio.com/
+/// * Font Awesome 5, Copyright (C) 2016 by Dave Gandy
+///         Author:    Dave Gandy
+///         License:   SIL (https://github.com/FortAwesome/Font-Awesome/blob/master/LICENSE.txt)
+///         Homepage:  http://fortawesome.github.com/Font-Awesome/
+/// * Octicons, Copyright (C) 2020 by GitHub Inc.
+///         Author:    GitHub
+///         License:   MIT (http://opensource.org/licenses/mit-license.php)
+///         Homepage:  https://primer.style/octicons/
 ///
 import 'package:flutter/widgets.dart';
 
@@ -34,7 +46,12 @@ class Custom {
   static const String? _kFontPkg = null;
 
   static const IconData home = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData key = IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData person = IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData cog = IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData security = IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData logout = IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData notifications = IconData(0xe805, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData alarm = IconData(0xe858, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData lock = IconData(0xf023, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData package = IconData(0xf383, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

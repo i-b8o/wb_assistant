@@ -21,7 +21,7 @@ class SignUpThickPortraitHeader extends StatelessWidget {
             Text(Constants.signUpHeaderText,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.robotoMono(
-                  color: const Color.fromRGBO(55, 48, 74, 1),
+                  color: Constants.headerColor,
                   fontSize: size.width * 0.05,
                   fontWeight: FontWeight.bold,
                 )),

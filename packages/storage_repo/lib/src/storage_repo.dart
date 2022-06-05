@@ -11,4 +11,24 @@ class StorageRepository {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('jwt', jwt);
   }
+
+  Future<void> setApiKey(String key) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('api-key', key);
+  }
+
+  Future<void> setApiKeyNew(String key) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('new-api-key', key);
+  }
+
+  Future<void> deleteApiKey() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove('api-key');
+  }
+
+  Future<void> deleteApiKeyNew() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove('new-api-key');
+  }
 }

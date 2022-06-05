@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../constants.dart';
+
 class HeaderLandscape extends StatelessWidget {
   const HeaderLandscape(
       {Key? key, required this.headerText, required this.greetingText})
@@ -20,7 +22,7 @@ class HeaderLandscape extends StatelessWidget {
           Text(headerText,
               textAlign: TextAlign.center,
               style: GoogleFonts.robotoMono(
-                color: const Color.fromRGBO(55, 48, 74, 1),
+                color: Constants.headerColor,
                 fontSize: size.height * 0.035,
                 fontWeight: FontWeight.bold,
               )),

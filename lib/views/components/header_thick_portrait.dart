@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../constants.dart';
+
 class HeaderThickPortrait extends StatelessWidget {
   const HeaderThickPortrait(
       {Key? key, required this.headerText, required this.greetingText})
@@ -20,7 +22,7 @@ class HeaderThickPortrait extends StatelessWidget {
             Text(headerText,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.robotoMono(
-                  color: const Color.fromRGBO(55, 48, 74, 1),
+                  color: Constants.headerColor,
                   fontSize: size.width * 0.05,
                   fontWeight: FontWeight.bold,
                 )),
