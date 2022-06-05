@@ -26,6 +26,7 @@ class ApiKey extends StatelessWidget {
       builder: (context, state) {
         return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           TextField(
+            keyboardType: TextInputType.none,
             style: TextStyle(fontSize: size.height * 0.02),
             textAlignVertical: TextAlignVertical.center,
             controller: apiController,
@@ -60,6 +61,7 @@ class ApiKey extends StatelessWidget {
             height: size.height * 0.1,
           ),
           TextField(
+            keyboardType: TextInputType.none,
             style: TextStyle(fontSize: size.height * 0.02),
             textAlignVertical: TextAlignVertical.center,
             controller: apiNewController,
