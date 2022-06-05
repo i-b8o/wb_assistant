@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wb_assistant/bloc/settings/settings_bloc.dart';
 import 'package:wb_assistant/views/components/btn_thick_portrait.dart';
+import 'package:wb_assistant/views/web_view/web_view.dart';
 
 class ApiKey extends StatelessWidget {
   ApiKey({Key? key}) : super(key: key);
@@ -98,6 +99,14 @@ class ApiKey extends StatelessWidget {
               text: "Вернуться назад",
               press: () {
                 context.read<SettingsBloc>().add(Back());
+              }),
+          BtnThickPortrait(
+              text: "Перейти",
+              press: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (BuildContext context) {
+                  return WebViewPage();
+                }));
               }),
         ]);
       },
