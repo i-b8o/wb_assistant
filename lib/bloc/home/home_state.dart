@@ -8,4 +8,9 @@ class SupplyState extends HomeState {}
 
 class AlarmState extends HomeState {}
 
-class SettingsState extends HomeState {}
+class SettingsState extends HomeState {
+  final int statusCode;
+  final List<Income>? incomes;
+
+  SettingsState(this.statusCode, this.incomes);
+}

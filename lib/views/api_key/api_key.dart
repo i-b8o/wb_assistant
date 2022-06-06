@@ -9,7 +9,9 @@ class ApiKey extends StatelessWidget {
   final TextEditingController apiController = TextEditingController();
   final TextEditingController apiNewController = TextEditingController();
   void onPressApi(BuildContext context, TextEditingController api) {
+    print("11111111111");
     if (api.text.isNotEmpty) {
+      print("22222222222");
       context.read<SettingsBloc>().add(ApiKeyPasted(api.text));
     }
   }
@@ -55,7 +57,7 @@ class ApiKey extends StatelessWidget {
           BtnThickPortrait(
             text: "Добавить ключ API",
             press: () {
-              onPressApi;
+              onPressApi(context, apiController);
             },
           ),
           SizedBox(
@@ -90,7 +92,7 @@ class ApiKey extends StatelessWidget {
           BtnThickPortrait(
               text: "Добавить ключ к новому API",
               press: () {
-                onPressNewApi;
+                onPressNewApi(context, apiNewController);
               }),
           SizedBox(
             height: size.height * 0.05,

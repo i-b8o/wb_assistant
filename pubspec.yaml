@@ -27,7 +27,9 @@ dependencies:
   auth_repo:
     path: packages/auth_repo
   storage_repo:
-    path: packages/storage_repo  
+    path: packages/storage_repo
+  wb_api_repo:
+    path: packages/wb_api_repo
 
 dev_dependencies:
   flutter_test:

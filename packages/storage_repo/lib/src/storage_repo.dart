@@ -7,12 +7,19 @@ class StorageRepository {
     return prefs.getString("jwt") ?? '';
   }
 
+  Future<String> getApiKey() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    print("Get from storage: ${prefs.getString("api-key") ?? ''}");
+    return prefs.getString("api-key") ?? '';
+  }
+
   Future<void> setJWT(String jwt) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('jwt', jwt);
   }
 
   Future<void> setApiKey(String key) async {
+    print(key);
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('api-key', key);
   }
