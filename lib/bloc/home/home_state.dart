@@ -4,13 +4,19 @@ abstract class HomeState {}
 
 class HomeInitial extends HomeState {}
 
-class SupplyState extends HomeState {}
+class SupplyState extends HomeState {
+  final int statusCode;
+  final List<Income> incomes;
+
+  SupplyState(this.statusCode, this.incomes);
+}
 
 class AlarmState extends HomeState {}
 
-class SettingsState extends HomeState {
-  final int statusCode;
-  final List<Income>? incomes;
+class FaildState extends HomeState {
+  final String message;
 
-  SettingsState(this.statusCode, this.incomes);
+  FaildState(this.message);
 }
+
+class SettingsState extends HomeState {}

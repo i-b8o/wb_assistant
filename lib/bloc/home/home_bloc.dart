@@ -14,24 +14,27 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       if (index == 0) {
         emit(HomeInitial());
       } else if (index == 1) {
-        emit(SupplyState());
-      } else if (index == 2) {
-        emit(AlarmState());
-      } else if (index == 3) {
         try {
           String key = await storageRepository.getApiKey();
           IncomeResponse incomeResponse = await wbApiRepository.getV1Incomes(
               "2017-03-25T21:00:00.000Z", key);
           int statusCode = incomeResponse.statusCode;
           if (statusCode == 200) {
-            emit(SettingsState(200, incomeResponse.incomes));
+            List<Income> income = incomeResponse.incomes;
+            if (income.isNotEmpty) {
+              emit(SupplyState(200, income));
+            } else {
+              emit(FaildState(statusCode.toString()));
+            }
           } else {
-            emit(SettingsState(statusCode, incomeResponse.incomes));
+            emit(SupplyState(statusCode, incomeResponse.incomes));
           }
         } catch (e) {
           print("HomeBloc error: $e");
         }
-      }
+      } else if (index == 2) {
+        emit(AlarmState());
+      } else if (index == 3) {}
     });
   }
 }

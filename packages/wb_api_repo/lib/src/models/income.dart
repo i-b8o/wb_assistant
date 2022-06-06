@@ -1,9 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class IncomeResponse {
-  List<Income>? incomes;
+  List<Income> incomes;
   int statusCode;
   IncomeResponse({
-    this.incomes,
+    required this.incomes,
     required this.statusCode,
   });
 }

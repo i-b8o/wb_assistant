@@ -17,7 +17,7 @@ class WBApiRepository {
           .toList();
       return IncomeResponse(incomes: incomes, statusCode: 200);
     }
-    return IncomeResponse(statusCode: response.statusCode);
+    return IncomeResponse(statusCode: response.statusCode, incomes: []);
   }
   // // Since wb_api API does not return any payload except a HTTP status code
   // // signUpUser returns a status code only

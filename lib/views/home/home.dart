@@ -137,8 +137,10 @@ class Home extends StatelessWidget {
                         ])
                   : (state is SupplyState)
                       ? Container(
-                          child: Text("Поставки"),
-                        )
+                          child: ListView(
+                          children:
+                              state.incomes.map((e) => Text(e.date)).toList(),
+                        ))
                       : (state is AlarmState)
                           ? Container(
                               child: Text("Уведомления"),
