@@ -143,7 +143,7 @@ class Home extends StatelessWidget {
                         ))
                       : (state is AlarmState)
                           ? Container(
-                              child: Text("Уведомления"),
+                              child: Text("Уведомления."),
                             )
                           : (state is SettingsState)
                               ? SettingsPage()
