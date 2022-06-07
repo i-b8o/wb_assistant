@@ -41,7 +41,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         }
       } else if (index == 2) {
         emit(AlarmState());
-      } else if (index == 3) {}
+      } else if (index == 3) {
+        emit(SettingsState());
+      }
     });
   }
 }
