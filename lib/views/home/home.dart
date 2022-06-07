@@ -150,7 +150,7 @@ class Home extends StatelessWidget {
                         ? Container(
                             child: ListView(
                             children: state.incomes
-                                .map((e) => Row(
+                                .map((e) => Column(
                                       children: [
                                         Container(
                                             width: size.width * 0.5,
@@ -162,6 +162,13 @@ class Home extends StatelessWidget {
                                         Container(
                                             width: size.width * 0.5,
                                             child: Text(e.dateTime.toString())),
+                                        Container(
+                                            width: size.width * 0.5,
+                                            child: Text(e.items.length > 0
+                                                ? e.items.first.barCode +
+                                                    " " +
+                                                    e.items[1].barCode
+                                                : "")),
                                       ],
                                     ))
                                 .toList(),
