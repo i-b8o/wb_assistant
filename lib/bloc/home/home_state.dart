@@ -6,7 +6,7 @@ class HomeInitial extends HomeState {}
 
 class SupplyState extends HomeState {
   final int statusCode;
-  final List<Income> incomes;
+  final List<Supply> incomes;
 
   SupplyState(this.statusCode, this.incomes);
 }
@@ -16,7 +16,7 @@ class AlarmState extends HomeState {}
 class FaildState extends HomeState {
   final String message;
 
-  FaildState(this.message);
+  FaildState({required this.message});
 }
 
 class SettingsState extends HomeState {}

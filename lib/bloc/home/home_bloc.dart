@@ -11,22 +11,29 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(HomeInitial()) {
     on<BottomNavItemPushedEvent>((event, emit) async {
       int index = event.index;
+      print('index');
       if (index == 0) {
         emit(HomeInitial());
       } else if (index == 1) {
         try {
+          print('Try');
           String key = await storageRepository.getApiKey();
+          if (key.isEmpty) {
+            emit(FaildState(message: "Необходимо сначала добавить ключ API"));
+          }
           IncomesResponse incomeResponse = await wbApiRepository.getV1Incomes(
               "2017-03-25T21:00:00.000Z", key);
           int statusCode = incomeResponse.statusCode;
           if (statusCode == 200) {
-            List<Income> incomes = incomeResponse.items;
-            if (incomes.isNotEmpty) {
-              emit(SupplyState(200, incomes));
+            print('StatusCode: $statusCode');
+            List<Supply> supplies = incomeResponse.items;
+            if (supplies.isNotEmpty) {
+              emit(SupplyState(200, supplies));
             } else {
-              emit(FaildState(statusCode.toString()));
+              emit(FaildState(message: "statusCode.toString()"));
             }
           } else {
+            print('StatusCode: $statusCode');
             emit(SupplyState(statusCode, incomeResponse.items));
           }
         } catch (e) {

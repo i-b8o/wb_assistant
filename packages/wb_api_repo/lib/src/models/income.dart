@@ -1,5 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:wb_api_repo/src/models/supply.dart';
+import 'models.dart';
 
 class IncomesResponse {
   List<Supply> items;
