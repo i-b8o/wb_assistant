@@ -1,9 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-class IncomeResponse {
-  List<Income> incomes;
+import 'package:wb_api_repo/src/models/supply.dart';
+
+class IncomesResponse {
+  List<Supply> items;
   int statusCode;
-  IncomeResponse({
-    required this.incomes,
+  IncomesResponse({
+    required this.items,
     required this.statusCode,
   });
 }
