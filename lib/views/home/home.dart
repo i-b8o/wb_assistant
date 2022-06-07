@@ -138,8 +138,9 @@ class Home extends StatelessWidget {
                   : (state is SupplyState)
                       ? Container(
                           child: ListView(
-                          children:
-                              state.incomes.map((e) => Text(e.date)).toList(),
+                          children: state.incomes
+                              .map((e) => Image.network(e.img))
+                              .toList(),
                         ))
                       : (state is AlarmState)
                           ? Container(

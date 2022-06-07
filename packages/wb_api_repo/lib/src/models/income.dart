@@ -14,45 +14,53 @@ class Income {
   final String date;
   final String lastChangeDate;
   final String supplierArticle;
-  final int techSize;
-  final int barcode;
+  final String techSize;
+  final String barcode;
   final int quantity;
   final int totalPrice;
   final String dateClose;
   final String warehouseName;
   final int nmId;
   final String status;
+  final String img;
 
-  const Income(
-      {required this.incomeId,
-      required this.number,
-      required this.date,
-      required this.lastChangeDate,
-      required this.supplierArticle,
-      required this.techSize,
-      required this.barcode,
-      required this.quantity,
-      required this.totalPrice,
-      required this.dateClose,
-      required this.warehouseName,
-      required this.nmId,
-      required this.status});
+  const Income({
+    required this.incomeId,
+    required this.number,
+    required this.date,
+    required this.lastChangeDate,
+    required this.supplierArticle,
+    required this.techSize,
+    required this.barcode,
+    required this.quantity,
+    required this.totalPrice,
+    required this.dateClose,
+    required this.warehouseName,
+    required this.nmId,
+    required this.status,
+    required this.img,
+  });
 
   factory Income.fromJson(Map<String, dynamic> json) {
+    int nmID = json['nmId'] ?? 0;
+    String nmIDStr = nmID.toString();
+    String part = nmID.toString().replaceRange(4, null, "0000");
+    String img = 'https://images.wbstatic.net/big/new/$part/$nmIDStr-1.jpg';
     return Income(
       incomeId: json['incomeId'] ?? 0,
       number: json['number'] ?? "",
       date: json['date'] ?? "",
       lastChangeDate: json['lastChangeDate'] ?? "",
       supplierArticle: json['supplierArticle'] ?? "",
-      techSize: json['techSize'] ?? 0,
-      barcode: json['barcode'] ?? 0,
+      techSize: json['techSize'] ?? "",
+      barcode: json['barcode'] ?? "",
       quantity: json['quantity'] ?? 0,
       totalPrice: json['totalPrice'] ?? 0,
       dateClose: json['dateClose'] ?? "",
       warehouseName: json['warehouseName'] ?? "",
-      nmId: json['nmId'] ?? 0,
+      nmId: nmID,
       status: json['status'] ?? "",
+      img: img,
     );
   }
 
@@ -62,13 +70,14 @@ class Income {
     date: "",
     lastChangeDate: "",
     supplierArticle: "",
-    techSize: 0,
-    barcode: 0,
+    techSize: "",
+    barcode: "",
     quantity: 0,
     totalPrice: 0,
     dateClose: "",
     warehouseName: "",
     nmId: 0,
     status: "",
+    img: "",
   );
 }

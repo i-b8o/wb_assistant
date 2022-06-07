@@ -12,6 +12,7 @@ class WBApiRepository {
   Future<IncomeResponse> getV1Incomes(String date, key) async {
     final http.Response response = await wbApiProvider.incomesV1(date, key);
     if (response.statusCode == 200) {
+      print(response.body);
       List<Income> incomes = (json.decode(response.body) as List)
           .map((data) => Income.fromJson(data))
           .toList();

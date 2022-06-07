@@ -26,6 +26,7 @@ class WBApiProvider {
         contentKey: contentType,
       },
     );
+
     return httpResponse;
   }
 
