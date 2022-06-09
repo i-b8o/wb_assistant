@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wb_api_repo/wb_api_repo.dart';
 import 'package:wb_assistant/presentation/custom_icons.dart';
+import 'package:wb_assistant/views/home/widgets/supplies.dart';
 
 import '../../bloc/home/home_bloc.dart';
 import '../../constants.dart';
@@ -164,61 +165,5 @@ class Home extends StatelessWidget {
         },
       ),
     );
-  }
-}
-
-class Supplies extends StatelessWidget {
-  Supplies({
-    Key? key,
-    required this.supplies,
-  }) : super(key: key);
-
-  List<Supply> supplies;
-
-  @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return Container(
-        child: ListView(
-      children: supplies
-          .map((e) => Container(
-                decoration:
-                    BoxDecoration(border: Border.all(color: Colors.blueAccent)),
-                child: Column(
-                  children: [
-                    Container(
-                        width: size.width * 0.5,
-                        child: Text(
-                          'Номер поставки ${e.id.toString()}',
-                          style: TextStyle(color: Colors.green),
-                        )),
-                    Container(
-                        width: size.width * 0.5, child: Text(e.warehouseName)),
-                    Container(
-                        width: size.width * 0.5,
-                        child: Text(e.dateTime.toString())),
-                    Container(
-                        width: size.width * 0.5,
-                        child: Column(
-                          children: e.items
-                              .map((item) => Container(
-                                    child: Column(children: [
-                                      Image.network(item.img),
-                                      Text(item.article),
-                                      Text(item.barCode),
-                                      Text(item.status),
-                                      Text(item.techSize),
-                                      Text(item.id.toString()),
-                                      Text(item.quantity.toString()),
-                                      Text(item.totalPrice.toString()),
-                                    ]),
-                                  ))
-                              .toList(),
-                        )),
-                  ],
-                ),
-              ))
-          .toList(),
-    ));
   }
 }

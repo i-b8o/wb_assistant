@@ -69,7 +69,6 @@ class WBApiRepository {
 
         // Last iteration
         if (incomesLength == i) {
-          log('3 ${income.supplierArticle}');
           // Create Supply
           supply = Supply(
               dateTime: DateTime.parse(income.date),

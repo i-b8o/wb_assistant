@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:storage_repo/storage_repo.dart';
 import 'package:wb_api_repo/wb_api_repo.dart';
@@ -19,7 +21,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         emit(HomeInitial());
       } else if (currentTab == 1) {
         try {
-          print('Try');
           String key = await storageRepository.getApiKey();
           if (key.isEmpty) {
             emit(FaildState(message: "Необходимо сначала добавить ключ API"));
@@ -28,7 +29,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
               "2017-03-25T21:00:00.000Z", key);
           int statusCode = incomeResponse.statusCode;
           if (statusCode == 200) {
-            print('StatusCode: ${statusCode.toString()}');
             List<Supply> supplies = incomeResponse.items;
             if (supplies.isNotEmpty) {
               emit(SupplyState(200, supplies));
@@ -36,11 +36,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
               emit(FaildState(message: statusCode.toString()));
             }
           } else {
-            print('StatusCode: $statusCode');
             emit(SupplyState(statusCode, incomeResponse.items));
           }
         } catch (e) {
-          print("HomeBloc error: $e");
+          log("HomeBloc error: $e");
         }
       } else if (currentTab == 2) {
         emit(AlarmState());
