@@ -6,9 +6,9 @@ class HomeInitial extends HomeState {}
 
 class SupplyState extends HomeState {
   final int statusCode;
-  final List<Supply> incomes;
+  final List<Supply> supplies;
 
-  SupplyState(this.statusCode, this.incomes);
+  SupplyState(this.statusCode, this.supplies);
 }
 
 class AlarmState extends HomeState {}

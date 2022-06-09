@@ -16,42 +16,43 @@ class WBApiRepository {
     }
     final http.Response response = await wbApiProvider.incomesV1(date, key);
     if (response.statusCode == 200) {
-      print(response.body);
       List<Income> incomes = (json.decode(response.body) as List)
           .map((data) => Income.fromJson(data))
           .toList();
-
+      int incomesLength = incomes.length;
+      if (incomesLength == 0) {
+        return IncomesResponse(items: [], statusCode: 401);
+      }
       List<SupplyItem> supplyItems = [];
       List<Supply> items = [];
       int prevIncomeId = 0;
       Supply supply;
       incomes.sort((a, b) => a.incomeId.compareTo(b.incomeId));
+      int i = 0;
 
       for (var income in incomes) {
-        // If next income id occured
+        i++;
         int currentIncomeId = income.incomeId;
-        if (prevIncomeId != 0) {
+
+        // First loop
+        if (prevIncomeId == 0) {
           prevIncomeId = currentIncomeId;
         }
-        if (currentIncomeId != prevIncomeId) {
-          // Skip first loop
-          log('In loop with id: $currentIncomeId', name: "WBApiRepository");
 
-          // Create Supply
+        // next income id occured
+        if (currentIncomeId != prevIncomeId && incomesLength != i) {
+          // Create Supply for prev income ID
           supply = Supply(
               dateTime: DateTime.parse(income.date),
               warehouseName: income.warehouseName,
-              id: currentIncomeId,
+              id: prevIncomeId,
               items: supplyItems);
           // Add it to list
-          log('Added supply with id: ${supply.id}', name: "WBApiRepository");
           items.add(supply);
           // Reset variables
-
           prevIncomeId = currentIncomeId;
           supplyItems = [];
         }
-        // If products from previous income create supply item (product)
 
         SupplyItem supplyItem = SupplyItem(
             id: income.nmId,
@@ -60,9 +61,24 @@ class WBApiRepository {
             techSize: income.techSize,
             barCode: income.barcode,
             quantity: income.quantity,
-            totalPrice: income.totalPrice);
+            totalPrice: income.totalPrice,
+            img:
+                'https://images.wbstatic.net/big/new/${income.nmId.toString().replaceRange(4, null, "0000")}/${income.nmId.toString()}-1.jpg');
         // Add it to list
         supplyItems.add(supplyItem);
+
+        // Last iteration
+        if (incomesLength == i) {
+          log('3 ${income.supplierArticle}');
+          // Create Supply
+          supply = Supply(
+              dateTime: DateTime.parse(income.date),
+              warehouseName: income.warehouseName,
+              id: prevIncomeId,
+              items: supplyItems);
+          // Add it to list
+          items.add(supply);
+        }
       }
 
       return IncomesResponse(items: items, statusCode: 200);

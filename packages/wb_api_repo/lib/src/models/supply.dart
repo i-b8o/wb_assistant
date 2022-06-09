@@ -20,9 +20,11 @@ class SupplyItem {
   final String barCode;
   final int quantity;
   final int totalPrice;
+  final String img;
 
   SupplyItem(
-      {required this.id,
+      {required this.img,
+      required this.id,
       required this.status,
       required this.article,
       required this.techSize,
