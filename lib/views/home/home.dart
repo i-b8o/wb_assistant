@@ -12,7 +12,7 @@ class Home extends StatelessWidget {
   Home({Key? key, required this.user}) : super(key: key);
   final User user;
   final TextEditingController searchController = TextEditingController();
-  int currentTab = 0;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -46,12 +46,12 @@ class Home extends StatelessWidget {
                     ),
                     child: BottomNavigationBar(
                       type: BottomNavigationBarType.fixed,
-                      currentIndex: currentTab,
+                      currentIndex: context.read<HomeBloc>().tab,
                       onTap: (int index) {
-                        currentTab = index;
+                        context.read<HomeBloc>().tab = index;
                         context
                             .read<HomeBloc>()
-                            .add(BottomNavItemPushedEvent(index));
+                            .add(BottomNavItemPushedEvent());
                       },
                       selectedLabelStyle: TextStyle(
                           fontWeight: FontWeight.bold,
@@ -154,21 +154,38 @@ class Home extends StatelessWidget {
                                       children: [
                                         Container(
                                             width: size.width * 0.5,
-                                            // child: Image.network(e.warehouseName)),
-                                            child: Text(e.warehouseName)),
+                                            child: Text(
+                                              'Номер поставки ${e.id.toString()}',
+                                              style: TextStyle(
+                                                  color: Colors.green),
+                                            )),
                                         Container(
                                             width: size.width * 0.5,
-                                            child: Text(e.id.toString())),
+                                            child: Text(e.warehouseName)),
                                         Container(
                                             width: size.width * 0.5,
                                             child: Text(e.dateTime.toString())),
                                         Container(
                                             width: size.width * 0.5,
-                                            child: Text(e.items.length > 0
-                                                ? e.items.first.barCode +
-                                                    " " +
-                                                    e.items[1].barCode
-                                                : "")),
+                                            child: Column(
+                                              children: e.items
+                                                  .map((item) => Container(
+                                                        child:
+                                                            Column(children: [
+                                                          Text(item.article),
+                                                          Text(item.barCode),
+                                                          Text(item.status),
+                                                          Text(item.techSize),
+                                                          Text(item.id
+                                                              .toString()),
+                                                          Text(item.quantity
+                                                              .toString()),
+                                                          Text(item.totalPrice
+                                                              .toString()),
+                                                        ]),
+                                                      ))
+                                                  .toList(),
+                                            )),
                                       ],
                                     ))
                                 .toList(),

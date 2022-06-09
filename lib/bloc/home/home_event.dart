@@ -2,8 +2,4 @@ part of 'home_bloc.dart';
 
 abstract class HomeEvent {}
 
-class BottomNavItemPushedEvent extends HomeEvent {
-  final int index;
-
-  BottomNavItemPushedEvent(this.index);
-}
+class BottomNavItemPushedEvent extends HomeEvent {}

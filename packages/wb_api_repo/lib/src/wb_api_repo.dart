@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 
@@ -23,26 +24,32 @@ class WBApiRepository {
       List<SupplyItem> supplyItems = [];
       List<Supply> items = [];
       int prevIncomeId = 0;
-
+      Supply supply;
       incomes.sort((a, b) => a.incomeId.compareTo(b.incomeId));
 
       for (var income in incomes) {
         // If next income id occured
         int currentIncomeId = income.incomeId;
         if (currentIncomeId != prevIncomeId) {
+          // Skip first loop
+          log('In loop with id: $currentIncomeId', name: "WBApiRepository");
+
           // Create Supply
-          Supply supply = Supply(
+          supply = Supply(
               dateTime: DateTime.parse(income.date),
               warehouseName: income.warehouseName,
-              id: prevIncomeId,
+              id: currentIncomeId,
               items: supplyItems);
           // Add it to list
+          log('Added supply with id: ${supply.id}', name: "WBApiRepository");
           items.add(supply);
           // Reset variables
+
           prevIncomeId = currentIncomeId;
           supplyItems = [];
         }
         // If products from previous income create supply item (product)
+
         SupplyItem supplyItem = SupplyItem(
             id: income.nmId,
             status: income.status,
@@ -54,6 +61,7 @@ class WBApiRepository {
         // Add it to list
         supplyItems.add(supplyItem);
       }
+
       return IncomesResponse(items: items, statusCode: 200);
     }
     return IncomesResponse(statusCode: response.statusCode, items: []);

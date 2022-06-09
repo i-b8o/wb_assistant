@@ -6,15 +6,18 @@ part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
+  int currentTab = 0;
+  int get tab => currentTab;
+
+  set tab(int val) => currentTab = val;
+
   WBApiRepository wbApiRepository = WBApiRepository();
   StorageRepository storageRepository = StorageRepository();
   HomeBloc() : super(HomeInitial()) {
     on<BottomNavItemPushedEvent>((event, emit) async {
-      int index = event.index;
-      print('index');
-      if (index == 0) {
+      if (currentTab == 0) {
         emit(HomeInitial());
-      } else if (index == 1) {
+      } else if (currentTab == 1) {
         try {
           print('Try');
           String key = await storageRepository.getApiKey();
@@ -25,12 +28,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
               "2017-03-25T21:00:00.000Z", key);
           int statusCode = incomeResponse.statusCode;
           if (statusCode == 200) {
-            print('StatusCode: $statusCode');
+            print('StatusCode: ${statusCode.toString()}');
             List<Supply> supplies = incomeResponse.items;
             if (supplies.isNotEmpty) {
               emit(SupplyState(200, supplies));
             } else {
-              emit(FaildState(message: "statusCode.toString()"));
+              emit(FaildState(message: statusCode.toString()));
             }
           } else {
             print('StatusCode: $statusCode');
@@ -39,9 +42,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         } catch (e) {
           print("HomeBloc error: $e");
         }
-      } else if (index == 2) {
+      } else if (currentTab == 2) {
         emit(AlarmState());
-      } else if (index == 3) {
+      } else if (currentTab == 3) {
         emit(SettingsState());
       }
     });
