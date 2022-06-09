@@ -30,6 +30,9 @@ class WBApiRepository {
       for (var income in incomes) {
         // If next income id occured
         int currentIncomeId = income.incomeId;
+        if (prevIncomeId != 0) {
+          prevIncomeId = currentIncomeId;
+        }
         if (currentIncomeId != prevIncomeId) {
           // Skip first loop
           log('In loop with id: $currentIncomeId', name: "WBApiRepository");
