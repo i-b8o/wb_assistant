@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wb_api_repo/wb_api_repo.dart';
 
 import '../../../bloc/supplies/supplies_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Supplies extends StatelessWidget {
   const Supplies({
@@ -46,6 +47,22 @@ class Supplies extends StatelessWidget {
                                         item.img,
                                         width: size.width * 0.3,
                                       ),
+                                      Column(
+                                        children: [
+                                          Text(item.article),
+                                          Text(item.barCode),
+                                          Text(item.status),
+                                          Text(item.techSize),
+                                          InkWell(
+                                              child: Text(item.id.toString()),
+                                              onTap: () {
+                                                launch(
+                                                    'https://docs.flutter.io/flutter/services/UrlLauncher-class.html');
+                                              }),
+                                          Text(item.quantity.toString()),
+                                          Text(item.totalPrice.toString()),
+                                        ],
+                                      )
                                     ],
                                   ),
                                 ))
