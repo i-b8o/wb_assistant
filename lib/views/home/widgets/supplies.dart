@@ -16,41 +16,38 @@ class Supplies extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
     return BlocProvider(
       create: (context) => SuppliesBloc(),
       child: BlocBuilder<SuppliesBloc, SuppliesState>(
         builder: (context, state) {
           return SingleChildScrollView(
-            child: ExpansionPanelList(
-              elevation: 3,
-              expansionCallback: (index, isExpanded) {
-                log('Expanded: $index - ');
-              },
-              animationDuration: Duration(milliseconds: 1),
+            child: ExpansionPanelList.radio(
               children: supplies
-                  .map((supply) => ExpansionPanel(
-                      headerBuilder: (_, isExpanded) => Container(
-                            child: Column(children: [
-                              Text('Номер поставки ${supply.id}'),
-                              Text('Дата поставки ${supply.dateTime}'),
-                              Text('Место поставки ${supply.warehouseName}'),
-                            ]),
+                  .map((supply) => ExpansionPanelRadio(
+                      canTapOnHeader: true,
+                      value: supply.id,
+                      headerBuilder: (context, isExpanded) => ListTile(
+                            title: Text('Номер: ${supply.id}'),
+                            subtitle: Column(
+                              children: [
+                                Text('Дата: ${supply.dateTime}'),
+                                Text('Склад: ${supply.warehouseName}'),
+                              ],
+                            ),
                           ),
                       body: Column(
                         children: supply.items
-                            .map((item) => Column(
-                                  children: [
-                                    Text('Артикул ${item.article}'),
-                                    Text('Штрихкод ${item.barCode}'),
-                                    Row(
-                                      children: [
-                                        Image.network(item.img),
-                                        Text(
-                                            'Принято: ${item.quantity.toString()}'),
-                                      ],
-                                    ),
-                                  ],
+                            .map((item) => Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    children: [
+                                      Image.network(
+                                        item.img,
+                                        width: size.width * 0.3,
+                                      ),
+                                    ],
+                                  ),
                                 ))
                             .toList(),
                       )))
@@ -102,5 +99,51 @@ class Supplies extends StatelessWidget {
     //           ))
     //       .toList(),
     // ));
+  }
+}
+
+class asda extends StatelessWidget {
+  const asda({
+    Key? key,
+    required this.supplies,
+  }) : super(key: key);
+
+  final List<Supply> supplies;
+
+  @override
+  Widget build(BuildContext context) {
+    return ExpansionPanelList.radio(
+      elevation: 3,
+      expansionCallback: (index, isExpanded) {
+        log('Expanded: $index - ');
+      },
+      animationDuration: Duration(milliseconds: 1),
+      children: supplies
+          .map((supply) => ExpansionPanel(
+              headerBuilder: (_, isExpanded) => Container(
+                    child: Column(children: [
+                      Text('Номер поставки ${supply.id}'),
+                      Text('Дата поставки ${supply.dateTime}'),
+                      Text('Место поставки ${supply.warehouseName}'),
+                    ]),
+                  ),
+              body: Column(
+                children: supply.items
+                    .map((item) => Column(
+                          children: [
+                            Text('Артикул ${item.article}'),
+                            Text('Штрихкод ${item.barCode}'),
+                            Row(
+                              children: [
+                                Image.network(item.img),
+                                Text('Принято: ${item.quantity.toString()}'),
+                              ],
+                            ),
+                          ],
+                        ))
+                    .toList(),
+              )))
+          .toList(),
+    );
   }
 }
