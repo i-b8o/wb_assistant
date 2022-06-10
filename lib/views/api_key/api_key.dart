@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:wb_assistant/bloc/settings/settings_bloc.dart';
 import 'package:wb_assistant/views/components/btn_thick_portrait.dart';
 import 'package:wb_assistant/views/web_view/web_view.dart';
@@ -9,9 +10,7 @@ class ApiKey extends StatelessWidget {
   final TextEditingController apiController = TextEditingController();
   final TextEditingController apiNewController = TextEditingController();
   void onPressApi(BuildContext context, TextEditingController api) {
-    print("11111111111");
     if (api.text.isNotEmpty) {
-      print("22222222222");
       context.read<SettingsBloc>().add(ApiKeyPasted(api.text));
     }
   }
@@ -20,6 +19,13 @@ class ApiKey extends StatelessWidget {
     if (api.text.isNotEmpty) {
       context.read<SettingsBloc>().add(ApiNewKeyPasted(api.text));
     }
+  }
+
+  final Uri url = Uri.parse(
+      'https://seller.wildberries.ru/supplier-settings/access-to-api');
+  void _launchUrl() async {
+    if (!await launchUrl(url, mode: LaunchMode.externalApplication))
+      throw 'Could not launch $url';
   }
 
   @override
@@ -105,10 +111,7 @@ class ApiKey extends StatelessWidget {
           BtnThickPortrait(
               text: "Перейти",
               press: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (BuildContext context) {
-                  return WebViewPage();
-                }));
+                _launchUrl();
               }),
         ]);
       },

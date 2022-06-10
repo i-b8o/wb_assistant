@@ -8,12 +8,17 @@ import '../../../bloc/supplies/supplies_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Supplies extends StatelessWidget {
-  const Supplies({
+  Supplies({
     Key? key,
     required this.supplies,
   }) : super(key: key);
 
   final List<Supply> supplies;
+  final Uri url = Uri.parse(
+      'https://docs.flutter.io/flutter/services/UrlLauncher-class.html');
+  void _launchUrl() async {
+    if (!await launchUrl(url)) throw 'Could not launch $url';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,8 +61,7 @@ class Supplies extends StatelessWidget {
                                           InkWell(
                                               child: Text(item.id.toString()),
                                               onTap: () {
-                                                launch(
-                                                    'https://docs.flutter.io/flutter/services/UrlLauncher-class.html');
+                                                _launchUrl();
                                               }),
                                           Text(item.quantity.toString()),
                                           Text(item.totalPrice.toString()),
