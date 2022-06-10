@@ -2,7 +2,7 @@ import 'package:another_flushbar/flushbar.dart';
 import 'package:auth_repo/auth_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:wb_api_repo/wb_api_repo.dart';
+
 import 'package:wb_assistant/presentation/custom_icons.dart';
 import 'package:wb_assistant/views/home/widgets/supplies.dart';
 
@@ -33,7 +33,7 @@ class Home extends StatelessWidget {
               }
             },
             child: Scaffold(
-              backgroundColor: Constants.bgColor,
+              backgroundColor: Colors.white,
               bottomNavigationBar: Container(
                   height: size.height * 0.1,
                   decoration: const BoxDecoration(

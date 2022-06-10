@@ -14,7 +14,6 @@ dependencies:
   google_fonts: ^2.3.2
   http: ^0.13.4
   shared_preferences: ^2.0.13
-  webview_flutter: ^3.0.4
   flutter_bloc: ^8.0.1
   bloc: ^8.0.3
   another_flushbar: ^1.10.29

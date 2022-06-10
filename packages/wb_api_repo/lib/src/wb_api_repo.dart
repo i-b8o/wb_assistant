@@ -29,7 +29,7 @@ class WBApiRepository {
       Supply supply;
       incomes.sort((a, b) => a.incomeId.compareTo(b.incomeId));
       int i = 0;
-
+      Income firstIncome = incomes.first;
       for (var income in incomes) {
         i++;
         int currentIncomeId = income.incomeId;
@@ -42,11 +42,20 @@ class WBApiRepository {
         // next income id occured
         if (currentIncomeId != prevIncomeId && incomesLength != i) {
           // Create Supply for prev income ID
-          supply = Supply(
-              dateTime: DateTime.parse(income.date),
-              warehouseName: income.warehouseName,
-              id: prevIncomeId,
-              items: supplyItems);
+          if (items.isEmpty) {
+            supply = Supply(
+                dateTime: DateTime.parse(firstIncome.date),
+                warehouseName: firstIncome.warehouseName,
+                id: prevIncomeId,
+                items: supplyItems);
+          } else {
+            supply = Supply(
+                dateTime: DateTime.parse(income.date),
+                warehouseName: income.warehouseName,
+                id: prevIncomeId,
+                items: supplyItems);
+          }
+
           // Add it to list
           items.add(supply);
           // Reset variables

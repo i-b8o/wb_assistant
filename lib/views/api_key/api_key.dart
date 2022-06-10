@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wb_assistant/bloc/settings/settings_bloc.dart';
 import 'package:wb_assistant/views/components/btn_thick_portrait.dart';
-import 'package:wb_assistant/views/web_view/web_view.dart';
 
 class ApiKey extends StatelessWidget {
   ApiKey({Key? key}) : super(key: key);
@@ -24,8 +23,9 @@ class ApiKey extends StatelessWidget {
   final Uri url = Uri.parse(
       'https://seller.wildberries.ru/supplier-settings/access-to-api');
   void _launchUrl() async {
-    if (!await launchUrl(url, mode: LaunchMode.externalApplication))
+    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
       throw 'Could not launch $url';
+    }
   }
 
   @override
