@@ -33,7 +33,7 @@ class Home extends StatelessWidget {
               }
             },
             child: Scaffold(
-              backgroundColor: Colors.white,
+              backgroundColor: Color.fromRGBO(249, 248, 254, 1),
               bottomNavigationBar: Container(
                   height: size.height * 0.1,
                   decoration: const BoxDecoration(
@@ -62,12 +62,12 @@ class Home extends StatelessWidget {
                         color: Constants.headerColor,
                         fontSize: size.width * 0.03,
                       ),
-                      selectedItemColor: Constants.btnColor,
+                      selectedItemColor: Color.fromRGBO(53, 72, 138, 1),
                       items: <BottomNavigationBarItem>[
                         BottomNavigationBarItem(
                           activeIcon: Icon(
                             Custom.home,
-                            color: Constants.btnColor,
+                            color: Color.fromRGBO(53, 72, 138, 1),
                             size: size.width * 0.05,
                           ),
                           icon: Icon(
@@ -80,7 +80,7 @@ class Home extends StatelessWidget {
                         BottomNavigationBarItem(
                           activeIcon: Icon(
                             Custom.package,
-                            color: Constants.btnColor,
+                            color: Color.fromRGBO(53, 72, 138, 1),
                             size: size.width * 0.05,
                           ),
                           icon: Icon(
@@ -93,7 +93,7 @@ class Home extends StatelessWidget {
                         BottomNavigationBarItem(
                           activeIcon: Icon(
                             Custom.alarm,
-                            color: Constants.btnColor,
+                            color: Color.fromRGBO(53, 72, 138, 1),
                             size: size.width * 0.05,
                           ),
                           icon: Icon(
@@ -106,7 +106,7 @@ class Home extends StatelessWidget {
                         BottomNavigationBarItem(
                           activeIcon: Icon(
                             Custom.cog,
-                            color: Constants.btnColor,
+                            color: Color.fromRGBO(53, 72, 138, 1),
                             size: size.width * 0.05,
                           ),
                           icon: Icon(

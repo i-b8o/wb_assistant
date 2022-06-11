@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Constants {
+  static const wbColor = Color.fromRGBO(58, 0, 120, 1);
   static const greenColor = Color.fromRGBO(0, 182, 92, 1);
   static const bgColor = Color.fromRGBO(224, 222, 229, 1);
 
