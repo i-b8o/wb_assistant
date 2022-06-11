@@ -54,4 +54,5 @@ class Custom {
   static const IconData alarm = IconData(0xe858, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData lock = IconData(0xf023, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData package = IconData(0xf383, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData warehouse = IconData(0xf494, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

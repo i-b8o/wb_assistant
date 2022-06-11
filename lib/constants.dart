@@ -10,6 +10,7 @@ class Constants {
   static const greyColor = Color.fromRGBO(198, 194, 205, 1);
   static const lightGreyColor = Color.fromRGBO(243, 249, 255, 1);
 
+  static const blueColor = Color.fromRGBO(34, 108, 243, 1);
   static const azureColor = Color.fromRGBO(24, 59, 102, 1);
   static const btnColor = Color.fromRGBO(248, 107, 102, 1);
 
