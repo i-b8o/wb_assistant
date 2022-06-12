@@ -119,47 +119,44 @@ class Home extends StatelessWidget {
                       ],
                     ),
                   )),
-              body: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 22),
-                child: (state is HomeInitial)
-                    ? Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                            SizedBox(
-                              height: size.height * 0.07,
-                            ),
-                            Text(
-                              "Главная",
-                              style: TextStyle(
-                                  fontSize: size.height * 0.02,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            SizedBox(
-                              height: size.height * 0.05,
-                            ),
-                            Text(
-                              user.username,
-                              style: TextStyle(
-                                  fontSize: size.height * 0.018,
-                                  fontWeight: FontWeight.bold,
-                                  color: Constants.greyColor),
-                            ),
-                            SizedBox(
-                              height: size.height * 0.04,
-                            ),
-                          ])
-                    : (state is WbStaticState)
-                        ? WbStaticPage(
-                            apiKey: state.apiKey,
-                          )
-                        : (state is AlarmState)
-                            ? Container(
-                                child: Text("Уведомления."),
-                              )
-                            : (state is SettingsState)
-                                ? SettingsPage()
-                                : Container(),
-              ),
+              body: (state is HomeInitial)
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                          SizedBox(
+                            height: size.height * 0.07,
+                          ),
+                          Text(
+                            "Главная",
+                            style: TextStyle(
+                                fontSize: size.height * 0.02,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(
+                            height: size.height * 0.05,
+                          ),
+                          Text(
+                            user.username,
+                            style: TextStyle(
+                                fontSize: size.height * 0.018,
+                                fontWeight: FontWeight.bold,
+                                color: Constants.greyColor),
+                          ),
+                          SizedBox(
+                            height: size.height * 0.04,
+                          ),
+                        ])
+                  : (state is WbStaticState)
+                      ? WbStaticPage(
+                          apiKey: state.apiKey,
+                        )
+                      : (state is AlarmState)
+                          ? Container(
+                              child: Text("Уведомления."),
+                            )
+                          : (state is SettingsState)
+                              ? SettingsPage()
+                              : Container(),
             ),
           );
         },

@@ -1,32 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wb_assistant/bloc/wb_static/wbstatic_bloc.dart';
 import 'package:wb_assistant/constants.dart';
 
-import '../../bloc/supplies/supplies_bloc.dart';
+import '../../helpers/custom_icons.dart';
 import 'widgets/wb_static_list_view.dart';
 
 class WbStaticPage extends StatelessWidget {
-  WbStaticPage({
+  const WbStaticPage({
     Key? key,
     required this.apiKey,
   }) : super(key: key);
 
   final String apiKey;
-  final List<String> apiList = [
-    'Поставки',
-    'Склад',
-    'Заказы',
-    'Продажи',
-    'КиЗы'
-  ];
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return BlocProvider(
-      create: (context) => SuppliesBloc(),
+      create: (context) => WbstaticBloc(),
       child:
-          BlocBuilder<SuppliesBloc, SuppliesState>(builder: (context, state) {
+          BlocBuilder<WbstaticBloc, WbstaticState>(builder: (context, state) {
         return SafeArea(
             child: SingleChildScrollView(
                 child: Column(
@@ -46,11 +40,7 @@ class WbStaticPage extends StatelessWidget {
             SizedBox(
               height: size.height * 0.03,
             ),
-            SizedBox(
-              height: size.width * 0.3,
-              child: WbStaticListView(apiList: apiList),
-              // child: Container(),
-            ),
+            WbStaticListView(),
             SizedBox(
               height: size.height * 0.03,
             ),
