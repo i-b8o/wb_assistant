@@ -3,7 +3,7 @@ import 'package:auth_repo/auth_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:wb_assistant/presentation/custom_icons.dart';
+import 'package:wb_assistant/helpers/custom_icons.dart';
 import 'package:wb_assistant/views/home/widgets/wb_static_widget.dart';
 
 import '../../bloc/home/home_bloc.dart';
@@ -149,7 +149,7 @@ class Home extends StatelessWidget {
                             ),
                           ])
                     : (state is SupplyState)
-                        ? WbStaticWidget(
+                        ? WbStaticPage(
                             supplies: state.supplies,
                           )
                         : (state is AlarmState)

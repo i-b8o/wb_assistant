@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wb_api_repo/wb_api_repo.dart';
 import 'package:wb_assistant/constants.dart';
-import 'package:wb_assistant/presentation/custom_icons.dart';
 
-import '../../../bloc/supplies/supplies_bloc.dart';
-import 'expansion_panel_radio_body.dart';
+import '../../bloc/supplies/supplies_bloc.dart';
+import 'widgets/expansion_panel_radio_body.dart';
+import 'widgets/wb_static_list_view.dart';
 
-class WbStaticWidget extends StatelessWidget {
-  WbStaticWidget({
+class WbStaticPage extends StatelessWidget {
+  WbStaticPage({
     Key? key,
     required this.supplies,
   }) : super(key: key);
@@ -108,67 +108,6 @@ class WbStaticWidget extends StatelessWidget {
           ],
         )));
       }),
-    );
-  }
-}
-
-class WbStaticListView extends StatelessWidget {
-  const WbStaticListView({
-    Key? key,
-    required this.apiList,
-  }) : super(key: key);
-
-  final List<String> apiList;
-
-  @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemCount: apiList.length,
-      itemBuilder: (context, index) {
-        return Stack(children: [
-          Container(
-            margin: EdgeInsets.only(right: size.width * 0.02),
-            width: size.width * 0.3,
-            height: size.width * 0.3,
-            color: Colors.transparent,
-          ),
-          Align(
-            alignment: Alignment.center,
-            child: Container(
-              width: size.width * 0.24,
-              height: size.width * 0.24,
-              margin: EdgeInsets.only(left: size.width * 0.05),
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                boxShadow: [
-                  BoxShadow(
-                    color: Color.fromRGBO(227, 229, 241, 1),
-                    blurRadius: 4.0,
-                    offset: Offset(1.0, 5.0),
-                  ),
-                ],
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  const Icon(
-                    Custom.warehouse,
-                    color: Color.fromRGBO(252, 121, 65, 1),
-                  ),
-                  Text(
-                    apiList[index],
-                    style:
-                        const TextStyle(color: Color.fromRGBO(53, 72, 138, 1)),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ]);
-      },
     );
   }
 }

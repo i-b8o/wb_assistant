@@ -11,6 +11,13 @@ class SupplyState extends HomeState {
   SupplyState(this.statusCode, this.supplies);
 }
 
+class StockState extends HomeState {
+  final int statusCode;
+  final List<Supply> supplies;
+
+  StockState(this.statusCode, this.supplies);
+}
+
 class AlarmState extends HomeState {}
 
 class FaildState extends HomeState {
