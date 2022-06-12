@@ -40,7 +40,7 @@ class WbStaticPage extends StatelessWidget {
             SizedBox(
               height: size.height * 0.03,
             ),
-            WbStaticListView(),
+            WbStaticListView(apiList: context.read<WbstaticBloc>().apiList),
             SizedBox(
               height: size.height * 0.03,
             ),

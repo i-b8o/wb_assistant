@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wb_assistant/models/wb_static_list_view_btn.dart';
 
 import '../../../bloc/wb_static/wbstatic_bloc.dart';
 import '../../../helpers/custom_icons.dart';
@@ -7,8 +8,9 @@ import '../../../helpers/custom_icons.dart';
 class WbStaticListView extends StatelessWidget {
   const WbStaticListView({
     Key? key,
+    required this.apiList,
   }) : super(key: key);
-
+  final List<WbStaticBtn> apiList;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -33,7 +35,8 @@ class WbStaticListView extends StatelessWidget {
                   context.read<WbstaticBloc>().add(ListViewItemPushedEvent());
                 },
                 child: ListItem(
-                    text: context.read<WbstaticBloc>().apiList[index],
+                    text: apiList[index].name,
+                    icon: apiList[index].icon,
                     isActive: context.read<WbstaticBloc>().tab == index),
               ),
             ),
@@ -50,9 +53,11 @@ class ListItem extends StatelessWidget {
     Key? key,
     required this.text,
     required this.isActive,
+    required this.icon,
   }) : super(key: key);
   final String text;
   final bool isActive;
+  final IconData icon;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -74,8 +79,8 @@ class ListItem extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          const Icon(
-            Custom.warehouse,
+          Icon(
+            icon,
             color: Color.fromRGBO(252, 121, 65, 1),
           ),
           Text(

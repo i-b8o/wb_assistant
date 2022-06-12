@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:storage_repo/storage_repo.dart';
 import 'package:wb_api_repo/wb_api_repo.dart';
+import 'package:wb_assistant/helpers/custom_icons.dart';
+import 'package:wb_assistant/models/wb_static_list_view_btn.dart';
 
 part 'wbstatic_event.dart';
 part 'wbstatic_state.dart';
@@ -12,12 +14,12 @@ class WbstaticBloc extends Bloc<WbstaticEvent, WbstaticState> {
   int get tab => currentTab;
   set tab(int val) => currentTab = val;
 
-  final List<String> apiList = [
-    'Поставки',
-    'Склад',
-    'Заказы',
-    'Продажи',
-    'КиЗы'
+  final List<WbStaticBtn> apiList = const [
+    WbStaticBtn(name: 'Поставки', icon: Custom.warehouse),
+    WbStaticBtn(name: 'Склад', icon: Custom.alarm),
+    WbStaticBtn(name: 'Заказы', icon: Custom.lock),
+    WbStaticBtn(name: 'Продажи', icon: Custom.notifications),
+    WbStaticBtn(name: 'КиЗы', icon: Custom.person),
   ];
 
   WBApiRepository wbApiRepository = WBApiRepository();
