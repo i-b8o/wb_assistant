@@ -2,7 +2,7 @@ class Supply {
   final DateTime dateTime;
   final String warehouseName;
   final int id;
-  // final dateTime = DateTime.parse(dateTimeString);
+
   List<SupplyItem> items;
 
   Supply(

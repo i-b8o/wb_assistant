@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wb_assistant/constants.dart';
-import 'package:wb_assistant/presentation/custom_icons.dart';
+import 'package:wb_assistant/helpers/custom_icons.dart';
 
 import '../../bloc/settings/settings_bloc.dart';
 import '../api_key/api_key.dart';

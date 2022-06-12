@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:wb_assistant/helpers/custom_icons.dart';
-import 'package:wb_assistant/views/home/widgets/wb_static_widget.dart';
+import 'package:wb_assistant/views/wb_static/wb_static_page.dart';
 
 import '../../bloc/home/home_bloc.dart';
 import '../../constants.dart';
@@ -148,9 +148,9 @@ class Home extends StatelessWidget {
                               height: size.height * 0.04,
                             ),
                           ])
-                    : (state is SupplyState)
+                    : (state is WbStaticState)
                         ? WbStaticPage(
-                            supplies: state.supplies,
+                            apiKey: state.apiKey,
                           )
                         : (state is AlarmState)
                             ? Container(
