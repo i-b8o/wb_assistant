@@ -21,9 +21,8 @@ class WbStaticListView extends StatelessWidget {
         itemBuilder: (context, index) {
           return Stack(children: [
             Container(
-              margin: EdgeInsets.only(right: size.width * 0.02),
-              width: size.width * 0.3,
-              height: size.width * 0.3,
+              width: size.width * 0.28,
+              height: size.width * 0.28,
               color: Colors.transparent,
             ),
             Align(
@@ -58,8 +57,8 @@ class ListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      width: size.width * 0.24,
-      height: size.width * 0.24,
+      width: size.width * 0.23,
+      height: size.width * 0.23,
       margin: EdgeInsets.only(left: size.width * 0.05),
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -82,7 +81,7 @@ class ListItem extends StatelessWidget {
           Text(
             text,
             style: TextStyle(
-                color: Color.fromRGBO(53, 72, 138, 1),
+                color: const Color.fromRGBO(53, 72, 138, 1),
                 fontWeight: isActive ? FontWeight.bold : FontWeight.normal),
           ),
         ],
