@@ -18,4 +18,8 @@ class EndPoints {
   static String salesV1(String date, key) {
     return '${domenV1}sales?dateFrom=$date&key=$key';
   }
+
+  static String reportV1(String dateFrom, dateTo, key) {
+    return '${domenV1}reportDetailByPeriod?dateFrom=$dateFrom&key=$key&limit=1000&rrdid=0&dateto=$dateTo';
+  }
 }

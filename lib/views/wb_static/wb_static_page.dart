@@ -7,6 +7,7 @@ import 'package:wb_assistant/views/wb_static/widgets/stocks_expansion_panel_list
 
 import 'widgets/incomes_expansion_panel_list.dart';
 import 'widgets/orders_expansion_panel_list.dart';
+import 'widgets/report_expansion_panel_list.dart';
 import 'widgets/wb_static_list_view.dart';
 
 class WbStaticPage extends StatelessWidget {
@@ -67,7 +68,10 @@ class WbStaticPage extends StatelessWidget {
                         ? OrdersExpansionPanelList(orders: state.orders)
                         : (state is SalesState)
                             ? SalesExpansionPanelList(sales: state.sales)
-                            : Container()
+                            : (state is ReportState)
+                                ? ReportExpansionPanelList(
+                                    reports: state.reports)
+                                : Container()
           ],
         )));
       }),

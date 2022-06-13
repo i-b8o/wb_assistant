@@ -19,6 +19,7 @@ class WbstaticBloc extends Bloc<WbstaticEvent, WbstaticState> {
     WbStaticBtn(name: 'Склад', icon: Custom.alarm),
     WbStaticBtn(name: 'Заказы', icon: Custom.lock),
     WbStaticBtn(name: 'Продажи', icon: Custom.notifications),
+    WbStaticBtn(name: 'Отчет', icon: Custom.security),
     WbStaticBtn(name: 'КиЗы', icon: Custom.person),
   ];
 
@@ -105,6 +106,24 @@ class WbstaticBloc extends Bloc<WbstaticEvent, WbstaticState> {
           List<Sale> sales = salesResponse.items;
           if (sales.isNotEmpty) {
             emit(SalesState(200, sales));
+            return;
+          }
+          emit(FaildState(message: "У вас не было продаж."));
+        } else {
+          emit(FaildState(message: statusCode.toString()));
+        }
+      } catch (e) {
+        log("$e", name: "WbstaticBloc");
+      }
+    } else if (currentTab == 4) {
+      try {
+        ReportResponse reportResponse = await wbApiRepository.getV1Report(
+            "2022-06-01T21:00:00.000Z", "2022-06-15T21:00:00.000Z", key);
+        int statusCode = reportResponse.statusCode;
+        if (statusCode == 200) {
+          List<Report> reports = reportResponse.items;
+          if (reports.isNotEmpty) {
+            emit(ReportState(200, reports));
             return;
           }
           emit(FaildState(message: "У вас не было продаж."));

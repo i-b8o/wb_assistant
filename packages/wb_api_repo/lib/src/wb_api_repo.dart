@@ -11,6 +11,27 @@ import 'provider/wb_api_provider.dart';
 class WBApiRepository {
   final WBApiProvider wbApiProvider = WBApiProvider();
 
+  Future<ReportResponse> getV1Report(String dateFrom, dateTo, key) async {
+    if (dateFrom.isEmpty || dateTo.isEmpty || key.isEmpty) {
+      return ReportResponse(items: [], statusCode: 401);
+    }
+    final http.Response response =
+        await wbApiProvider.reportV1(dateFrom, dateTo, key);
+    log(response.body);
+    if (response.statusCode == 200) {
+      List<Report> items = (json.decode(response.body) as List)
+          .map((data) => Report.fromJson(data))
+          .toList();
+      int itemsLength = items.length;
+      if (itemsLength == 0) {
+        return ReportResponse(items: [], statusCode: 401);
+      }
+
+      return ReportResponse(items: items, statusCode: 200);
+    }
+    return ReportResponse(statusCode: response.statusCode, items: []);
+  }
+
   Future<SalesResponse> getV1Sales(String date, key) async {
     if (date.isEmpty || key.isEmpty) {
       return SalesResponse(items: [], statusCode: 401);

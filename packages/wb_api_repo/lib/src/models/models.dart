@@ -3,3 +3,4 @@ export 'supply.dart';
 export 'stock.dart';
 export 'order.dart';
 export 'sale.dart';
+export 'report.dart';
