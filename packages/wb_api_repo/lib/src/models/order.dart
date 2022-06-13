@@ -11,15 +11,15 @@ class Order {
   final String date;
   final String lastChangeDate;
   final String supplierArticle;
-  final int techSize;
-  final int barcode;
-  final int totalPrice;
+  final String techSize;
+  final String barcode;
+  final String totalPrice;
   final int discountPercent;
   final String warehouseName;
   final String oblast;
-  final String incomeID;
-  final String odid;
-  final String nmId;
+  final int incomeID;
+  final int odid;
+  final int nmId;
   final String subject;
   final String category;
   final String brand;
@@ -38,15 +38,15 @@ class Order {
       date: json['date'] ?? 0,
       lastChangeDate: json['lastChangeDate'] ?? "",
       supplierArticle: json['supplierArticle'] ?? "",
-      techSize: json['techSize'] ?? 0,
-      barcode: json['barcode'] ?? 0,
-      totalPrice: json['totalPrice'] ?? 0,
-      discountPercent: json['discountPercent'] ?? "",
+      techSize: json['techSize'] ?? "",
+      barcode: json['barcode'] ?? "",
+      totalPrice: json['totalPrice'].toString(),
+      discountPercent: json['discountPercent'] ?? 0,
       warehouseName: json['warehouseName'] ?? "",
       oblast: json['oblast'] ?? "",
-      incomeID: json['incomeID'] ?? "",
-      odid: json['odid'] ?? "",
-      nmId: json['nmId'] ?? "",
+      incomeID: json['incomeID'] ?? 0,
+      odid: json['odid'] ?? 0,
+      nmId: json['nmId'] ?? 0,
       subject: json['subject'] ?? 0,
       category: json['category'] ?? 0,
       brand: json['brand'] ?? 0,
