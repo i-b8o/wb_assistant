@@ -9,6 +9,18 @@ class WBApiProvider {
   static const accessControlKey = 'Access-Control-Allow-Headers';
   static const accessControlValue = 'Access-Control-Allow-Origin, Accept';
 
+  Future<http.Response> salesV1(String date, key) async {
+    String url = EndPoints.salesV1(date, key);
+    final httpResponse = await client.get(
+      Uri.parse(url),
+      headers: <String, String>{
+        contentKey: contentType,
+      },
+    );
+
+    return httpResponse;
+  }
+
   Future<http.Response> ordersV1(String date, key) async {
     String url = EndPoints.ordersV1(date, key);
     final httpResponse = await client.get(

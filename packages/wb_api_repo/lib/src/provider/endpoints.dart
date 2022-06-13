@@ -14,4 +14,8 @@ class EndPoints {
   static String ordersV1(String date, key) {
     return '${domenV1}orders?dateFrom=$date&key=$key';
   }
+
+  static String salesV1(String date, key) {
+    return '${domenV1}sales?dateFrom=$date&key=$key';
+  }
 }

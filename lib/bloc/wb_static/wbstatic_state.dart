@@ -25,7 +25,12 @@ class OrdersState extends WbstaticState {
   OrdersState(this.statusCode, this.orders);
 }
 
-class SalesState extends WbstaticState {}
+class SalesState extends WbstaticState {
+  final int statusCode;
+  final List<Sale> sales;
+
+  SalesState(this.statusCode, this.sales);
+}
 
 class ReportState extends WbstaticState {}
 

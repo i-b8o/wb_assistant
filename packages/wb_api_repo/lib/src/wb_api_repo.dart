@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:http/http.dart' as http;
-import 'package:wb_api_repo/src/models/order.dart';
 
 import 'models/models.dart';
 import 'provider/wb_api_provider.dart';
@@ -11,6 +10,26 @@ import 'provider/wb_api_provider.dart';
 // TODO All ***Response to One
 class WBApiRepository {
   final WBApiProvider wbApiProvider = WBApiProvider();
+
+  Future<SalesResponse> getV1Sales(String date, key) async {
+    if (date.isEmpty || key.isEmpty) {
+      return SalesResponse(items: [], statusCode: 401);
+    }
+    final http.Response response = await wbApiProvider.salesV1(date, key);
+    log(response.body);
+    if (response.statusCode == 200) {
+      List<Sale> items = (json.decode(response.body) as List)
+          .map((data) => Sale.fromJson(data))
+          .toList();
+      int itemsLength = items.length;
+      if (itemsLength == 0) {
+        return SalesResponse(items: [], statusCode: 401);
+      }
+
+      return SalesResponse(items: items, statusCode: 200);
+    }
+    return SalesResponse(statusCode: response.statusCode, items: []);
+  }
 
   Future<OrdersResponse> getV1Orders(String date, key) async {
     if (date.isEmpty || key.isEmpty) {

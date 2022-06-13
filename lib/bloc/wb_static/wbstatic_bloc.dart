@@ -81,7 +81,7 @@ class WbstaticBloc extends Bloc<WbstaticEvent, WbstaticState> {
     } else if (currentTab == 2) {
       try {
         OrdersResponse ordersResponse =
-            await wbApiRepository.getV1Orders("2017-03-25T21:00:00.000Z", key);
+            await wbApiRepository.getV1Orders("2022-06-01T21:00:00.000Z", key);
         int statusCode = ordersResponse.statusCode;
         if (statusCode == 200) {
           List<Order> orders = ordersResponse.items;
@@ -89,7 +89,25 @@ class WbstaticBloc extends Bloc<WbstaticEvent, WbstaticState> {
             emit(OrdersState(200, orders));
             return;
           }
-          emit(FaildState(message: "У вас не было поставок."));
+          emit(FaildState(message: "У вас не было заказов."));
+        } else {
+          emit(FaildState(message: statusCode.toString()));
+        }
+      } catch (e) {
+        log("$e", name: "WbstaticBloc");
+      }
+    } else if (currentTab == 3) {
+      try {
+        SalesResponse salesResponse =
+            await wbApiRepository.getV1Sales("2022-06-01T21:00:00.000Z", key);
+        int statusCode = salesResponse.statusCode;
+        if (statusCode == 200) {
+          List<Sale> sales = salesResponse.items;
+          if (sales.isNotEmpty) {
+            emit(SalesState(200, sales));
+            return;
+          }
+          emit(FaildState(message: "У вас не было продаж."));
         } else {
           emit(FaildState(message: statusCode.toString()));
         }
