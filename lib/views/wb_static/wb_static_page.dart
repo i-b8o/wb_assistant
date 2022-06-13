@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wb_assistant/bloc/wb_static/wbstatic_bloc.dart';
 import 'package:wb_assistant/constants.dart';
+import 'package:wb_assistant/views/wb_static/widgets/stocks_expansion_panel_list.dart';
 
-import '../../helpers/custom_icons.dart';
+import 'widgets/incomes_expansion_panel_list.dart';
 import 'widgets/wb_static_list_view.dart';
 
 class WbStaticPage extends StatelessWidget {
@@ -56,44 +57,11 @@ class WbStaticPage extends StatelessWidget {
             SizedBox(
               height: size.height * 0.03,
             ),
-            // ExpansionPanelList.radio(
-            //     elevation: 0,
-            //     children: supplies
-            //         .map((supply) => ExpansionPanelRadio(
-            //               backgroundColor: Colors.transparent,
-            //               canTapOnHeader: true,
-            //               value: supply.id,
-            //               headerBuilder: (context, isExpanded) => Column(
-            //                 crossAxisAlignment: CrossAxisAlignment.start,
-            //                 children: [
-            //                   Text(
-            //                     'Дата: ${supply.dateTime.toString().replaceAll(" 00:00:00.000", "")}',
-            //                     style: TextStyle(
-            //                       fontSize: size.height * 0.02,
-            //                       fontWeight: FontWeight.bold,
-            //                     ),
-            //                   ),
-            //                   Text(
-            //                     'Номер: ${supply.id}',
-            //                     style: TextStyle(
-            //                       fontSize: size.height * 0.02,
-            //                       fontWeight: FontWeight.bold,
-            //                     ),
-            //                   ),
-            //                   Text(
-            //                     'Склад: ${supply.warehouseName}',
-            //                     style: TextStyle(
-            //                       fontSize: size.height * 0.02,
-            //                       fontWeight: FontWeight.bold,
-            //                     ),
-            //                   ),
-            //                 ],
-            //               ),
-            //               body: ExpansionPanelRadioBody(
-            //                 supply: supply,
-            //               ),
-            //             ))
-            //         .toList()),
+            (state is IncomesState)
+                ? IncomesExpansionPanelList(supplies: state.supplies)
+                : (state is StocksState)
+                    ? StocksExpansionPanelList(stocks: state.stocks)
+                    : Container()
           ],
         )));
       }),

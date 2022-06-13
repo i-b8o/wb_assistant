@@ -11,9 +11,19 @@ class IncomesState extends WbstaticState {
   IncomesState(this.statusCode, this.supplies);
 }
 
-class StocksState extends WbstaticState {}
+class StocksState extends WbstaticState {
+  final int statusCode;
+  final List<Stock> stocks;
 
-class OrdersState extends WbstaticState {}
+  StocksState(this.statusCode, this.stocks);
+}
+
+class OrdersState extends WbstaticState {
+  final int statusCode;
+  final List<Order> orders;
+
+  OrdersState(this.statusCode, this.orders);
+}
 
 class SalesState extends WbstaticState {}
 

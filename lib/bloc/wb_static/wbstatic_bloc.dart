@@ -10,7 +10,7 @@ part 'wbstatic_event.dart';
 part 'wbstatic_state.dart';
 
 class WbstaticBloc extends Bloc<WbstaticEvent, WbstaticState> {
-  int currentTab = 0;
+  int currentTab = 100;
   int get tab => currentTab;
   set tab(int val) => currentTab = val;
 
@@ -32,27 +32,70 @@ class WbstaticBloc extends Bloc<WbstaticEvent, WbstaticState> {
 
   Future<void> _onListViewItemPushedEvent(
       WbstaticEvent event, Emitter<WbstaticState> emit) async {
+    String key = "";
     try {
-      String key = await storageRepository.getApiKey();
+      key = await storageRepository.getApiKey();
       if (key.isEmpty) {
         emit(FaildState(message: "Вам необходимо сначала добавить ключ API"));
         return;
       }
-      IncomesResponse incomeResponse =
-          await wbApiRepository.getV1Incomes("2017-03-25T21:00:00.000Z", key);
-      int statusCode = incomeResponse.statusCode;
-      if (statusCode == 200) {
-        List<Supply> supplies = incomeResponse.items;
-        if (supplies.isNotEmpty) {
-          emit(IncomesState(200, supplies));
-          return;
-        }
-        emit(FaildState(message: "У вас не было поставок."));
-      } else {
-        emit(FaildState(message: statusCode.toString()));
-      }
     } catch (e) {
-      log("HomeBloc error: $e");
+      log("$e", name: "WbstaticBloc");
+    }
+    if (currentTab == 0) {
+      try {
+        IncomesResponse incomeResponse =
+            await wbApiRepository.getV1Incomes("2017-03-25T21:00:00.000Z", key);
+        int statusCode = incomeResponse.statusCode;
+        if (statusCode == 200) {
+          List<Supply> supplies = incomeResponse.items;
+          if (supplies.isNotEmpty) {
+            emit(IncomesState(200, supplies));
+            return;
+          }
+          emit(FaildState(message: "У вас не было поставок."));
+        } else {
+          emit(FaildState(message: statusCode.toString()));
+        }
+      } catch (e) {
+        log("$e", name: "WbstaticBloc");
+      }
+    } else if (currentTab == 1) {
+      try {
+        StocksResponse stocksResponse =
+            await wbApiRepository.getV1Stocks("2017-03-25T21:00:00.000Z", key);
+        int statusCode = stocksResponse.statusCode;
+        if (statusCode == 200) {
+          List<Stock> stocks = stocksResponse.items;
+          if (stocks.isNotEmpty) {
+            emit(StocksState(200, stocks));
+            return;
+          }
+          emit(FaildState(message: "У вас не было поставок."));
+        } else {
+          emit(FaildState(message: statusCode.toString()));
+        }
+      } catch (e) {
+        log("$e", name: "WbstaticBloc");
+      }
+    } else if (currentTab == 2) {
+      try {
+        OrdersResponse ordersResponse =
+            await wbApiRepository.getV1Orders("2017-03-25T21:00:00.000Z", key);
+        int statusCode = ordersResponse.statusCode;
+        if (statusCode == 200) {
+          List<Order> orders = ordersResponse.items;
+          if (orders.isNotEmpty) {
+            emit(OrdersState(200, orders));
+            return;
+          }
+          emit(FaildState(message: "У вас не было поставок."));
+        } else {
+          emit(FaildState(message: statusCode.toString()));
+        }
+      } catch (e) {
+        log("$e", name: "WbstaticBloc");
+      }
     }
   }
 }
