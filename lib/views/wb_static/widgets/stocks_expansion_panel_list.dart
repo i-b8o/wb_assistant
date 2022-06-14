@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:wb_api_repo/wb_api_repo.dart';
 import 'package:wb_assistant/views/wb_static/widgets/expansion_panel_radio_body_stocks.dart';
 
-import 'expansion_panel_radio_body.dart';
-
 class StocksExpansionPanelList extends StatelessWidget {
   const StocksExpansionPanelList({
     Key? key,

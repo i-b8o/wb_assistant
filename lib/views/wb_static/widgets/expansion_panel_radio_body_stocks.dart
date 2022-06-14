@@ -10,17 +10,26 @@ class ExpansionPanelRadioBodyStocks extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-      Text('${stock.barcode}'),
-      Text(stock.brand),
-      Text(stock.category),
-      Text('${stock.daysOnSite}'),
-      Text('${stock.discount}'),
-      Text('${stock.inWayFromClient}'),
-      Text('${stock.inWayToClient}'),
-      Text('${stock.isRealization}'),
-      Text('${stock.isSupply}'),
-      Text(stock.lastChangeDate),
-      Text('${stock.price}'),
+      Text('Дата обновления: ${stock.lastChangeDate}'),
+      Text('Артикул поставщика: ${stock.supplierArticle}'),
+      Text('Размер: ${stock.techSize}'),
+      Text('Штрих-код: ${stock.barcode}'),
+      Text('Кол-во доступное для продажи: ${stock.quantity}'),
+      Text('Договор поставки: ${stock.isSupply}'),
+      Text('Договор реализации: ${stock.isRealization}'),
+      Text('Кол-во полное: ${stock.quantityFull}'),
+      Text('Кол-во не в заказе: ${stock.quantityNotInOrders}'),
+      Text('В пути к клиенту (штук): ${stock.inWayToClient}'),
+      Text('В пути от клиента (штук): ${stock.inWayFromClient}'),
+      Text('Код WB: ${stock.nmId}'),
+      Text('Предмет: ${stock.subject}'),
+      Text('Категория: ${stock.category}'),
+      Text('Кол-во дней на сайте: ${stock.daysOnSite}'),
+      Text('Бренд: ${stock.brand}'),
+      Text('Код контракта: ${stock.sCCode}'),
+      Text('Уникальный идентификатор склада: ${stock.warehouse}'),
+      Text('Цена товара: ${stock.price}'),
+      Text('Скидка на товар установленная продавцом: ${stock.discount}'),
     ]);
   }
 }
