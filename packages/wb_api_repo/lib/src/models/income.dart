@@ -55,8 +55,11 @@ class IncomesResponse {
           article: income.supplierArticle,
           techSize: income.techSize,
           barCode: income.barcode,
+          number: income.number,
           quantity: income.quantity,
           totalPrice: income.totalPrice,
+          lastChangeDate: income.lastChangeDate,
+          dateClose: income.dateClose,
           img:
               'https://images.wbstatic.net/big/new/${income.nmId.toString().replaceRange(4, null, "0000")}/${income.nmId.toString()}-1.jpg');
       // Add it to list

@@ -25,14 +25,14 @@ class IncomesExpansionPanelList extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Дата: ${supply.dateTime.toString().replaceAll(" 00:00:00.000", "")}',
+                        'Дата поступления: ${supply.dateTime.toString().replaceAll(" 00:00:00.000", "")}',
                         style: TextStyle(
                           fontSize: size.height * 0.02,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       Text(
-                        'Номер: ${supply.id}',
+                        'Номер поставки: ${supply.id}',
                         style: TextStyle(
                           fontSize: size.height * 0.02,
                           fontWeight: FontWeight.bold,

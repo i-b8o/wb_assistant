@@ -97,6 +97,7 @@ class WBApiRepository {
       return IncomesResponse(items: [], statusCode: 401);
     }
     final http.Response response = await wbApiProvider.incomesV1(date, key);
+    log(response.body);
     if (response.statusCode == 200) {
       List<Income> incomes = (json.decode(response.body) as List)
           .map((data) => Income.fromJson(data))

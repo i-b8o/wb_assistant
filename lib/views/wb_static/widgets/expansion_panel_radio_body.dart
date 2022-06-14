@@ -17,7 +17,7 @@ class ExpansionPanelRadioBody extends StatelessWidget {
       children: supply.items
           .map((item) => Container(
                 width: size.width * 0.93,
-                height: size.height * 0.15,
+                // height: size.height * 0.15,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     border: Border.all(color: Constants.greyColor),

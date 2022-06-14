@@ -18,6 +18,9 @@ class SupplyItem {
   final String article;
   final String techSize;
   final String barCode;
+  final String number;
+  final String lastChangeDate;
+  final String dateClose;
   final int quantity;
   final int totalPrice;
   final String img;
@@ -29,6 +32,9 @@ class SupplyItem {
       required this.article,
       required this.techSize,
       required this.barCode,
+      required this.number,
+      required this.lastChangeDate,
+      required this.dateClose,
       required this.quantity,
       required this.totalPrice});
 }

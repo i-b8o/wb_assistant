@@ -74,7 +74,7 @@ class ExpansionPanelRadioBodyInfo extends StatelessWidget {
         ),
         SizedBox(
           width: size.width * 0.5,
-          child: Row(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               InkWell(
@@ -90,10 +90,37 @@ class ExpansionPanelRadioBodyInfo extends StatelessWidget {
                     _launchUrl(item.id.toString());
                   }),
               Text(
-                '${item.quantity.toString()} шт',
+                'Кол-во: ${item.quantity.toString()} шт',
                 style: const TextStyle(
                     color: Constants.blueColor, fontWeight: FontWeight.bold),
               ),
+              item.number.isNotEmpty
+                  ? Text(
+                      'Номер УПД: ${item.number.toString()}',
+                      style: const TextStyle(
+                          color: Constants.blueColor,
+                          fontWeight: FontWeight.bold),
+                    )
+                  : Container(),
+              Text('Дата обновления: ${item.lastChangeDate}'),
+              item.techSize.isNotEmpty && item.techSize != "0"
+                  ? Text(
+                      'Размер: ${item.techSize}',
+                      style: const TextStyle(
+                          color: Constants.blueColor,
+                          fontWeight: FontWeight.bold),
+                    )
+                  : Container(),
+              item.totalPrice != 0
+                  ? Text(
+                      'Цена из УПД: ${item.totalPrice}',
+                      style: const TextStyle(
+                          color: Constants.blueColor,
+                          fontWeight: FontWeight.bold),
+                    )
+                  : Container(),
+              Text('дата принятия (закрытия): ${item.dateClose}'),
+              Text('Код WB: ${item.id}'),
             ],
           ),
         ),
