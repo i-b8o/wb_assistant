@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wb_api_repo/wb_api_repo.dart';
 
+// TODO hide zero and empty values
 class ExpansionPanelRadioBodyStocks extends StatelessWidget {
   const ExpansionPanelRadioBodyStocks({Key? key, required this.stock})
       : super(key: key);

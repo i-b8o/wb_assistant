@@ -31,21 +31,16 @@ class OrdersExpansionPanelList extends StatelessWidget {
                       ),
                       Column(
                         children: [
-                          Text('Кол-во: ${order.lastChangeDate}'),
-                          Text(
-                            'Склад: ${order.warehouseName}',
-                            style: TextStyle(
-                              fontSize: size.height * 0.02,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
                           order.isCancel
                               ? Container(
                                   width: size.width * 0.2,
                                   height: size.width * 0.05,
                                   color: Colors.red,
+                                  child: const Text("Отменён"),
                                 )
                               : Container(),
+                          Text(order.supplierArticle),
+                          Text('Дата: ${order.date}'),
                         ],
                       ),
                     ],
