@@ -31,8 +31,8 @@ class ExpansionPanelRadioBodyOrders extends StatelessWidget {
       Text('Предмет: ${order.subject}'),
       Text('Категория: ${order.category}'),
       Text('Бренд: ${order.brand}'),
-      Text(order.cancelDt),
-      Text(order.sticker),
+      Text('Дата отмены ${order.cancelDt}'),
+      Text('Стикер: ${order.sticker}'),
     ]);
   }
 }

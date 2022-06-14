@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:wb_api_repo/wb_api_repo.dart';
-import 'package:wb_assistant/views/wb_static/widgets/expansion_panel_radio_body_orders.dart';
 
 import 'expansion_panel_radio_body_sales.dart';
 
@@ -33,7 +32,7 @@ class SalesExpansionPanelList extends StatelessWidget {
                       ),
                       Column(
                         children: [
-                          Text('Кол-во: ${sale.lastChangeDate}'),
+                          Text('Дата: ${sale.date}'),
                           Text(
                             'Склад: ${sale.warehouseName}',
                             style: TextStyle(
