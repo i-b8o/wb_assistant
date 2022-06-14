@@ -3,6 +3,7 @@ import 'package:wb_api_repo/wb_api_repo.dart';
 
 import 'expansion_panel_radio_body_sales.dart';
 
+// Not saled orders quantity totla price and aso forth
 class SalesExpansionPanelList extends StatelessWidget {
   const SalesExpansionPanelList({
     Key? key,
