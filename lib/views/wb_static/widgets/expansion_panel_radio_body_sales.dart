@@ -26,17 +26,17 @@ class ExpansionPanelRadioBodySales extends StatelessWidget {
       Text('Уникальный идентификатор продажи/возврата: ${sale.saleID}'),
       Text('Уникальный идентификатор позиции заказа: ${sale.odid}'),
       Text('Согласованная скидка постоянного покупателя (СПП): ${sale.spp}'),
+      Text('К перечислению поставщику: ${sale.forPay}'),
+      Text(
+          'Фактическая цена из заказа (с учетом всех скидок, включая и от ВБ): ${sale.finishedPrice}'),
+      Text(
+          'Цена, от которой считается вознаграждение поставщика forpay (с учетом всех согласованных скидок): ${sale.priceWithDisc}'),
+      Text('Код WB: ${sale.nmId}'),
+      Text('Предмет: ${sale.subject}'),
+      Text('Категория: ${sale.category}'),
       Text('Бренд: ${sale.brand}'),
-      Text(sale.category),
-      Text(sale.barcode),
-      Text(sale.category),
-      Text(sale.date),
-      Text('${sale.discountPercent}'),
-      Text(sale.gNumber),
-      Text(sale.lastChangeDate),
-      Text('${sale.incomeID}'),
-      Text(sale.lastChangeDate),
-      Text('${sale.nmId}'),
+      Text('Стикер: ${sale.sticker}'),
+      Text('Номер заказа: ${sale.gNumber}'),
     ]);
   }
 }
