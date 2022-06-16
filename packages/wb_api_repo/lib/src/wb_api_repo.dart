@@ -3,122 +3,121 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:http/http.dart' as http;
+import 'package:wb_api_repo/src/models/wb_api_request.dart';
 
 import 'models/models.dart';
-import 'models/wb_api_response.dart';
 import 'provider/wb_api_provider.dart';
 
-// TODO All ***Response to One
 class WBApiRepository {
   final WBApiProvider wbApiProvider = WBApiProvider();
 
-// TODO Refactor: function must do one thing
-// TODO Too much arguments
-  Future<WbApiResponse> getReportsResponse(String dateFrom, dateTo, key) async {
-    if (dateFrom.isEmpty || dateTo.isEmpty || key.isEmpty) {
-      return WbApiResponse(items: [], statusCode: 401);
+  // Get a JSON object from reports API HTTP response then decode it into a WbApiResponse instance or status code 400
+  Future<WbApiResponse> getReportsResponse(WbApiRequest req) async {
+    if (req.isEmptyAny()) {
+      return WbApiResponse(items: [], statusCode: 400);
     }
     final http.Response response =
-        await wbApiProvider.fetchReportDetailByPeriod(dateFrom, dateTo, key);
-    log(response.body);
-    if (response.statusCode == 200) {
-      List<Report> items = (json.decode(response.body) as List)
-          .map((data) => Report.fromJson(data))
-          .toList();
-      int itemsLength = items.length;
-      if (itemsLength == 0) {
-        return WbApiResponse(items: [], statusCode: 401);
-      }
-
-      return WbApiResponse(items: items, statusCode: 200);
+        await wbApiProvider.fetchReportDetailByPeriod(req);
+    // Not OK response
+    if (response.statusCode != 200) {
+      return WbApiResponse(statusCode: response.statusCode, items: []);
     }
-    return WbApiResponse(statusCode: response.statusCode, items: []);
+    List<Report> items = (json.decode(response.body) as List)
+        .map((data) => Report.fromJson(data))
+        .toList();
+
+    if (items.isEmpty) {
+      return WbApiResponse(items: [], statusCode: 400);
+    }
+
+    return WbApiResponse(items: items, statusCode: 200);
   }
 
-// TODO Refactor: function must do one thing
-// TODO Too much arguments
-  Future<SalesResponse> getSalesResponse(String date, key) async {
-    if (date.isEmpty || key.isEmpty) {
-      return SalesResponse(items: [], statusCode: 401);
+  // Get a JSON object from reports API HTTP response then decode it into a WbApiResponse instance or status code 400
+  Future<WbApiResponse> getSalesResponse(WbApiRequest req) async {
+    if (req.isEmpty()) {
+      return WbApiResponse(items: [], statusCode: 400);
     }
-    final http.Response response = await wbApiProvider.fetchSales(date, key);
-    log(response.body);
-    if (response.statusCode == 200) {
-      List<Sale> items = (json.decode(response.body) as List)
-          .map((data) => Sale.fromJson(data))
-          .toList();
-      int itemsLength = items.length;
-      if (itemsLength == 0) {
-        return SalesResponse(items: [], statusCode: 401);
-      }
+    final http.Response response = await wbApiProvider.fetchSales(req);
 
-      return SalesResponse(items: items, statusCode: 200);
+    // Not OK response
+    if (response.statusCode != 200) {
+      return WbApiResponse(statusCode: response.statusCode, items: []);
     }
-    return SalesResponse(statusCode: response.statusCode, items: []);
+    List<Sale> items = (json.decode(response.body) as List)
+        .map((data) => Sale.fromJson(data))
+        .toList();
+
+    if (items.isEmpty) {
+      return WbApiResponse(items: [], statusCode: 400);
+    }
+
+    return WbApiResponse(items: items, statusCode: 200);
   }
 
-// TODO Refactor: function must do one thing
-// TODO Too much arguments
-  Future<WbApiResponse> getOrdersResponse(String date, key) async {
-    if (date.isEmpty || key.isEmpty) {
-      return WbApiResponse(items: [], statusCode: 401);
+// Get a JSON object from orders API HTTP response then decode it into a WbApiResponse instance or status code 400
+  Future<WbApiResponse> getOrdersResponse(WbApiRequest req) async {
+    if (req.isEmpty()) {
+      return WbApiResponse(items: [], statusCode: 400);
     }
-    final http.Response response = await wbApiProvider.fetchOrders(date, key);
-    log(response.body);
-    if (response.statusCode == 200) {
-      List<Order> items = (json.decode(response.body) as List)
-          .map((data) => Order.fromJson(data))
-          .toList();
-      int itemsLength = items.length;
-      if (itemsLength == 0) {
-        return WbApiResponse(items: [], statusCode: 401);
-      }
+    final http.Response response = await wbApiProvider.fetchOrders(req);
 
-      return WbApiResponse(items: items, statusCode: 200);
+    // Not OK response
+    if (response.statusCode != 200) {
+      return WbApiResponse(statusCode: response.statusCode, items: []);
     }
-    return WbApiResponse(statusCode: response.statusCode, items: []);
+    List<Order> items = (json.decode(response.body) as List)
+        .map((data) => Order.fromJson(data))
+        .toList();
+    int itemsLength = items.length;
+    if (itemsLength == 0) {
+      return WbApiResponse(items: [], statusCode: 400);
+    }
+
+    return WbApiResponse(items: items, statusCode: 200);
   }
 
-// TODO Refactor: function must do one thing
-// TODO Too much arguments
-  Future<WbApiResponse> getStocksResponse(String date, key) async {
-    if (date.isEmpty || key.isEmpty) {
-      return WbApiResponse(items: [], statusCode: 401);
+  // Get a JSON object from stocks API HTTP response then decode it into a WbApiResponse instance or status code 400
+  Future<WbApiResponse> getStocksResponse(WbApiRequest req) async {
+    if (req.isEmpty()) {
+      return WbApiResponse(items: [], statusCode: 400);
     }
-    final http.Response response = await wbApiProvider.fetchStocks(date, key);
-    log(response.body);
-    if (response.statusCode == 200) {
-      List<Stock> items = (json.decode(response.body) as List)
-          .map((data) => Stock.fromJson(data))
-          .toList();
-      int itemsLength = items.length;
-      if (itemsLength == 0) {
-        return WbApiResponse(items: [], statusCode: 401);
-      }
+    final http.Response response = await wbApiProvider.fetchStocks(req);
 
-      return WbApiResponse(items: items, statusCode: 200);
+    // Not OK response
+    if (response.statusCode != 200) {
+      return WbApiResponse(statusCode: response.statusCode, items: []);
     }
-    return WbApiResponse(statusCode: response.statusCode, items: []);
+    List<Stock> items = (json.decode(response.body) as List)
+        .map((data) => Stock.fromJson(data))
+        .toList();
+    int itemsLength = items.length;
+    if (itemsLength == 0) {
+      return WbApiResponse(items: [], statusCode: 400);
+    }
+
+    return WbApiResponse(items: items, statusCode: 200);
   }
 
-// TODO Refactor: function must do one thing
-  Future<IncomesResponse> getIncomesResponse(String date, key) async {
-    if (date.isEmpty || key.isEmpty) {
-      return IncomesResponse(items: [], statusCode: 401);
+  // Get a JSON object from stocks API HTTP response then decode it into a WbApiResponse instance or status code 400
+  Future<IncomesResponse> getIncomesResponse(WbApiRequest req) async {
+    if (req.isEmpty()) {
+      return IncomesResponse(items: [], statusCode: 400);
     }
-    final http.Response response = await wbApiProvider.fetchIncomes(date, key);
-    log(response.body);
-    if (response.statusCode == 200) {
-      List<Income> incomes = (json.decode(response.body) as List)
-          .map((data) => Income.fromJson(data))
-          .toList();
-      int incomesLength = incomes.length;
-      if (incomesLength == 0) {
-        return IncomesResponse(items: [], statusCode: 401);
-      }
+    final http.Response response = await wbApiProvider.fetchIncomes(req);
 
-      return IncomesResponse.fromIncomesList(incomes);
+    // Not OK response
+    if (response.statusCode != 200) {
+      return IncomesResponse(statusCode: response.statusCode, items: []);
     }
-    return IncomesResponse(statusCode: response.statusCode, items: []);
+    List<Income> incomes = (json.decode(response.body) as List)
+        .map((data) => Income.fromJson(data))
+        .toList();
+    int incomesLength = incomes.length;
+    if (incomesLength == 0) {
+      return IncomesResponse(items: [], statusCode: 400);
+    }
+
+    return IncomesResponse.fromIncomesList(incomes);
   }
 }
