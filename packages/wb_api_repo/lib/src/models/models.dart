@@ -5,3 +5,4 @@ export 'order.dart';
 export 'sale.dart';
 export 'report.dart';
 export 'wb_api_response.dart';
+export 'wb_api_request.dart';

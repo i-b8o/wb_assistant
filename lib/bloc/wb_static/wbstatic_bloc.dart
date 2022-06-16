@@ -43,10 +43,14 @@ class WbstaticBloc extends Bloc<WbstaticEvent, WbstaticState> {
     } catch (e) {
       log("$e", name: "WbstaticBloc");
     }
+    WbApiRequest req = WbApiRequest(
+        dateFrom: "2017-03-25T21:00:00.000Z",
+        dateTo: "2022-06-15T21:00:00.000Z",
+        key: key);
     if (currentTab == 0) {
       try {
-        IncomesResponse incomeResponse = await wbApiRepository
-            .getIncomesResponse("2017-03-25T21:00:00.000Z", key);
+        IncomesResponse incomeResponse =
+            await wbApiRepository.getIncomesResponse(req);
         int statusCode = incomeResponse.statusCode;
         if (statusCode == 200) {
           List<Supply> supplies = incomeResponse.items;
@@ -63,8 +67,8 @@ class WbstaticBloc extends Bloc<WbstaticEvent, WbstaticState> {
       }
     } else if (currentTab == 1) {
       try {
-        WbApiResponse stocksResponse = await wbApiRepository.getStocksResponse(
-            "2017-03-25T21:00:00.000Z", key);
+        WbApiResponse stocksResponse =
+            await wbApiRepository.getStocksResponse(req);
         int statusCode = stocksResponse.statusCode();
         if (statusCode == 200) {
           List<Stock> stocks = stocksResponse.items() as List<Stock>;
@@ -81,8 +85,8 @@ class WbstaticBloc extends Bloc<WbstaticEvent, WbstaticState> {
       }
     } else if (currentTab == 2) {
       try {
-        WbApiResponse ordersResponse = await wbApiRepository.getOrdersResponse(
-            "2022-06-01T21:00:00.000Z", key);
+        WbApiResponse ordersResponse =
+            await wbApiRepository.getOrdersResponse(req);
         int statusCode = ordersResponse.statusCode();
         if (statusCode == 200) {
           List<Order> orders = ordersResponse.items() as List<Order>;
@@ -99,11 +103,11 @@ class WbstaticBloc extends Bloc<WbstaticEvent, WbstaticState> {
       }
     } else if (currentTab == 3) {
       try {
-        SalesResponse salesResponse = await wbApiRepository.getSalesResponse(
-            "2022-06-01T21:00:00.000Z", key);
-        int statusCode = salesResponse.statusCode;
+        WbApiResponse salesResponse =
+            await wbApiRepository.getSalesResponse(req);
+        int statusCode = salesResponse.statusCode();
         if (statusCode == 200) {
-          List<Sale> sales = salesResponse.items;
+          List<Sale> sales = salesResponse.items() as List<Sale>;
           if (sales.isNotEmpty) {
             emit(SalesState(200, sales));
             return;
@@ -117,8 +121,8 @@ class WbstaticBloc extends Bloc<WbstaticEvent, WbstaticState> {
       }
     } else if (currentTab == 4) {
       try {
-        WbApiResponse reportResponse = await wbApiRepository.getReportsResponse(
-            "2022-06-01T21:00:00.000Z", "2022-06-15T21:00:00.000Z", key);
+        WbApiResponse reportResponse =
+            await wbApiRepository.getReportsResponse(req);
         int statusCode = reportResponse.statusCode();
         if (statusCode == 200) {
           List<Report> reports = reportResponse.items() as List<Report>;
