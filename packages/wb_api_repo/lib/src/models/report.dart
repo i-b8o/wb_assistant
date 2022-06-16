@@ -1,12 +1,12 @@
-class ReportResponse {
-  List<Report> items;
-  int statusCode;
-  ReportResponse({
-    required this.items,
-    required this.statusCode,
-  });
-}
-
+// class ReportResponse {
+//   List<Report> items;
+//   int statusCode;
+//   ReportResponse({
+//     required this.items,
+//     required this.statusCode,
+//   });
+// }
+// TODO see warnings
 class Report {
   final int realizationreportId;
   final String suppliercontractCode; //

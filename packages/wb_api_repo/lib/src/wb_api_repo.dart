@@ -14,10 +14,9 @@ class WBApiRepository {
 
 // TODO Refactor: function must do one thing
 // TODO Too much arguments
-  Future<ReportResponse> getReportsResponse(
-      String dateFrom, dateTo, key) async {
+  Future<WbApiResponse> getReportsResponse(String dateFrom, dateTo, key) async {
     if (dateFrom.isEmpty || dateTo.isEmpty || key.isEmpty) {
-      return ReportResponse(items: [], statusCode: 401);
+      return WbApiResponse(items: [], statusCode: 401);
     }
     final http.Response response =
         await wbApiProvider.fetchReportDetailByPeriod(dateFrom, dateTo, key);
@@ -28,12 +27,12 @@ class WBApiRepository {
           .toList();
       int itemsLength = items.length;
       if (itemsLength == 0) {
-        return ReportResponse(items: [], statusCode: 401);
+        return WbApiResponse(items: [], statusCode: 401);
       }
 
-      return ReportResponse(items: items, statusCode: 200);
+      return WbApiResponse(items: items, statusCode: 200);
     }
-    return ReportResponse(statusCode: response.statusCode, items: []);
+    return WbApiResponse(statusCode: response.statusCode, items: []);
   }
 
 // TODO Refactor: function must do one thing
@@ -60,9 +59,9 @@ class WBApiRepository {
 
 // TODO Refactor: function must do one thing
 // TODO Too much arguments
-  Future<OrdersResponse> getOrdersResponse(String date, key) async {
+  Future<WbApiResponse> getOrdersResponse(String date, key) async {
     if (date.isEmpty || key.isEmpty) {
-      return OrdersResponse(items: [], statusCode: 401);
+      return WbApiResponse(items: [], statusCode: 401);
     }
     final http.Response response = await wbApiProvider.fetchOrders(date, key);
     log(response.body);
@@ -72,19 +71,19 @@ class WBApiRepository {
           .toList();
       int itemsLength = items.length;
       if (itemsLength == 0) {
-        return OrdersResponse(items: [], statusCode: 401);
+        return WbApiResponse(items: [], statusCode: 401);
       }
 
-      return OrdersResponse(items: items, statusCode: 200);
+      return WbApiResponse(items: items, statusCode: 200);
     }
-    return OrdersResponse(statusCode: response.statusCode, items: []);
+    return WbApiResponse(statusCode: response.statusCode, items: []);
   }
 
 // TODO Refactor: function must do one thing
 // TODO Too much arguments
-  Future<StocksResponse> getStocksResponse(String date, key) async {
+  Future<WbApiResponse> getStocksResponse(String date, key) async {
     if (date.isEmpty || key.isEmpty) {
-      return StocksResponse(items: [], statusCode: 401);
+      return WbApiResponse(items: [], statusCode: 401);
     }
     final http.Response response = await wbApiProvider.fetchStocks(date, key);
     log(response.body);
@@ -94,12 +93,12 @@ class WBApiRepository {
           .toList();
       int itemsLength = items.length;
       if (itemsLength == 0) {
-        return StocksResponse(items: [], statusCode: 401);
+        return WbApiResponse(items: [], statusCode: 401);
       }
 
-      return StocksResponse(items: items, statusCode: 200);
+      return WbApiResponse(items: items, statusCode: 200);
     }
-    return StocksResponse(statusCode: response.statusCode, items: []);
+    return WbApiResponse(statusCode: response.statusCode, items: []);
   }
 
 // TODO Refactor: function must do one thing

@@ -1,15 +1,13 @@
-import 'models.dart';
-
-abstract class WbApiResponse {
+abstract class Response {
   List<Object> items();
   int statusCode();
 }
 
-class OrdersResponse implements WbApiResponse {
-  final List<Order> _items;
+class WbApiResponse implements Response {
+  final List<Object> _items;
   final int _statusCode;
-  OrdersResponse({
-    required List<Order> items,
+  WbApiResponse({
+    required List<Object> items,
     required int statusCode,
   })  : _items = items,
         _statusCode = statusCode;
@@ -17,5 +15,5 @@ class OrdersResponse implements WbApiResponse {
   @override
   int statusCode() => _statusCode;
   @override
-  List<Order> items() => _items;
+  List<Object> items() => _items;
 }
