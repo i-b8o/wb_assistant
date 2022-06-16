@@ -50,7 +50,6 @@ class AuthProvider {
     return httpResponse;
   }
 
-// TODO Too much arguments
 // Add comments for method
   Future<http.Response> fetchDetails(String token) async {
     final httpResponse = await client.get(
@@ -79,7 +78,6 @@ class AuthProvider {
     return httpResponse;
   }
 
-// TODO Too much arguments
 // Add comments for method
   Future<http.Response> recover(String email) async {
     final httpResponse = await client.post(
@@ -94,7 +92,6 @@ class AuthProvider {
     return httpResponse;
   }
 
-// TODO Too much arguments
 // Add comments for method
   Future<http.Response> actions(String action) async {
     final httpResponse = await client.post(

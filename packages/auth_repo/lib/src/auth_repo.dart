@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 class AuthRepository {
   final AuthProvider authProvider = AuthProvider();
 
+// TODO email, password, username is empty
   // Since auth API does not return any payload except a HTTP status code
   // signUpUser returns a status code only
   Future<int> signUpUser(String email, password, username) async {
@@ -18,6 +19,7 @@ class AuthRepository {
     return response.statusCode;
   }
 
+// TODO email, password, username is empty
   // Since auth API returns JWT with 200 HTTP status code or any HTTP status code
   // with message and message is used only for debugging.
   // signInUser returns a HTTP status code and a jwt if exists
@@ -32,6 +34,7 @@ class AuthRepository {
     return TokenResponse(token: "", statusCode: statusCode);
   }
 
+// TODO email, password, username is empty
   // Since auth API returns an user data with 200 HTTP status code or any HTTP status code
   // with a message and the message is used only for debugging.
   // getUser returns a HTTP status code and a user if exists.
@@ -48,6 +51,7 @@ class AuthRepository {
     return UserResponse(user: User.empty, statusCode: statusCode);
   }
 
+// TODO email, password, username is empty
   // Since auth API does not return any payload except a HTTP status code
   // resend returns a status code only
   Future<int> resend(email, password) async {
@@ -56,6 +60,7 @@ class AuthRepository {
     return response.statusCode;
   }
 
+// TODO email, password, username is empty
   // Since auth API does not return any payload except a HTTP status code
   // resend returns a status code only
   Future<int> recover(String email) async {
@@ -64,6 +69,7 @@ class AuthRepository {
     return response.statusCode;
   }
 
+// TODO email, password, username is empty
   // Since auth API returns status with 200 HTTP status code or any HTTP status code
   // with message and message is used only for debugging.
   // actions returns a HTTP status code and a jwt if exists
