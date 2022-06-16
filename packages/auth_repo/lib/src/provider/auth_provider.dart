@@ -16,6 +16,8 @@ class AuthProvider {
   static const accessControlKey = 'Access-Control-Allow-Headers';
   static const accessControlValue = 'Access-Control-Allow-Origin, Accept';
 
+// TODO Too much arguments
+// Add comments for method
   Future<http.Response> signUpUser(String email, password, username) async {
     final httpResponse = await client.post(
       Uri.parse('$domen$signUpEndPoint'),
@@ -31,6 +33,8 @@ class AuthProvider {
     return httpResponse;
   }
 
+// TODO Too much arguments
+// Add comments for method
   Future<http.Response> signInUser(String email, password) async {
     final httpResponse = await client.post(
       Uri.parse('$domen$signInEndPoint'),
@@ -46,6 +50,8 @@ class AuthProvider {
     return httpResponse;
   }
 
+// TODO Too much arguments
+// Add comments for method
   Future<http.Response> details(String token) async {
     final httpResponse = await client.get(
       Uri.parse('$domen$detailsInEndPoint'),
@@ -56,6 +62,8 @@ class AuthProvider {
     return httpResponse;
   }
 
+// TODO Too much arguments
+// Add comments for method
   Future<http.Response> resend(String email, password) async {
     final httpResponse = await client.post(
       Uri.parse('$domen$resendEndPoint'),
@@ -71,6 +79,8 @@ class AuthProvider {
     return httpResponse;
   }
 
+// TODO Too much arguments
+// Add comments for method
   Future<http.Response> recover(String email) async {
     final httpResponse = await client.post(
       Uri.parse('$domen$recoverEndPoint'),
@@ -84,6 +94,8 @@ class AuthProvider {
     return httpResponse;
   }
 
+// TODO Too much arguments
+// Add comments for method
   Future<http.Response> actions(String action) async {
     final httpResponse = await client.post(
       Uri.parse('$domen$actionsInEndPoint'),

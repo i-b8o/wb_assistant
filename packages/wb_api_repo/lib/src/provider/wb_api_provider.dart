@@ -9,6 +9,7 @@ class WBApiProvider {
   static const accessControlKey = 'Access-Control-Allow-Headers';
   static const accessControlValue = 'Access-Control-Allow-Origin, Accept';
 
+// TODO Too much arguments
   Future<http.Response> reportV1(String dateFrom, dateTo, key) async {
     String url = EndPoints.reportV1(dateFrom, dateTo, key);
     final httpResponse = await client.get(
@@ -21,6 +22,7 @@ class WBApiProvider {
     return httpResponse;
   }
 
+// TODO Too much arguments
   Future<http.Response> salesV1(String date, key) async {
     String url = EndPoints.salesV1(date, key);
     final httpResponse = await client.get(
@@ -33,6 +35,7 @@ class WBApiProvider {
     return httpResponse;
   }
 
+// TODO Too much arguments
   Future<http.Response> ordersV1(String date, key) async {
     String url = EndPoints.ordersV1(date, key);
     final httpResponse = await client.get(
@@ -45,6 +48,7 @@ class WBApiProvider {
     return httpResponse;
   }
 
+// TODO Too much arguments
   Future<http.Response> incomesV1(String date, key) async {
     String url = EndPoints.incomesV1(date, key);
     final httpResponse = await client.get(
@@ -57,6 +61,7 @@ class WBApiProvider {
     return httpResponse;
   }
 
+// TODO Too much arguments
   Future<http.Response> stocksV1(String date, key) async {
     String url = EndPoints.stocksV1(date, key);
     final httpResponse = await client.get(
