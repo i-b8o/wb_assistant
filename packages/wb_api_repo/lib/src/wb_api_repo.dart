@@ -11,7 +11,10 @@ import 'provider/wb_api_provider.dart';
 class WBApiRepository {
   final WBApiProvider wbApiProvider = WBApiProvider();
 
-  Future<ReportResponse> getV1Report(String dateFrom, dateTo, key) async {
+// TODO Refactor: function must do one thing
+// TODO Too much arguments
+  Future<ReportResponse> getReportsResponse(
+      String dateFrom, dateTo, key) async {
     if (dateFrom.isEmpty || dateTo.isEmpty || key.isEmpty) {
       return ReportResponse(items: [], statusCode: 401);
     }
@@ -32,7 +35,9 @@ class WBApiRepository {
     return ReportResponse(statusCode: response.statusCode, items: []);
   }
 
-  Future<SalesResponse> getV1Sales(String date, key) async {
+// TODO Refactor: function must do one thing
+// TODO Too much arguments
+  Future<SalesResponse> getSalesResponse(String date, key) async {
     if (date.isEmpty || key.isEmpty) {
       return SalesResponse(items: [], statusCode: 401);
     }
@@ -52,7 +57,9 @@ class WBApiRepository {
     return SalesResponse(statusCode: response.statusCode, items: []);
   }
 
-  Future<OrdersResponse> getV1Orders(String date, key) async {
+// TODO Refactor: function must do one thing
+// TODO Too much arguments
+  Future<OrdersResponse> getOrdersResponse(String date, key) async {
     if (date.isEmpty || key.isEmpty) {
       return OrdersResponse(items: [], statusCode: 401);
     }
@@ -72,7 +79,9 @@ class WBApiRepository {
     return OrdersResponse(statusCode: response.statusCode, items: []);
   }
 
-  Future<StocksResponse> getV1Stocks(String date, key) async {
+// TODO Refactor: function must do one thing
+// TODO Too much arguments
+  Future<StocksResponse> getStocksResponse(String date, key) async {
     if (date.isEmpty || key.isEmpty) {
       return StocksResponse(items: [], statusCode: 401);
     }
@@ -92,7 +101,8 @@ class WBApiRepository {
     return StocksResponse(statusCode: response.statusCode, items: []);
   }
 
-  Future<IncomesResponse> getV1Incomes(String date, key) async {
+// TODO Refactor: function must do one thing
+  Future<IncomesResponse> getIncomesResponse(String date, key) async {
     if (date.isEmpty || key.isEmpty) {
       return IncomesResponse(items: [], statusCode: 401);
     }
