@@ -1,12 +1,3 @@
-class OrdersResponse {
-  List<Order> items;
-  int statusCode;
-  OrdersResponse({
-    required this.items,
-    required this.statusCode,
-  });
-}
-
 class Order {
   final String date;
   final String lastChangeDate;
