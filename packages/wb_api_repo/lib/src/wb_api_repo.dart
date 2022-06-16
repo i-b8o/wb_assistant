@@ -16,7 +16,7 @@ class WBApiRepository {
       return ReportResponse(items: [], statusCode: 401);
     }
     final http.Response response =
-        await wbApiProvider.reportV1(dateFrom, dateTo, key);
+        await wbApiProvider.fetchReportDetailByPeriod(dateFrom, dateTo, key);
     log(response.body);
     if (response.statusCode == 200) {
       List<Report> items = (json.decode(response.body) as List)
@@ -36,7 +36,7 @@ class WBApiRepository {
     if (date.isEmpty || key.isEmpty) {
       return SalesResponse(items: [], statusCode: 401);
     }
-    final http.Response response = await wbApiProvider.salesV1(date, key);
+    final http.Response response = await wbApiProvider.fetchSales(date, key);
     log(response.body);
     if (response.statusCode == 200) {
       List<Sale> items = (json.decode(response.body) as List)
@@ -56,7 +56,7 @@ class WBApiRepository {
     if (date.isEmpty || key.isEmpty) {
       return OrdersResponse(items: [], statusCode: 401);
     }
-    final http.Response response = await wbApiProvider.ordersV1(date, key);
+    final http.Response response = await wbApiProvider.fetchOrders(date, key);
     log(response.body);
     if (response.statusCode == 200) {
       List<Order> items = (json.decode(response.body) as List)
@@ -76,7 +76,7 @@ class WBApiRepository {
     if (date.isEmpty || key.isEmpty) {
       return StocksResponse(items: [], statusCode: 401);
     }
-    final http.Response response = await wbApiProvider.stocksV1(date, key);
+    final http.Response response = await wbApiProvider.fetchStocks(date, key);
     log(response.body);
     if (response.statusCode == 200) {
       List<Stock> items = (json.decode(response.body) as List)
@@ -96,7 +96,7 @@ class WBApiRepository {
     if (date.isEmpty || key.isEmpty) {
       return IncomesResponse(items: [], statusCode: 401);
     }
-    final http.Response response = await wbApiProvider.incomesV1(date, key);
+    final http.Response response = await wbApiProvider.fetchIncomes(date, key);
     log(response.body);
     if (response.statusCode == 200) {
       List<Income> incomes = (json.decode(response.body) as List)
