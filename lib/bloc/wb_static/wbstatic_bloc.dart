@@ -63,11 +63,11 @@ class WbstaticBloc extends Bloc<WbstaticEvent, WbstaticState> {
       }
     } else if (currentTab == 1) {
       try {
-        StocksResponse stocksResponse = await wbApiRepository.getStocksResponse(
+        WbApiResponse stocksResponse = await wbApiRepository.getStocksResponse(
             "2017-03-25T21:00:00.000Z", key);
-        int statusCode = stocksResponse.statusCode;
+        int statusCode = stocksResponse.statusCode();
         if (statusCode == 200) {
-          List<Stock> stocks = stocksResponse.items;
+          List<Stock> stocks = stocksResponse.items() as List<Stock>;
           if (stocks.isNotEmpty) {
             emit(StocksState(200, stocks));
             return;
@@ -81,11 +81,11 @@ class WbstaticBloc extends Bloc<WbstaticEvent, WbstaticState> {
       }
     } else if (currentTab == 2) {
       try {
-        OrdersResponse ordersResponse = await wbApiRepository.getOrdersResponse(
+        WbApiResponse ordersResponse = await wbApiRepository.getOrdersResponse(
             "2022-06-01T21:00:00.000Z", key);
-        int statusCode = ordersResponse.statusCode;
+        int statusCode = ordersResponse.statusCode();
         if (statusCode == 200) {
-          List<Order> orders = ordersResponse.items;
+          List<Order> orders = ordersResponse.items() as List<Order>;
           if (orders.isNotEmpty) {
             emit(OrdersState(200, orders));
             return;
@@ -117,12 +117,11 @@ class WbstaticBloc extends Bloc<WbstaticEvent, WbstaticState> {
       }
     } else if (currentTab == 4) {
       try {
-        ReportResponse reportResponse =
-            await wbApiRepository.getReportsResponse(
-                "2022-06-01T21:00:00.000Z", "2022-06-15T21:00:00.000Z", key);
-        int statusCode = reportResponse.statusCode;
+        WbApiResponse reportResponse = await wbApiRepository.getReportsResponse(
+            "2022-06-01T21:00:00.000Z", "2022-06-15T21:00:00.000Z", key);
+        int statusCode = reportResponse.statusCode();
         if (statusCode == 200) {
-          List<Report> reports = reportResponse.items;
+          List<Report> reports = reportResponse.items() as List<Report>;
           if (reports.isNotEmpty) {
             emit(ReportState(200, reports));
             return;
