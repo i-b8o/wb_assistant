@@ -52,7 +52,7 @@ class AuthProvider {
 
 // TODO Too much arguments
 // Add comments for method
-  Future<http.Response> details(String token) async {
+  Future<http.Response> fetchDetails(String token) async {
     final httpResponse = await client.get(
       Uri.parse('$domen$detailsInEndPoint'),
       headers: <String, String>{

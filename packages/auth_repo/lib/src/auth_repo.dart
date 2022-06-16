@@ -36,7 +36,7 @@ class AuthRepository {
   // with a message and the message is used only for debugging.
   // getUser returns a HTTP status code and a user if exists.
   Future<UserResponse> getUser(String token) async {
-    final http.Response response = await authProvider.details(token);
+    final http.Response response = await authProvider.fetchDetails(token);
 
     final statusCode = response.statusCode;
     if (statusCode == 200) {
